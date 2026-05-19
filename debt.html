@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>วางแผนปลดหนี้ Snowball vs Avalanche — ปิดหนี้เร็วที่สุด | ThaiFinance</title>
+<meta name="description" content="วางแผนปลดหนี้บัตรเครดิตและสินเชื่อส่วนบุคคล เปรียบเทียบวิธี Snowball กับ Avalanche รู้ว่าจะหมดหนี้เมื่อไหร่ ประหยัดดอกเบี้ยเท่าไหร่">
+<meta name="keywords" content="ปลดหนี้, debt snowball, debt avalanche, หนี้บัตรเครดิต, ปิดหนี้, วางแผนหนี้">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/debt.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="วางแผนปลดหนี้ Snowball vs Avalanche | ThaiFinance">
+<meta property="og:description" content="ปิดหนี้เร็วที่สุด ประหยัดดอกเบี้ยมากที่สุด">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/debt.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-debt.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"วางแผนปลดหนี้","url":"https://thaifinance-site.pages.dev/debt.html","description":"Debt Snowball vs Avalanche method calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('debt.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Debt Payoff Plan</div>
+  <div class="page-title">วางแผน<br>ปลดหนี้</div>
+  <div class="page-sub">Snowball vs Avalanche · หมดหนี้เร็วที่สุด</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">ยอดเงินที่จ่ายได้ต่อเดือนรวม (บาท)</label>
+      <input type="number" class="f-input" id="budget" value="15000">
+      <div class="f-hint">เงินที่เผื่อไว้จ่ายหนี้ทุกใบรวมกัน</div>
+    </div>
+    <div id="debtList"></div>
+    <button class="btn" onclick="addDebt()" style="background:var(--surface);border:1px solid var(--line);color:var(--ink2);margin-bottom:8px">+ เพิ่มหนี้</button>
+    <button class="btn btn-dark" onclick="calcDebt()">คำนวณแผน</button>
+    <div class="result" id="dbResult">
+      <div class="r-label">หมดหนี้ได้ใน</div>
+      <div class="r-val up" id="dbMonths">—</div>
+      <div class="r-detail" id="dbDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="dbStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="dbCompare" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">วิธี Snowball vs Avalanche</div>
+  <div class="card">
+    <div class="c-row"><div><div class="c-label">⛄ Snowball — จ่ายหนี้ก้อนเล็กสุดก่อน</div><div class="c-sub">ปิดหนี้ก้อนเล็กให้หมดเร็ว สร้างกำลังใจ ใช้กับคนที่ต้องการ momentum</div></div></div>
+    <div class="c-row"><div><div class="c-label">🏔️ Avalanche — จ่ายหนี้ดอกแพงสุดก่อน</div><div class="c-sub">ประหยัดดอกเบี้ยรวมมากที่สุด คณิตศาสตร์ถูกต้องที่สุด · เหมาะคนใจเย็น</div></div></div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณตามวิธี Dave Ramsey (Snowball) และ Avalanche · ไม่รวมค่าธรรมเนียมล่าช้า<br>ตัวเลขประมาณการ — ดอกเบี้ยจริงอาจคิดรายวัน</footer>
+
+<script>
+const DEFAULT_DEBTS = [
+  { name: 'บัตรเครดิต A', balance: 50000, rate: 18, min: 1500 },
+  { name: 'บัตรเครดิต B', balance: 30000, rate: 24, min: 900 },
+  { name: 'สินเชื่อส่วนบุคคล', balance: 80000, rate: 22, min: 3500 },
+];
+let debts = JSON.parse(JSON.stringify(DEFAULT_DEBTS));
+
+function renderDebts() {
+  const list = document.getElementById('debtList');
+  list.innerHTML = debts.map((d, i) => `
+    <div class="card" style="padding:14px;margin-bottom:8px">
+      <div style="display:flex;gap:6px;align-items:center;margin-bottom:8px">
+        <input class="f-input" style="height:38px;flex:1;font-size:14px" placeholder="ชื่อหนี้" value="${d.name}" oninput="debts[${i}].name=this.value">
+        <button onclick="removeDebt(${i})" style="background:transparent;border:1px solid var(--line);border-radius:6px;width:32px;height:38px;cursor:pointer;color:var(--down)">×</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+        <input type="number" class="f-input" style="height:38px;font-size:13px" placeholder="ยอด" value="${d.balance}" oninput="debts[${i}].balance=Number(this.value)">
+        <input type="number" class="f-input" style="height:38px;font-size:13px" placeholder="ดอก %" value="${d.rate}" step="0.1" oninput="debts[${i}].rate=Number(this.value)">
+        <input type="number" class="f-input" style="height:38px;font-size:13px" placeholder="ขั้นต่ำ" value="${d.min}" oninput="debts[${i}].min=Number(this.value)">
+      </div>
+    </div>`).join('');
+}
+function addDebt() {
+  debts.push({ name: 'หนี้ใหม่', balance: 10000, rate: 18, min: 500 });
+  renderDebts();
+}
+function removeDebt(i) {
+  debts.splice(i, 1);
+  renderDebts();
+}
+
+function simulate(debts, budget, strategy) {
+  let d = JSON.parse(JSON.stringify(debts));
+  let months = 0, totalInterest = 0;
+  const order = strategy === 'snowball' ? [...d].sort((a, b) => a.balance - b.balance) : [...d].sort((a, b) => b.rate - a.rate);
+  while (d.some(x => x.balance > 0) && months < 600) {
+    months++;
+    // pay interest
+    d.forEach(x => {
+      if (x.balance > 0) {
+        const intr = x.balance * x.rate / 100 / 12;
+        x.balance += intr;
+        totalInterest += intr;
+      }
+    });
+    // pay minimums
+    let remaining = budget;
+    d.forEach(x => {
+      if (x.balance > 0) {
+        const pay = Math.min(x.min, x.balance);
+        x.balance -= pay;
+        remaining -= pay;
+      }
+    });
+    // extra to priority debt
+    for (const o of order) {
+      const orig = d.find(x => x.name === o.name);
+      if (orig && orig.balance > 0 && remaining > 0) {
+        const pay = Math.min(remaining, orig.balance);
+        orig.balance -= pay;
+        remaining -= pay;
+      }
+    }
+  }
+  return { months, totalInterest };
+}
+
+function calcDebt() {
+  const budget = parseFloat(document.getElementById('budget').value) || 0;
+  const totalMin = debts.reduce((s, d) => s + d.min, 0);
+  if (budget < totalMin) { alert(`งบไม่พอจ่ายขั้นต่ำ (ขั้นต่ำรวม ${fmt(totalMin, 0)} บาท)`); return; }
+
+  const totalDebt = debts.reduce((s, d) => s + d.balance, 0);
+  const snowball = simulate(debts, budget, 'snowball');
+  const avalanche = simulate(debts, budget, 'avalanche');
+  const diff = snowball.totalInterest - avalanche.totalInterest;
+
+  document.getElementById('dbMonths').textContent = avalanche.months + ' เดือน';
+  document.getElementById('dbDetail').textContent =
+    `หนี้รวม ${fmt(totalDebt, 0)} · จ่ายดอกเบี้ยรวม ${fmt(avalanche.totalInterest, 0)} (วิธี Avalanche)`;
+  document.getElementById('dbResult').classList.add('show');
+
+  const s = document.getElementById('dbStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val accent">${avalanche.months}</div><div class="stat-label">เดือน (Avalanche)</div></div>
+    <div class="stat"><div class="stat-val">${snowball.months}</div><div class="stat-label">เดือน (Snowball)</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(avalanche.totalInterest, 0)}</div><div class="stat-label">ดอกเบี้ย Avalanche</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(snowball.totalInterest, 0)}</div><div class="stat-label">ดอกเบี้ย Snowball</div></div>`;
+
+  const cmp = document.getElementById('dbCompare');
+  cmp.style.display = 'block';
+  cmp.innerHTML = `
+    <div class="c-row"><div><div class="c-label">🏔️ Avalanche (ดอกแพงสุดก่อน)</div><div class="c-sub">ประหยัดดอกเบี้ยมากกว่า</div></div><div style="text-align:right"><div class="c-price">${avalanche.months} เดือน</div><div class="c-unit">${fmt(avalanche.totalInterest, 0)} บ.</div></div></div>
+    <div class="c-row"><div><div class="c-label">⛄ Snowball (ก้อนเล็กก่อน)</div><div class="c-sub">สร้างกำลังใจ</div></div><div style="text-align:right"><div class="c-price">${snowball.months} เดือน</div><div class="c-unit">${fmt(snowball.totalInterest, 0)} บ.</div></div></div>
+    ${diff > 0 ? `<div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--up)">Avalanche ประหยัดกว่า</div></div><div class="c-price" style="color:var(--up)">${fmt(diff, 0)} บาท</div></div>` : '<div class="c-row" style="background:var(--bg)"><div><div class="c-label">ทั้งสองวิธีให้ผลใกล้เคียงกัน</div></div></div>'}`;
+}
+
+renderDebts();
+window.addEventListener('load', calcDebt);
+</script>
+</body>
+</html>

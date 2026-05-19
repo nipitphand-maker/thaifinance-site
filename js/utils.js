@@ -130,6 +130,9 @@ function injectNav(active) {
     ['refinance.html', '🔄 Refinance'],
     ['retirement.html', '👴 เกษียณ'],
     ['emergency.html', '🆘 ฉุกเฉิน'],
+    ['debt.html', '🪜 ปลดหนี้'],
+    ['bonus.html', '🎁 โบนัส'],
+    ['transfer.html', '📋 โอนบ้าน'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

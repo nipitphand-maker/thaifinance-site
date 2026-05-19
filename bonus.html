@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณภาษีโบนัส ปลายปี — เสียภาษีเท่าไหร่ | ThaiFinance</title>
+<meta name="description" content="คำนวณภาษีโบนัสปลายปี เงินพิเศษ รู้ว่าหลังหักภาษีได้รับจริงเท่าไหร่ คำนวณตามอัตราขั้นบันได 2568 รวมกับเงินเดือนทั้งปี">
+<meta name="keywords" content="ภาษีโบนัส, คำนวณโบนัส, เงินพิเศษ, ภาษี ณ ที่จ่าย, โบนัสปลายปี, ภาษี 2568">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/bonus.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="คำนวณภาษีโบนัส 2568 — เสียภาษีเท่าไหร่ | ThaiFinance">
+<meta property="og:description" content="รู้ภาษีโบนัสที่ต้องจ่าย และได้รับจริงเท่าไหร่">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/bonus.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-bonus.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณภาษีโบนัส","url":"https://thaifinance-site.pages.dev/bonus.html","description":"คำนวณภาษีโบนัสปลายปี","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('bonus.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Bonus Tax</div>
+  <div class="page-title">ภาษี<br>โบนัส</div>
+  <div class="page-sub">โบนัสปลายปีเหลือรับจริงเท่าไหร่</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">เงินเดือน (บาท/เดือน)</label>
+      <input type="number" class="f-input" id="salary" value="40000">
+    </div>
+    <div class="field">
+      <label class="f-label">โบนัส (บาท)</label>
+      <input type="number" class="f-input" id="bonus" value="120000">
+    </div>
+    <div class="field">
+      <label class="f-label">ลดหย่อนภาษีรวม (บาท)</label>
+      <input type="number" class="f-input" id="deduct" value="0">
+      <div class="f-hint">RMF, SSF, ประกัน, บุตร, คู่สมรส รวมกัน · ใส่ 0 ถ้ายังไม่ได้ลงทุน</div>
+    </div>
+    <button class="btn btn-dark" onclick="calcBonus()">คำนวณ</button>
+    <div class="result" id="bnResult">
+      <div class="r-label">ภาษีจากโบนัสเฉพาะ</div>
+      <div class="r-val down" id="bnTax">—</div>
+      <div class="r-detail" id="bnDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="bnStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="bnCompare" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณตามอัตราภาษี 2568 · โบนัสรวมกับเงินเดือนเข้าฐานเดียวกัน<br>หักประกันสังคม 9,000 + ลดหย่อนส่วนตัว 60,000 ให้อัตโนมัติ</footer>
+
+<script>
+const BRACKETS = [
+  { l: 150000, r: 0 }, { l: 150000, r: 0.05 }, { l: 200000, r: 0.10 },
+  { l: 250000, r: 0.15 }, { l: 250000, r: 0.20 }, { l: 1000000, r: 0.25 },
+  { l: 3000000, r: 0.30 }, { l: Infinity, r: 0.35 }
+];
+
+function calcTax(taxable) {
+  let tax = 0, rem = taxable;
+  for (const b of BRACKETS) {
+    if (rem <= 0) break;
+    tax += Math.min(rem, b.l) * b.r;
+    rem -= b.l;
+  }
+  return Math.max(0, tax);
+}
+
+function calcBonus() {
+  const salary = parseFloat(document.getElementById('salary').value) || 0;
+  const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+  const extraDeduct = parseFloat(document.getElementById('deduct').value) || 0;
+  if (!salary && !bonus) { alert('กรุณาใส่เงินเดือนหรือโบนัส'); return; }
+
+  // รายได้รวม
+  const yearSalary = salary * 12;
+  const grossWithoutBonus = yearSalary;
+  const grossWithBonus = yearSalary + bonus;
+
+  // หักค่าใช้จ่ายส่วนตัว 50% สูงสุด 100,000
+  const expWithout = Math.min(grossWithoutBonus * 0.5, 100000);
+  const expWith = Math.min(grossWithBonus * 0.5, 100000);
+  // ลดหย่อนพื้นฐาน
+  const baseDeduct = 60000 + 9000 + extraDeduct;
+
+  const taxableWithout = Math.max(0, grossWithoutBonus - expWithout - baseDeduct);
+  const taxableWith = Math.max(0, grossWithBonus - expWith - baseDeduct);
+
+  const taxWithout = calcTax(taxableWithout);
+  const taxWith = calcTax(taxableWith);
+  const bonusTax = taxWith - taxWithout;
+  const netBonus = bonus - bonusTax;
+  const effectiveBonusRate = bonus > 0 ? bonusTax / bonus * 100 : 0;
+  const effectiveYearRate = grossWithBonus > 0 ? taxWith / grossWithBonus * 100 : 0;
+
+  document.getElementById('bnTax').textContent = fmt(bonusTax, 0) + ' บาท';
+  document.getElementById('bnDetail').textContent =
+    `ภาษีจากโบนัสเฉพาะ · effective rate ${effectiveBonusRate.toFixed(1)}%`;
+  document.getElementById('bnResult').classList.add('show');
+
+  const s = document.getElementById('bnStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val up">${fmt(netBonus, 0)}</div><div class="stat-label">ได้รับจริง</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(bonusTax, 0)}</div><div class="stat-label">ภาษีโบนัส</div></div>
+    <div class="stat"><div class="stat-val">${effectiveBonusRate.toFixed(1)}%</div><div class="stat-label">% หักจากโบนัส</div></div>
+    <div class="stat"><div class="stat-val">${effectiveYearRate.toFixed(1)}%</div><div class="stat-label">Effective rate ทั้งปี</div></div>`;
+
+  const cmp = document.getElementById('bnCompare');
+  cmp.style.display = 'block';
+  cmp.innerHTML = `
+    <div class="c-row"><div><div class="c-label">ไม่มีโบนัส</div><div class="c-sub">รายได้ทั้งปี ${fmt(grossWithoutBonus, 0)}</div></div><div class="c-price">${fmt(taxWithout, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label">มีโบนัส ${fmt(bonus, 0)}</div><div class="c-sub">รายได้ทั้งปี ${fmt(grossWithBonus, 0)}</div></div><div class="c-price">${fmt(taxWith, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label" style="color:var(--down)">ส่วนต่าง = ภาษีจากโบนัส</div></div><div class="c-price" style="color:var(--down)">+${fmt(bonusTax, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label" style="color:var(--up)">โบนัสที่ได้รับจริง</div><div class="c-sub">หลังหักภาษี</div></div><div class="c-price" style="color:var(--up)">${fmt(netBonus, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label">💡 ทิป: ซื้อ SSF/RMF</div><div class="c-sub">ลดหย่อน 30% ของรายได้ ลดภาษีโบนัสได้</div></div></div>`;
+}
+window.addEventListener('load', calcBonus);
+</script>
+</body>
+</html>

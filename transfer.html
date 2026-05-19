@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณค่าโอน-จดจำนองบ้าน คอนโด ที่ดิน 2568 | ThaiFinance</title>
+<meta name="description" content="คำนวณค่าโอน ค่าจดจำนอง ค่าธรรมเนียมการโอนกรรมสิทธิ์บ้าน คอนโด ที่ดิน รวมภาษีธุรกิจเฉพาะ อากร และค่าใช้จ่ายอื่นๆ ที่กรมที่ดิน">
+<meta name="keywords" content="ค่าโอนบ้าน, ค่าจดจำนอง, ค่าธรรมเนียมการโอน, ภาษีธุรกิจเฉพาะ, อากรแสตมป์, ซื้อบ้าน">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/transfer.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="คำนวณค่าโอน-จดจำนองบ้าน คอนโด ที่ดิน 2568 | ThaiFinance">
+<meta property="og:description" content="รู้ค่าใช้จ่ายทั้งหมดตอนซื้อบ้าน: ค่าโอน 2% + จดจำนอง 1% + ภาษีธุรกิจเฉพาะ + อากร">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/transfer.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-transfer.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณค่าโอน-จดจำนอง","url":"https://thaifinance-site.pages.dev/transfer.html","description":"คำนวณค่าโอนบ้าน คอนโด ที่ดิน และค่าใช้จ่ายทั้งหมดที่กรมที่ดิน","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('transfer.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Property Transfer</div>
+  <div class="page-title">ค่าโอน<br>บ้าน·คอนโด</div>
+  <div class="page-sub">ค่าโอน · จดจำนอง · ภาษีธุรกิจเฉพาะ · อากร</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">ราคาประเมิน/ราคาขาย (บาท)</label>
+      <input type="number" class="f-input" id="price" value="3000000">
+      <div class="f-hint">กรมที่ดินคิดจากราคาสูงกว่าระหว่าง ราคาประเมิน vs ราคาซื้อขาย</div>
+    </div>
+    <div class="field">
+      <label class="f-label">วงเงินจำนอง (บาท)</label>
+      <input type="number" class="f-input" id="mortgage" value="2700000">
+      <div class="f-hint">ใส่ 0 ถ้าซื้อสด · ปกติ 80-100% ของราคาบ้าน</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ผู้จ่ายค่าโอน-จดจำนอง</label>
+      <select class="f-input" id="payer">
+        <option value="half" selected>คนละครึ่ง (มาตรฐาน)</option>
+        <option value="buyer">ผู้ซื้อจ่ายทั้งหมด</option>
+        <option value="seller">ผู้ขายจ่ายทั้งหมด</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">สถานะผู้ขาย</label>
+      <select class="f-input" id="sellerStatus">
+        <option value="individual_5y" selected>บุคคลธรรมดา ถือเกิน 5 ปี/มีชื่อในทะเบียนบ้าน 1 ปี</option>
+        <option value="individual_lt5">บุคคลธรรมดา ถือไม่เกิน 5 ปี</option>
+        <option value="company">บริษัท/นิติบุคคล</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcTransfer()">คำนวณ</button>
+    <div class="result" id="trResult">
+      <div class="r-label">ค่าใช้จ่ายรวมที่กรมที่ดิน</div>
+      <div class="r-val" id="trTotal">—</div>
+      <div class="r-detail" id="trDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="trBreakdown" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">อัตราค่าใช้จ่ายที่กรมที่ดิน 2568</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>รายการ</th><th style="text-align:right">อัตรา</th></tr></thead>
+      <tbody>
+        <tr><td>ค่าธรรมเนียมการโอน</td><td>2% ของราคาประเมิน</td></tr>
+        <tr><td>ค่าจดจำนอง</td><td>1% ของวงเงินจำนอง</td></tr>
+        <tr><td>ภาษีธุรกิจเฉพาะ (ถ้าเข้าเงื่อนไข)</td><td>3.3% ของราคาประเมิน</td></tr>
+        <tr><td>อากรแสตมป์ (ไม่เข้า ภธ.)</td><td>0.5% ของราคาประเมิน</td></tr>
+        <tr><td>ภาษีหัก ณ ที่จ่าย บุคคลธรรมดา</td><td>ตามอัตรา (ส่วนใหญ่ 1-5%)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณตามอัตรากรมที่ดิน 2568 · ราคาประเมินกรมธนารักษ์ใช้เป็นฐานหลัก<br>ปรึกษาเจ้าหน้าที่กรมที่ดินก่อนนัดวันโอนเพื่อยืนยันตัวเลขจริง</footer>
+
+<script>
+function calcTransfer() {
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  const mortgage = parseFloat(document.getElementById('mortgage').value) || 0;
+  const payer = document.getElementById('payer').value;
+  const status = document.getElementById('sellerStatus').value;
+  if (!price) { alert('กรุณาใส่ราคาบ้าน'); return; }
+
+  // ค่าธรรมเนียมการโอน 2% ของราคาประเมิน
+  const transferFee = price * 0.02;
+  // ค่าจดจำนอง 1% ของวงเงินจำนอง
+  const mortgageFee = mortgage * 0.01;
+
+  // ภาษีธุรกิจเฉพาะ (ถ้าขายภายใน 5 ปี) 3.3% — เข้ากับนิติหรือบุคคลธรรมดาที่ขายเร็ว
+  let businessTax = 0;
+  let stampDuty = 0;
+  if (status === 'individual_lt5' || status === 'company') {
+    businessTax = price * 0.033; // 3.3% (3% + 0.3% ภาษีท้องถิ่น)
+  } else {
+    // ไม่เข้าภาษีธุรกิจ → เสียอากรแสตมป์ 0.5%
+    stampDuty = price * 0.005;
+  }
+
+  // ภาษีเงินได้บุคคลธรรมดาหัก ณ ที่จ่าย (สมมุติเฉลี่ย 2.5% ถ้าบุคคลธรรมดา)
+  let incomeTax = 0;
+  if (status === 'individual_5y' || status === 'individual_lt5') {
+    incomeTax = price * 0.025; // ค่าเฉลี่ย ลึกๆ ต้องคำนวณตามขั้นบันได
+  } else {
+    incomeTax = price * 0.01; // นิติบุคคล 1%
+  }
+
+  const grandTotal = transferFee + mortgageFee + businessTax + stampDuty + incomeTax;
+
+  // จัดสรรตามผู้จ่าย
+  let buyerPays, sellerPays;
+  if (payer === 'half') {
+    buyerPays = transferFee / 2 + mortgageFee;
+    sellerPays = transferFee / 2 + businessTax + stampDuty + incomeTax;
+  } else if (payer === 'buyer') {
+    buyerPays = grandTotal;
+    sellerPays = 0;
+  } else {
+    buyerPays = mortgageFee;
+    sellerPays = transferFee + businessTax + stampDuty + incomeTax;
+  }
+
+  document.getElementById('trTotal').textContent = fmt(grandTotal, 0) + ' บาท';
+  document.getElementById('trDetail').textContent =
+    `ผู้ซื้อจ่าย ${fmt(buyerPays, 0)} · ผู้ขายจ่าย ${fmt(sellerPays, 0)} บาท`;
+  document.getElementById('trResult').classList.add('show');
+
+  const bd = document.getElementById('trBreakdown');
+  bd.style.display = 'block';
+  bd.innerHTML = `
+    <div class="c-row"><div><div class="c-label">ค่าธรรมเนียมการโอน</div><div class="c-sub">2% × ${fmt(price, 0)}</div></div><div class="c-price">${fmt(transferFee, 0)}</div></div>
+    ${mortgage ? `<div class="c-row"><div><div class="c-label">ค่าจดจำนอง</div><div class="c-sub">1% × ${fmt(mortgage, 0)}</div></div><div class="c-price">${fmt(mortgageFee, 0)}</div></div>` : ''}
+    ${businessTax ? `<div class="c-row"><div><div class="c-label">ภาษีธุรกิจเฉพาะ</div><div class="c-sub">3.3% × ${fmt(price, 0)}</div></div><div class="c-price">${fmt(businessTax, 0)}</div></div>` : ''}
+    ${stampDuty ? `<div class="c-row"><div><div class="c-label">อากรแสตมป์</div><div class="c-sub">0.5% × ${fmt(price, 0)}</div></div><div class="c-price">${fmt(stampDuty, 0)}</div></div>` : ''}
+    <div class="c-row"><div><div class="c-label">ภาษีหัก ณ ที่จ่าย (เฉลี่ย)</div><div class="c-sub">${status === 'company' ? '1%' : '~2.5%'} × ${fmt(price, 0)}</div></div><div class="c-price">${fmt(incomeTax, 0)}</div></div>
+    <div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--accent)">รวมทั้งหมด</div></div><div class="c-price" style="color:var(--accent)">${fmt(grandTotal, 0)}</div></div>`;
+}
+window.addEventListener('load', calcTransfer);
+</script>
+</body>
+</html>

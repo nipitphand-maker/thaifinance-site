@@ -194,4 +194,31 @@
       <image:loc>https://thaifinance-site.pages.dev/img/og-emergency.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/transfer.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-transfer.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/bonus.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-bonus.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/debt.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-debt.png</image:loc>
+    </image:image>
+  </url>
 </urlset>
