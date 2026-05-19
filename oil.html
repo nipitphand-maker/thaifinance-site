@@ -21,8 +21,13 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div id="tomorrowBanner"></div>
+  <div id="effectiveBanner"></div>
   <div class="card" id="oilCard"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div id="premiumBanner"></div>
+  <div class="card" id="oilPremiumCard"></div>
 </div>
 
 <div class="sec" style="padding-top:0">
@@ -42,7 +47,7 @@
   <ins class="adsbygoogle"
        style="display:block"
        data-ad-client="ca-pub-7049269744581719"
-       data-ad-slot="REPLACE_WITH_SLOT_ID"
+       data-ad-slot="5181542042"
        data-ad-format="auto"
        data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
@@ -51,13 +56,15 @@
 
 <script>
 const WORKER = 'https://oil-price.nipitphand.workers.dev';
-const ORDER = ['95','91','E20','E85','98','B7','B20','พรีเมียม'];
+const ORDER_MAIN    = ['B7','95','91','E20','E85','B20'];
+const ORDER_PREMIUM = ['พรีเมียม','98'];
 const MOCK = {
-  '95':{name:'แก๊สโซฮอล์ 95', today:44.90, yesterday:44.90, diff:0},
-  'E20':{name:'แก๊สโซฮอล์ E20', today:37.90, yesterday:37.90, diff:0},
-  'E85':{name:'แก๊สโซฮอล์ E85', today:33.84, yesterday:33.84, diff:0},
-  'B7':{name:'ดีเซล', today:42.20, yesterday:42.20, diff:0},
-  'B20':{name:'ดีเซล B20', today:35.20, yesterday:35.20, diff:0},
+  '95':{name:'แก๊สโซฮอล์ 95', group:'main', effective:44.90, previous:44.90, nextDay:44.90, diff:0, nextDiff:0},
+  '91':{name:'แก๊สโซฮอล์ 91', group:'main', effective:44.53, previous:44.53, nextDay:44.53, diff:0, nextDiff:0},
+  'E20':{name:'แก๊สโซฮอล์ E20', group:'main', effective:37.90, previous:37.90, nextDay:37.90, diff:0, nextDiff:0},
+  'E85':{name:'แก๊สโซฮอล์ E85', group:'main', effective:33.84, previous:33.84, nextDay:33.84, diff:0, nextDiff:0},
+  'B7':{name:'ดีเซล', group:'main', effective:42.20, previous:42.20, nextDay:42.20, diff:0, nextDiff:0},
+  'B20':{name:'ดีเซล B20', group:'main', effective:35.20, previous:35.20, nextDay:35.20, diff:0, nextDiff:0},
 };
 
 let heroSeries = null;
@@ -69,10 +76,16 @@ function el(tag, className, text) {
   return e;
 }
 
-function renderOil(prices) {
-  const card = document.getElementById('oilCard');
+function renderRows(cardId, order, prices) {
+  const card = document.getElementById(cardId);
+  if (!card) return;
   card.replaceChildren();
-  const entries = ORDER.map(k => [k, prices[k]]).filter(([, o]) => o);
+  const entries = order.map(k => [k, prices[k]]).filter(([, o]) => o);
+  if (!entries.length) {
+    card.style.display = 'none';
+    return;
+  }
+  card.style.display = '';
   entries.forEach(([k, o], i) => {
     const cls = o.diff > 0 ? 'up' : o.diff < 0 ? 'down' : 'flat';
     const sign = o.diff > 0 ? '▲' : o.diff < 0 ? '▼' : '–';
@@ -82,11 +95,15 @@ function renderOil(prices) {
 
     const left = el('div');
     left.appendChild(el('div', 'c-label', o.name));
+    if (Math.abs(o.diff) > 0.001) {
+      const sub = el('div', 'c-sub', `เดิม ${fmt(o.previous, 2)} บาท`);
+      left.appendChild(sub);
+    }
     row.appendChild(left);
 
     const right = document.createElement('div');
     right.style.textAlign = 'right';
-    right.appendChild(el('div', 'c-price', fmt(o.today, 2)));
+    right.appendChild(el('div', 'c-price', fmt(o.effective, 2)));
 
     const unit = el('div', 'c-unit');
     unit.append('บาท/ลิตร ');
@@ -94,15 +111,13 @@ function renderOil(prices) {
     unit.appendChild(badge);
     right.appendChild(unit);
 
-    // ราคาพรุ่งนี้ (เฉพาะตัวที่จะเปลี่ยน)
-    const tmrwDiff = (typeof o.tomorrow === 'number') ? (o.tomorrow - o.today) : 0;
-    if (Math.abs(tmrwDiff) > 0.001) {
-      const tcls = tmrwDiff > 0 ? 'up' : 'down';
-      const tsign = tmrwDiff > 0 ? '▲' : '▼';
+    if (Math.abs(o.nextDiff) > 0.001) {
+      const tcls = o.nextDiff > 0 ? 'up' : 'down';
+      const tsign = o.nextDiff > 0 ? '▲' : '▼';
       const tmrw = el('div', 'c-tomorrow');
       tmrw.style.cssText = 'font-size:11px;color:var(--ink3);margin-top:2px';
-      tmrw.append('พรุ่งนี้ ' + fmt(o.tomorrow, 2) + ' ');
-      const tbadge = el('span', `badge ${tcls}`, `${tsign}${fmt(Math.abs(tmrwDiff), 2)}`);
+      tmrw.append('วันถัดไป ' + fmt(o.nextDay, 2) + ' ');
+      const tbadge = el('span', `badge ${tcls}`, `${tsign}${fmt(Math.abs(o.nextDiff), 2)}`);
       tmrw.appendChild(tbadge);
       right.appendChild(tmrw);
     }
@@ -112,68 +127,86 @@ function renderOil(prices) {
   });
 }
 
-function renderTomorrowBanner(prices) {
-  const target = document.getElementById('tomorrowBanner');
+function renderEffectiveBanner(prices, effectiveText) {
+  const target = document.getElementById('effectiveBanner');
   if (!target) return;
   target.replaceChildren();
-  const changes = ORDER
-    .map(k => prices[k])
-    .filter(o => o && typeof o.tomorrow === 'number' && Math.abs(o.tomorrow - o.today) > 0.001)
-    .map(o => ({ name: o.name, delta: o.tomorrow - o.today }));
-  if (!changes.length) return;
+  target.removeAttribute('style');
 
-  const title = el('div', null, '⏰ ราคาพรุ่งนี้จะเปลี่ยน');
-  title.style.cssText = 'font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:4px';
-  target.appendChild(title);
-  changes.forEach(c => {
+  const allMain = ORDER_MAIN.map(k => prices[k]).filter(Boolean);
+  const rises = allMain.filter(o => o.diff > 0.001);
+  const drops = allMain.filter(o => o.diff < -0.001);
+
+  if (!effectiveText && !rises.length && !drops.length) return;
+
+  if (effectiveText) {
+    const head = el('div', null, '⏰ ' + effectiveText);
+    head.style.cssText = 'font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:6px';
+    target.appendChild(head);
+  }
+
+  if (rises.length) {
     const line = el('div');
-    line.style.cssText = 'font-size:13px;color:var(--ink1);line-height:1.5';
-    const sign = c.delta > 0 ? '▲' : '▼';
-    const word = c.delta > 0 ? 'ขึ้น' : 'ลง';
-    line.append(`${c.name} ${word} `);
-    const b = el('span', `badge ${c.delta > 0 ? 'up' : 'down'}`, `${sign}${fmt(Math.abs(c.delta), 2)}`);
-    line.appendChild(b);
-    line.append(' บาท');
+    line.style.cssText = 'font-size:13px;color:var(--ink1);line-height:1.6';
+    line.append('ขึ้น: ');
+    rises.forEach((o, i) => {
+      if (i > 0) line.append(', ');
+      line.append(o.name + ' ');
+      line.appendChild(el('span', 'badge up', `▲${fmt(Math.abs(o.diff), 2)}`));
+    });
     target.appendChild(line);
-  });
+  }
+  if (drops.length) {
+    const line = el('div');
+    line.style.cssText = 'font-size:13px;color:var(--ink1);line-height:1.6';
+    line.append('ลด: ');
+    drops.forEach((o, i) => {
+      if (i > 0) line.append(', ');
+      line.append(o.name + ' ');
+      line.appendChild(el('span', 'badge down', `▼${fmt(Math.abs(o.diff), 2)}`));
+    });
+    target.appendChild(line);
+  }
   target.style.cssText = 'background:var(--bg2);border-radius:10px;padding:10px 12px;margin-bottom:12px';
+}
+
+function renderPremiumBanner(prices) {
+  const target = document.getElementById('premiumBanner');
+  if (!target) return;
+  target.replaceChildren();
+  target.removeAttribute('style');
+  const has = ORDER_PREMIUM.some(k => prices[k]);
+  if (!has) return;
+  const head = el('div', null, 'ราคาเฉพาะปั๊ม Bangchak');
+  head.style.cssText = 'font-size:12px;color:var(--ink3);margin-bottom:6px;padding-left:4px';
+  target.appendChild(head);
 }
 
 function updateHero(prices) {
   const hero = prices['B7'] || prices['95'] || Object.values(prices)[0];
   if (!hero) return;
-  document.getElementById('heroPrice').textContent = fmt(hero.today, 2);
+  document.getElementById('heroPrice').textContent = fmt(hero.effective, 2);
   const cls = hero.diff > 0 ? 'up' : hero.diff < 0 ? 'down' : 'flat';
   const sign = hero.diff > 0 ? '▲' : hero.diff < 0 ? '▼' : '–';
   const badge = document.getElementById('heroBadge');
   badge.className = `change-pill ${cls}`;
-  const yestText = hero.diff
-    ? `${sign} ${fmt(Math.abs(hero.diff), 2)} จากเมื่อวาน`
-    : 'ราคาคงที่จากเมื่อวาน';
-  const tmrwDiff = (typeof hero.tomorrow === 'number') ? (hero.tomorrow - hero.today) : 0;
-  if (Math.abs(tmrwDiff) > 0.001) {
-    const tsign = tmrwDiff > 0 ? '▲' : '▼';
-    badge.textContent = `${yestText} · พรุ่งนี้ ${tsign} ${fmt(Math.abs(tmrwDiff), 2)}`;
-  } else {
-    badge.textContent = yestText;
-  }
-  heroSeries = [hero.yesterday, hero.today];
+  badge.textContent = Math.abs(hero.diff) > 0.001
+    ? `${sign} ${fmt(Math.abs(hero.diff), 2)} จากราคาเดิม`
+    : 'ราคาคงที่';
+  heroSeries = [hero.previous, hero.effective];
 }
 
 async function fetchOil() {
   let prices = MOCK;
+  let effectiveText = '';
   try {
     const r = await fetch(WORKER);
     const j = await r.json();
     if (j.success && j.prices && Object.keys(j.prices).length) {
       prices = j.prices;
+      effectiveText = j.effective || '';
       document.getElementById('updatedAt').textContent =
-        `${j.updatedAtThai} · ${j.source}`;
-      if (j.effective) {
-        const note = el('div', null, j.effective);
-        note.style.cssText = 'font-size:11px;color:var(--ink3);margin-bottom:6px';
-        document.querySelector('footer').prepend(note);
-      }
+        `ประกาศ ${j.announcedAt || ''} · ${j.source}`;
     } else {
       document.getElementById('updatedAt').textContent =
         'แหล่งข้อมูลตอบไม่ได้ — แสดงค่าตัวอย่าง';
@@ -183,8 +216,10 @@ async function fetchOil() {
       'เชื่อมต่อไม่ได้ — แสดงค่าตัวอย่าง';
   }
   updateHero(prices);
-  renderOil(prices);
-  renderTomorrowBanner(prices);
+  renderEffectiveBanner(prices, effectiveText);
+  renderRows('oilCard', ORDER_MAIN, prices);
+  renderPremiumBanner(prices);
+  renderRows('oilPremiumCard', ORDER_PREMIUM, prices);
   drawOil('7d');
 }
 
