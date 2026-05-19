@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ราคาทองวันนี้ — ThaiFinance</title>
-<meta name="description" content="ราคาทองคำวันนี้ ทองแท่ง 96.5% 99.99% ทองรูปพรรณ อัปเดตทุก 30 นาที">
+<meta name="description" content="ราคาทองคำวันนี้ ทองแท่ง 96.5% ทองรูปพรรณ อัปเดตทุก 30 นาที">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -32,15 +32,6 @@
       </div>
     </div>
     <div class="c-row" style="animation-delay:0.1s">
-      <div><div class="c-label">ทองแท่ง 99.99%</div><div class="c-sub">Gold Bar 99.99%</div></div>
-      <div style="text-align:right">
-        <div style="display:flex;gap:16px;align-items:baseline;justify-content:flex-end">
-          <div><div style="font-size:10px;color:var(--ink3)">รับซื้อ</div><div class="c-price gold" id="b9999buy">—</div></div>
-          <div><div style="font-size:10px;color:var(--ink3)">ขายออก</div><div class="c-price" id="b9999sell">—</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="c-row" style="animation-delay:0.15s">
       <div><div class="c-label">ทองรูปพรรณ</div><div class="c-sub">Gold Jewelry</div></div>
       <div style="text-align:right">
         <div style="display:flex;gap:16px;align-items:baseline;justify-content:flex-end">
@@ -77,25 +68,34 @@
 <footer>ข้อมูลจากสมาคมค้าทองคำไทย · อัปเดตทุก 30 นาที<br>กรุณาตรวจสอบกับร้านทองก่อนซื้อขาย</footer>
 
 <script>
-const WORKER = 'https://gold-price.YOUR-SUBDOMAIN.workers.dev';
-const mock = {b965b:43750,b965s:43850,b9999b:45120,b9999s:45220,jewb:43167,jews:44350,change:150,status:'UP'};
+const WORKER = 'https://gold-price.nipitphand.workers.dev';
+const mock = {b965b:43750,b965s:43850,jewb:43167,jews:44350,change:150,status:'UP'};
 
 async function fetchGold() {
   let d = mock;
+  let live = false;
   try {
     const r = await fetch(WORKER);
     const j = await r.json();
     if(j.success) {
+      const yesterday = lastPriceBefore(Date.now()-12*3600e3);
+      const todayBuy = j.prices.bar965.buy;
+      // ถ้า worker ไม่ส่ง change มา (chnwt) ให้คำนวณจาก localStorage
+      const computed = (j.change == null && yesterday != null) ? (todayBuy - yesterday) : j.change;
+      const chg = computed == null ? 0 : Number(computed);
       d = {
-        b965b:j.prices.bar965.buy, b965s:j.prices.bar965.sell,
-        b9999b:j.prices.bar9999.buy, b9999s:j.prices.bar9999.sell,
-        jewb:j.prices.jewelry.buy, jews:j.prices.jewelry.sell,
-        change:Math.abs(j.change.amount||150), status:j.change.status||'UP',
+        b965b: todayBuy, b965s: j.prices.bar965.sell,
+        jewb: j.prices.jewelry.buy, jews: j.prices.jewelry.sell,
+        change: Math.abs(chg),
+        status: chg > 0 ? 'UP' : chg < 0 ? 'DOWN' : 'FLAT',
       };
-      document.getElementById('updatedAt').textContent = j.updatedAtThai;
+      document.getElementById('updatedAt').textContent = j.updatedAtThai + (j.source ? ` · ${j.source}` : '');
+      live = true;
+    } else {
+      document.getElementById('updatedAt').textContent = 'แหล่งข้อมูลตอบไม่ได้ — แสดงค่าตัวอย่าง';
     }
   } catch(e) {
-    document.getElementById('updatedAt').textContent = 'ข้อมูล mock (Worker ยังไม่ deploy)';
+    document.getElementById('updatedAt').textContent = 'เชื่อมต่อไม่ได้ — แสดงค่าตัวอย่าง';
   }
 
   const isUp = d.status==='UP', isDown = d.status==='DOWN';
@@ -105,8 +105,6 @@ async function fetchGold() {
   setText('heroPrice', Number(d.b965b).toLocaleString('th-TH'));
   setText('b965buy', Number(d.b965b).toLocaleString('th-TH'));
   setText('b965sell', Number(d.b965s).toLocaleString('th-TH'));
-  setText('b9999buy', Number(d.b9999b).toLocaleString('th-TH'));
-  setText('b9999sell', Number(d.b9999s).toLocaleString('th-TH'));
   setText('jewbuy', Number(d.jewb).toLocaleString('th-TH'));
   setText('jewsell', Number(d.jews).toLocaleString('th-TH'));
   setText('spread', fmt(d.b965s-d.b965b,0));
@@ -114,19 +112,27 @@ async function fetchGold() {
   setText('usdoz', '3,283');
 
   const badge = document.getElementById('heroBadge');
-  badge.textContent = `${sign} ${fmt(d.change,0)} บาท จากเมื่อวาน`;
+  badge.textContent = d.change ? `${sign} ${fmt(d.change,0)} บาท จากเมื่อวาน` : 'ยังไม่มีข้อมูลเปรียบเทียบ';
   badge.className = `change-pill ${cls}`;
   const b965badge = document.getElementById('badge965');
-  b965badge.textContent = `${sign}${fmt(d.change,0)}`;
+  b965badge.textContent = d.change ? `${sign}${fmt(d.change,0)}` : '–';
   b965badge.className = `badge ${cls} auto-badge`;
 
-  // save history
-  let hist = JSON.parse(localStorage.getItem('goldHist')||'[]');
-  hist.push({t:Date.now(),v:d.b965b});
-  const cut = Date.now()-30*864e5;
-  hist = hist.filter(h=>h.t>cut);
-  localStorage.setItem('goldHist',JSON.stringify(hist));
+  // save history (เฉพาะข้อมูลจริง)
+  if(live) {
+    let hist = JSON.parse(localStorage.getItem('goldHist')||'[]');
+    hist.push({t:Date.now(),v:d.b965b});
+    const cut = Date.now()-30*864e5;
+    hist = hist.filter(h=>h.t>cut);
+    localStorage.setItem('goldHist',JSON.stringify(hist));
+  }
   drawGold('7d');
+}
+
+function lastPriceBefore(cutMs) {
+  const hist = JSON.parse(localStorage.getItem('goldHist')||'[]');
+  const older = hist.filter(h=>h.t<cutMs);
+  return older.length ? older[older.length-1].v : null;
 }
 
 function setText(id,val) { const el=document.getElementById(id); if(el) el.textContent=val; }
