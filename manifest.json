@@ -1,0 +1,34 @@
+{
+  "name": "ThaiFinance — เครื่องมือการเงินไทย",
+  "short_name": "ThaiFinance",
+  "description": "รวมเครื่องมือการเงินไทย ราคาทอง น้ำมัน คริปโต คำนวณภาษี ผ่อนบ้าน ค่าไฟ โซล่า DCA — ฟรี ไม่ต้องสมัคร",
+  "lang": "th-TH",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F9F8F6",
+  "theme_color": "#2438CC",
+  "categories": ["finance", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "ราคาทอง",   "url": "/gold.html",        "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }] },
+    { "name": "น้ำมัน",      "url": "/oil.html",         "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }] },
+    { "name": "คริปโต",     "url": "/crypto.html",      "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }] },
+    { "name": "คำนวณภาษี",  "url": "/tax.html",         "icons": [{ "src": "/img/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
