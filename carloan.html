@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณสินเชื่อรถยนต์ ผ่อนรถเดือนละเท่าไหร่ | ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณค่าผ่อนรถยนต์ ใส่ราคารถ เงินดาวน์ ดอกเบี้ย ระยะเวลา รู้ยอดผ่อนต่อเดือนและดอกเบี้ยรวมทั้งหมด พร้อมตาราง MRR ธนาคาร">
+<meta name="keywords" content="ผ่อนรถ, สินเชื่อรถยนต์, คำนวณค่าผ่อนรถ, ดาวน์รถ, ดอกเบี้ยรถ, ผ่อนรถเดือนละเท่าไหร่">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/carloan.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="คำนวณสินเชื่อรถยนต์ ผ่อนรถเดือนละเท่าไหร่ | ThaiFinance">
+<meta property="og:description" content="ใส่ราคารถ เงินดาวน์ ดอกเบี้ย รู้ยอดผ่อนต่อเดือนทันที พร้อมตาราง MRR">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/carloan.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-carloan.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="คำนวณสินเชื่อรถยนต์ | ThaiFinance">
+<meta name="twitter:description" content="รู้ยอดผ่อนรถต่อเดือนและดอกเบี้ยรวม">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-carloan.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณสินเชื่อรถยนต์","url":"https://thaifinance-site.pages.dev/carloan.html","description":"เครื่องคำนวณค่าผ่อนรถยนต์","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('carloan.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">สินเชื่อรถยนต์</div>
+  <div class="page-title">ผ่อนรถ<br>เดือนละเท่าไหร่?</div>
+  <div class="page-sub">คำนวณ Flat Rate ตามวิธีไฟแนนซ์ไทย</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">ราคารถ (บาท)</label>
+      <input type="number" class="f-input" id="price" value="800000">
+    </div>
+    <div class="field">
+      <label class="f-label">เงินดาวน์ (% ของราคา)</label>
+      <select class="f-input" id="down">
+        <option value="0">ไม่ดาวน์ (กู้ 100%)</option>
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20" selected>20%</option>
+        <option value="25">25%</option>
+        <option value="30">30%</option>
+        <option value="40">40%</option>
+        <option value="50">50%</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">ดอกเบี้ยต่อปี (% Flat Rate)</label>
+      <input type="number" class="f-input" id="rate" value="3.99" step="0.01">
+      <div class="f-hint">ดอกเบี้ยรถใหม่ปัจจุบัน 2.99-4.99% รถมือสอง 4.99-7.99%</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ระยะเวลาผ่อน</label>
+      <select class="f-input" id="years">
+        <option value="3">3 ปี</option>
+        <option value="4">4 ปี</option>
+        <option value="5" selected>5 ปี</option>
+        <option value="6">6 ปี</option>
+        <option value="7">7 ปี</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcCar()">คำนวณ</button>
+    <div class="result" id="carResult">
+      <div class="r-label">ค่างวดต่อเดือน</div>
+      <div class="r-val" id="carMonthly">—</div>
+      <div class="r-detail" id="carDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="carStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เปรียบเทียบโปรดอกเบี้ยรถ 2568</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>โปร</th><th>ดอกเบี้ย (Flat)</th><th style="text-align:right">เหมาะกับ</th></tr></thead>
+      <tbody>
+        <tr><td>โปรดอกถูกพิเศษ</td><td>2.49-2.99%</td><td>รถใหม่ป้ายแดง</td></tr>
+        <tr><td>มาตรฐานรถใหม่</td><td>3.49-3.99%</td><td>รถใหม่</td></tr>
+        <tr><td>รถมือสอง 1-3 ปี</td><td>4.49-5.99%</td><td>เต็นท์รถบ้าน</td></tr>
+        <tr><td>รถมือสอง 4+ ปี</td><td>5.99-7.99%</td><td>รถเก่า</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณตามวิธี Flat Rate ที่ไฟแนนซ์ไทยใช้ · ยังไม่รวมค่าธรรมเนียมและประกันภัย<br>ดอกเบี้ยจริงเทียบเท่า (Effective Rate) จะสูงกว่า Flat ประมาณ 2 เท่า</footer>
+
+<script>
+function calcCar() {
+  const price = parseFloat(document.getElementById('price').value) || 0;
+  const downPct = parseFloat(document.getElementById('down').value) / 100;
+  const rate = parseFloat(document.getElementById('rate').value) / 100;
+  const yrs = parseInt(document.getElementById('years').value);
+  if (!price) { alert('กรุณาใส่ราคารถ'); return; }
+
+  const down = price * downPct;
+  const loan = price - down;
+  const months = yrs * 12;
+
+  // Flat rate (ใช้กับสินเชื่อรถยนต์ทั่วไป)
+  const totalInterest = loan * rate * yrs;
+  const totalPayment = loan + totalInterest;
+  const monthly = totalPayment / months;
+
+  // ดอกเบี้ยจริงเทียบเท่า (effective rate, ประมาณ 2 เท่าของ flat สำหรับเท่ากันงวด)
+  const effective = rate * 2 * (yrs / (yrs + 1)) * 100;
+
+  document.getElementById('carMonthly').textContent = fmt(monthly, 0) + ' บาท';
+  document.getElementById('carDetail').textContent =
+    `ดาวน์ ${fmt(down, 0)} · กู้ ${fmt(loan, 0)} · ดอกเบี้ยรวม ${fmt(totalInterest, 0)} · จ่ายรวม ${fmt(price + totalInterest, 0)} บาท`;
+  document.getElementById('carResult').classList.add('show');
+
+  const s = document.getElementById('carStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val accent">${fmt(monthly, 0)}</div><div class="stat-label">งวด/เดือน (บาท)</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(totalInterest, 0)}</div><div class="stat-label">ดอกเบี้ยรวม (บาท)</div></div>
+    <div class="stat"><div class="stat-val">${fmt(loan, 0)}</div><div class="stat-label">วงเงินกู้ (บาท)</div></div>
+    <div class="stat"><div class="stat-val muted">${effective.toFixed(2)}%</div><div class="stat-label">ดอก Effective</div></div>`;
+}
+window.addEventListener('load', calcCar);
+</script>
+</body>
+</html>

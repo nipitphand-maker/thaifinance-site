@@ -122,4 +122,49 @@
       <image:loc>https://thaifinance-site.pages.dev/img/og-salary.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/bmi.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-bmi.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/carloan.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-carloan.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/fx.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-fx.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/about.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/privacy.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/terms.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+  </url>
 </urlset>

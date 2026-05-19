@@ -114,16 +114,19 @@ function injectNav(active) {
     ['index.html', 'หน้าหลัก'],
     ['gold.html', '💛 ทอง'],
     ['oil.html', '⛽ น้ำมัน'],
+    ['crypto.html', '₿ คริปโต'],
+    ['fx.html', '💱 แลกเงิน'],
     ['electricity.html', '⚡ ค่าไฟ'],
     ['solar.html', '☀️ โซล่า'],
-    ['crypto.html', '₿ คริปโต'],
     ['dca.html', '📊 DCA'],
     ['compound.html', '🌱 ทบต้น'],
     ['savings.html', '🏦 เงินฝาก'],
-    ['travel.html', '🚗 เดินทาง'],
     ['tax.html', '🧾 ภาษี'],
     ['salary.html', '💼 เงินเดือน'],
     ['mortgage.html', '🏠 ผ่อนบ้าน'],
+    ['carloan.html', '🚙 ผ่อนรถ'],
+    ['travel.html', '🚗 เดินทาง'],
+    ['bmi.html', '⚖️ BMI'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

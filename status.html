@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>สถานะระบบ ThaiFinance — ตรวจสอบ live data</title>
+<meta name="description" content="ตรวจสอบสถานะการดึงข้อมูล live ของ ThaiFinance — ราคาทอง น้ำมัน คริปโต อัตราแลกเปลี่ยน">
+<meta name="robots" content="noindex,follow">
+<meta name="theme-color" content="#2438CC">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/status.html">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('status.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow"><span class="live-dot"></span> ตรวจสอบแบบสด</div>
+  <div class="page-title">สถานะ<br>ระบบ</div>
+  <div class="page-sub">ทุกแหล่งข้อมูลที่ใช้ในเว็บ · กดเพื่อ refresh</div>
+</div>
+
+<div class="sec">
+  <button class="btn btn-dark" onclick="runChecks()" id="runBtn">ตรวจซ้ำ</button>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">แหล่งข้อมูลทั้งหมด</div>
+  <div class="card" id="statusList"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" style="padding:16px;font-size:13px;line-height:1.7;color:var(--ink2)">
+    <p><b>สีเขียว</b> = ทำงานปกติ ข้อมูลล่าสุดยังสด</p>
+    <p><b>สีเหลือง</b> = ตอบได้แต่ข้อมูลเก่ากว่า 24 ชม.</p>
+    <p><b>สีแดง</b> = ตอบไม่ได้ ในหน้าใช้งานจะแสดง "ค่าตัวอย่าง"</p>
+    <p style="margin-top:8px">หน้านี้ตรวจตอนที่คุณเปิดเว็บ ไม่ได้บันทึก log บนเซิร์ฟเวอร์</p>
+  </div>
+</div>
+
+<footer>ThaiFinance · ถ้าเห็นทุกอย่าง 🟢 = ทุกเครื่องมือใช้งานได้ครบ</footer>
+
+<script>
+const SOURCES = [
+  {
+    name: 'ราคาทอง',
+    desc: 'gold-price.nipitphand.workers.dev',
+    url: 'https://gold-price.nipitphand.workers.dev',
+    parse: j => ({
+      ok: j.success === true,
+      info: j.success ? `${j.source} · ${j.updatedAtThai}` : 'failed',
+      value: j.success ? `ทอง 96.5% รับซื้อ ${Number(j.prices.bar965.buy).toLocaleString('th-TH')} บ.` : '',
+      stale: j.updatedAt ? (Date.now() - new Date(j.updatedAt).getTime()) > 24 * 3600e3 : false,
+    }),
+  },
+  {
+    name: 'ราคาน้ำมัน',
+    desc: 'oil-price.nipitphand.workers.dev',
+    url: 'https://oil-price.nipitphand.workers.dev',
+    parse: j => ({
+      ok: j.success === true,
+      info: j.success ? `${j.source} · ${j.announcedAt}` : 'failed',
+      value: j.success ? `ดีเซล B7: ${(j.prices.B7 || {}).price || '-'} บ./ลิตร` : '',
+      stale: j.updatedAt ? (Date.now() - new Date(j.updatedAt).getTime()) > 7 * 24 * 3600e3 : false,
+    }),
+  },
+  {
+    name: 'ราคาคริปโต (CoinGecko)',
+    desc: 'api.coingecko.com',
+    url: 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd',
+    parse: j => ({
+      ok: j && j.bitcoin && j.bitcoin.usd,
+      info: j && j.bitcoin ? `BTC = $${j.bitcoin.usd.toLocaleString()}` : 'failed',
+      value: '',
+      stale: false,
+    }),
+  },
+  {
+    name: 'Fear & Greed Index',
+    desc: 'api.alternative.me',
+    url: 'https://api.alternative.me/fng/',
+    parse: j => ({
+      ok: j && j.data && j.data[0],
+      info: j && j.data ? `${j.data[0].value} (${j.data[0].value_classification})` : 'failed',
+      value: '',
+      stale: false,
+    }),
+  },
+  {
+    name: 'อัตราแลกเปลี่ยน',
+    desc: 'open.er-api.com',
+    url: 'https://open.er-api.com/v6/latest/USD',
+    parse: j => ({
+      ok: j && j.result === 'success',
+      info: j && j.rates ? `1 USD = ${j.rates.THB.toFixed(2)} THB` : 'failed',
+      value: j && j.time_last_update_utc ? `อัปเดต ${j.time_last_update_utc}` : '',
+      stale: j && j.time_last_update_unix ? (Date.now() / 1000 - j.time_last_update_unix) > 86400 * 2 : false,
+    }),
+  },
+];
+
+async function check(src) {
+  const t0 = performance.now();
+  try {
+    const r = await fetch(src.url, { signal: AbortSignal.timeout(10000) });
+    const t1 = performance.now();
+    if (!r.ok) return { name: src.name, desc: src.desc, ok: false, info: `HTTP ${r.status}`, value: '', stale: false, ms: Math.round(t1 - t0) };
+    const j = await r.json();
+    const p = src.parse(j);
+    return { name: src.name, desc: src.desc, ...p, ms: Math.round(t1 - t0) };
+  } catch (e) {
+    const t1 = performance.now();
+    return { name: src.name, desc: src.desc, ok: false, info: 'timeout/error: ' + (e.message || e), value: '', stale: false, ms: Math.round(t1 - t0) };
+  }
+}
+
+async function runChecks() {
+  const btn = document.getElementById('runBtn');
+  btn.disabled = true;
+  btn.textContent = 'กำลังตรวจ...';
+  const list = document.getElementById('statusList');
+  list.innerHTML = SOURCES.map((s, i) => `
+    <div class="c-row" id="row-${i}">
+      <div style="flex:1">
+        <div class="c-label">${s.name}</div>
+        <div class="c-sub" style="font-family:monospace;font-size:11px">${s.desc}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="skel" style="width:80px;height:14px;margin-bottom:4px;margin-left:auto"></div>
+        <div class="skel" style="width:120px;height:11px;margin-left:auto"></div>
+      </div>
+    </div>`).join('');
+
+  const results = await Promise.all(SOURCES.map(check));
+  results.forEach((r, i) => {
+    const status = r.ok ? (r.stale ? 'flat' : 'up') : 'down';
+    const icon = r.ok ? (r.stale ? '🟡' : '🟢') : '🔴';
+    document.getElementById('row-' + i).innerHTML = `
+      <div style="flex:1">
+        <div class="c-label">${icon} ${r.name} <span style="font-size:12px;color:var(--ink3);font-weight:500">${r.ms}ms</span></div>
+        <div class="c-sub" style="font-family:monospace;font-size:11px">${r.desc}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="c-price" style="font-size:14px">${r.info}</div>
+        <div class="c-unit">${r.value || (r.ok ? 'OK' : '')}</div>
+      </div>`;
+  });
+
+  btn.disabled = false;
+  btn.textContent = 'ตรวจซ้ำ';
+
+  // Summary
+  const okCount = results.filter(r => r.ok && !r.stale).length;
+  const total = results.length;
+  document.title = okCount === total
+    ? `✅ ทุกระบบปกติ — สถานะ ThaiFinance`
+    : `⚠️ ${okCount}/${total} ระบบปกติ — สถานะ ThaiFinance`;
+}
+
+runChecks();
+</script>
+</body>
+</html>

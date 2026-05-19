@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>แลกเงิน อัตราแลกเปลี่ยน USD EUR JPY KRW CNY — ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณอัตราแลกเปลี่ยนเงินตราต่างประเทศ USD EUR JPY KRW CNY GBP AUD SGD เป็นบาทไทย อัปเดต real-time จาก ExchangeRate API">
+<meta name="keywords" content="อัตราแลกเปลี่ยน, แลกเงิน, USD ราคา, เยน บาท, วอน บาท, หยวน บาท, ค่าเงินบาท">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/fx.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="แลกเงิน อัตราแลกเปลี่ยนเงินตราต่างประเทศ | ThaiFinance">
+<meta property="og:description" content="USD EUR JPY KRW CNY GBP AUD SGD → บาทไทย อัปเดต real-time">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/fx.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-fx.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="อัตราแลกเปลี่ยน | ThaiFinance">
+<meta name="twitter:description" content="USD EUR JPY KRW CNY → บาท real-time">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-fx.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณอัตราแลกเปลี่ยน","url":"https://thaifinance-site.pages.dev/fx.html","description":"คำนวณอัตราแลกเปลี่ยนเงินตราต่างประเทศเป็นบาทไทย","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('fx.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow"><span class="live-dot"></span> <span id="updatedAt">กำลังโหลด...</span></div>
+  <div class="page-title">แลกเงิน<br>วันนี้</div>
+  <div class="page-sub">อัตรากลางจาก ExchangeRate-API</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">จำนวนเงิน</label>
+      <input type="number" class="f-input" id="amount" value="100" step="0.01">
+    </div>
+    <div class="field">
+      <label class="f-label">จาก</label>
+      <select class="f-input" id="from"></select>
+    </div>
+    <div class="field">
+      <label class="f-label">เป็น</label>
+      <select class="f-input" id="to"></select>
+    </div>
+    <button class="btn btn-dark" onclick="swap()" style="margin-top:8px">⇄ สลับ</button>
+    <div class="result show" id="fxResult" style="margin-top:14px">
+      <div class="r-label">ได้รับ</div>
+      <div class="r-val up" id="fxOut">—</div>
+      <div class="r-detail" id="fxRate">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">สกุลเงินยอดนิยม (เทียบกับบาท)</div>
+  <div class="card" id="popularList"></div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>ข้อมูลจาก open.er-api.com (ExchangeRate-API ฟรี) · เป็นอัตรากลางตลาดโลก<br>อัตราซื้อ-ขายจริงของธนาคาร/Super Rich อาจต่างจากนี้ ~1-3%</footer>
+
+<script>
+const CURRENCIES = [
+  ['THB', '🇹🇭 บาท (THB)'],
+  ['USD', '🇺🇸 ดอลลาร์สหรัฐ (USD)'],
+  ['EUR', '🇪🇺 ยูโร (EUR)'],
+  ['JPY', '🇯🇵 เยน (JPY)'],
+  ['KRW', '🇰🇷 วอน (KRW)'],
+  ['CNY', '🇨🇳 หยวน (CNY)'],
+  ['GBP', '🇬🇧 ปอนด์ (GBP)'],
+  ['AUD', '🇦🇺 ดอลลาร์ออสเตรเลีย (AUD)'],
+  ['SGD', '🇸🇬 ดอลลาร์สิงคโปร์ (SGD)'],
+  ['HKD', '🇭🇰 ดอลลาร์ฮ่องกง (HKD)'],
+  ['TWD', '🇹🇼 ดอลลาร์ไต้หวัน (TWD)'],
+  ['MYR', '🇲🇾 ริงกิต (MYR)'],
+  ['VND', '🇻🇳 ดอง (VND)'],
+  ['IDR', '🇮🇩 รูเปียห์ (IDR)'],
+  ['PHP', '🇵🇭 เปโซ (PHP)'],
+  ['INR', '🇮🇳 รูปี (INR)'],
+];
+
+let rates = null;
+
+function populateSelects() {
+  const fromSel = document.getElementById('from');
+  const toSel = document.getElementById('to');
+  CURRENCIES.forEach(([code, label]) => {
+    fromSel.insertAdjacentHTML('beforeend', `<option value="${code}">${label}</option>`);
+    toSel.insertAdjacentHTML('beforeend', `<option value="${code}">${label}</option>`);
+  });
+  fromSel.value = 'USD';
+  toSel.value = 'THB';
+  fromSel.addEventListener('change', render);
+  toSel.addEventListener('change', render);
+  document.getElementById('amount').addEventListener('input', render);
+}
+
+async function fetchRates() {
+  try {
+    const r = await fetch('https://open.er-api.com/v6/latest/USD');
+    const j = await r.json();
+    if (j.result === 'success') {
+      rates = j.rates;
+      const d = new Date(j.time_last_update_utc);
+      document.getElementById('updatedAt').textContent =
+        `อัปเดต ${d.toLocaleString('th-TH', { dateStyle: 'medium', timeStyle: 'short' })}`;
+      render();
+      renderPopular();
+    } else throw new Error('api fail');
+  } catch (e) {
+    document.getElementById('updatedAt').textContent = 'เชื่อมต่อไม่ได้ — กำลังใช้ค่าตัวอย่าง';
+    rates = { USD: 1, THB: 34.5, EUR: 0.92, JPY: 156, KRW: 1380, CNY: 7.25, GBP: 0.79, AUD: 1.53, SGD: 1.34, HKD: 7.83, TWD: 32.4, MYR: 4.75, VND: 25400, IDR: 16200, PHP: 58.5, INR: 84 };
+    render();
+    renderPopular();
+  }
+}
+
+function convert(amount, from, to) {
+  if (!rates) return 0;
+  const usdAmount = from === 'USD' ? amount : amount / rates[from];
+  return to === 'USD' ? usdAmount : usdAmount * rates[to];
+}
+
+function render() {
+  const amt = parseFloat(document.getElementById('amount').value) || 0;
+  const from = document.getElementById('from').value;
+  const to = document.getElementById('to').value;
+  const out = convert(amt, from, to);
+  const dec = out > 100 ? 2 : out > 1 ? 4 : 6;
+  document.getElementById('fxOut').textContent = fmt(out, dec) + ' ' + to;
+  const oneFromInTo = convert(1, from, to);
+  document.getElementById('fxRate').textContent =
+    `1 ${from} = ${fmt(oneFromInTo, oneFromInTo > 100 ? 2 : 4)} ${to}`;
+}
+
+function swap() {
+  const fromSel = document.getElementById('from');
+  const toSel = document.getElementById('to');
+  const tmp = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value = tmp;
+  render();
+}
+
+function renderPopular() {
+  const list = document.getElementById('popularList');
+  const pops = ['USD', 'EUR', 'JPY', 'KRW', 'CNY', 'GBP', 'SGD', 'AUD'];
+  list.innerHTML = pops.map((c, i) => {
+    const oneToTHB = convert(1, c, 'THB');
+    const name = CURRENCIES.find(x => x[0] === c)[1];
+    return `<div class="c-row" style="animation-delay:${i * 0.04}s">
+      <div><div class="c-label">${name}</div><div class="c-sub">1 ${c}</div></div>
+      <div style="text-align:right"><div class="c-price">${fmt(oneToTHB, 2)}</div><div class="c-unit">บาท</div></div>
+    </div>`;
+  }).join('');
+}
+
+populateSelects();
+fetchRates();
+setInterval(fetchRates, 5 * 60 * 1000);
+</script>
+</body>
+</html>

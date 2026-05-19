@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณ BMI ดัชนีมวลกาย — น้ำหนักเหมาะกับส่วนสูงไหม | ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณ BMI (Body Mass Index) ใส่น้ำหนักและส่วนสูง รู้ทันทีว่าน้ำหนักของคุณอยู่ในเกณฑ์ปกติหรือไม่ พร้อมเป้าหมายน้ำหนักที่เหมาะสม">
+<meta name="keywords" content="BMI, คำนวณ BMI, ดัชนีมวลกาย, น้ำหนักเหมาะสม, อ้วน ผอม, น้ำหนักมาตรฐาน">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/bmi.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="คำนวณ BMI ดัชนีมวลกาย — น้ำหนักเหมาะกับส่วนสูงไหม | ThaiFinance">
+<meta property="og:description" content="เครื่องคำนวณ BMI ใส่น้ำหนักและส่วนสูง รู้ทันทีว่าน้ำหนักของคุณอยู่ในเกณฑ์ปกติหรือไม่">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/bmi.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-bmi.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="คำนวณ BMI ดัชนีมวลกาย | ThaiFinance">
+<meta name="twitter:description" content="ใส่น้ำหนัก-ส่วนสูง รู้ BMI ทันที พร้อมเกณฑ์ปกติ">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-bmi.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-title" content="ThaiFinance">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณ BMI ดัชนีมวลกาย","url":"https://thaifinance-site.pages.dev/bmi.html","description":"เครื่องคำนวณ BMI ดัชนีมวลกาย","applicationCategory":"HealthApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('bmi.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Body Mass Index</div>
+  <div class="page-title">คำนวณ<br>BMI</div>
+  <div class="page-sub">รู้ทันทีว่าน้ำหนักเหมาะกับส่วนสูงไหม</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">น้ำหนัก (กก.)</label>
+      <input type="number" class="f-input" id="weight" value="65" step="0.1">
+    </div>
+    <div class="field">
+      <label class="f-label">ส่วนสูง (ซม.)</label>
+      <input type="number" class="f-input" id="height" value="170" step="0.1">
+    </div>
+    <div class="field">
+      <label class="f-label">เพศ (สำหรับน้ำหนักเป้าหมาย)</label>
+      <select class="f-input" id="sex">
+        <option value="m" selected>ชาย</option>
+        <option value="f">หญิง</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcBMI()">คำนวณ</button>
+    <div class="result" id="bmiResult">
+      <div class="r-label">ค่า BMI ของคุณ</div>
+      <div class="r-val" id="bmiVal">—</div>
+      <div class="r-detail" id="bmiDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="bmiStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เกณฑ์ BMI (สำหรับคนเอเชีย)</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>BMI</th><th style="text-align:right">เกณฑ์</th></tr></thead>
+      <tbody>
+        <tr><td>ต่ำกว่า 18.5</td><td style="color:var(--accent)">น้ำหนักน้อย</td></tr>
+        <tr><td>18.5 – 22.9</td><td style="color:var(--up)">น้ำหนักปกติ</td></tr>
+        <tr><td>23.0 – 24.9</td><td>น้ำหนักเกิน</td></tr>
+        <tr><td>25.0 – 29.9</td><td style="color:var(--down)">อ้วนระดับ 1</td></tr>
+        <tr><td>≥ 30.0</td><td style="color:var(--down)">อ้วนระดับ 2 (อันตราย)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>เกณฑ์ BMI ตามมาตรฐานเอเชีย-แปซิฟิก WHO · ใช้สำหรับการประเมินทั่วไป<br>ไม่ใช่การวินิจฉัยทางการแพทย์ ปรึกษาแพทย์เพื่อการประเมินครบถ้วน</footer>
+
+<script>
+function calcBMI() {
+  const w = parseFloat(document.getElementById('weight').value) || 0;
+  const h = parseFloat(document.getElementById('height').value) || 0;
+  const sex = document.getElementById('sex').value;
+  if (!w || !h) { alert('กรุณาใส่น้ำหนักและส่วนสูง'); return; }
+  const m = h / 100;
+  const bmi = w / (m * m);
+
+  let cat = '', cls = '';
+  if (bmi < 18.5) { cat = 'น้ำหนักน้อย'; cls = 'accent'; }
+  else if (bmi < 23) { cat = 'น้ำหนักปกติ'; cls = 'up'; }
+  else if (bmi < 25) { cat = 'น้ำหนักเกิน'; cls = ''; }
+  else if (bmi < 30) { cat = 'อ้วนระดับ 1'; cls = 'down'; }
+  else { cat = 'อ้วนระดับ 2'; cls = 'down'; }
+
+  // ideal weight range (BMI 18.5 - 22.9)
+  const idealMin = 18.5 * m * m;
+  const idealMax = 22.9 * m * m;
+  const diff = bmi >= 22.9 ? (w - idealMax) : (bmi <= 18.5 ? (idealMin - w) : 0);
+
+  // Devine formula for "ideal body weight"
+  let idw;
+  if (sex === 'm') idw = 50 + 0.91 * (h - 152.4);
+  else idw = 45.5 + 0.91 * (h - 152.4);
+
+  document.getElementById('bmiVal').textContent = bmi.toFixed(1);
+  document.getElementById('bmiVal').className = 'r-val ' + cls;
+  document.getElementById('bmiDetail').textContent =
+    `${cat} · น้ำหนักเหมาะสม ${idealMin.toFixed(1)}–${idealMax.toFixed(1)} กก.` +
+    (Math.abs(diff) > 0.5 ? ` · ${bmi >= 22.9 ? 'ลด' : 'เพิ่ม'} ~${Math.abs(diff).toFixed(1)} กก.` : '');
+  document.getElementById('bmiResult').classList.add('show');
+
+  const s = document.getElementById('bmiStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val ${cls}">${bmi.toFixed(1)}</div><div class="stat-label">BMI</div></div>
+    <div class="stat"><div class="stat-val">${idealMin.toFixed(0)}–${idealMax.toFixed(0)}</div><div class="stat-label">น้ำหนักเหมาะสม (กก.)</div></div>
+    <div class="stat"><div class="stat-val accent">${idw.toFixed(1)}</div><div class="stat-label">น้ำหนักอุดมคติ (กก.)</div></div>
+    <div class="stat"><div class="stat-val ${diff > 0 ? 'down' : diff < 0 ? 'accent' : 'up'}">${diff === 0 ? '0' : (diff > 0 ? '−' : '+') + Math.abs(diff).toFixed(1)}</div><div class="stat-label">เป้าหมาย ${diff > 0 ? '(ลด)' : diff < 0 ? '(เพิ่ม)' : ''} กก.</div></div>`;
+}
+window.addEventListener('load', calcBMI);
+</script>
+</body>
+</html>
