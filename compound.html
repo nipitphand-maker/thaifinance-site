@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<!-- SEO injected via seo_inject.py -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณดอกเบี้ยทบต้น — เห็นพลังของเวลา | ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณดอกเบี้ยทบต้น (Compound Interest) ใส่เงินต้น ผลตอบแทน ระยะเวลา รู้มูลค่าสุดท้าย พร้อมเปรียบเทียบ vs ดอกเบี้ยเดี่ยว">
+<meta name="keywords" content="ดอกเบี้ยทบต้น, compound interest, คำนวณดอกเบี้ย, การลงทุนระยะยาว, เงินงอกเงย">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/compound.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="คำนวณดอกเบี้ยทบต้น — เห็นพลังของเวลา | ThaiFinance">
+<meta property="og:description" content="เครื่องคำนวณดอกเบี้ยทบต้น (Compound Interest) ใส่เงินต้น ผลตอบแทน ระยะเวลา รู้มูลค่าสุดท้าย พร้อมเปรียบเทียบ vs ดอกเบี้ยเดี่ยว">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/compound.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-compound.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="คำนวณดอกเบี้ยทบต้น — เห็นพลังของเวลา | ThaiFinance">
+<meta name="twitter:description" content="เครื่องคำนวณดอกเบี้ยทบต้น (Compound Interest) ใส่เงินต้น ผลตอบแทน ระยะเวลา รู้มูลค่าสุดท้าย พร้อมเปรียบเทียบ vs ดอกเบี้ยเดี่ยว">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-compound.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-title" content="ThaiFinance">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณดอกเบี้ยทบต้น","url":"https://thaifinance-site.pages.dev/compound.html","description":"เครื่องคำนวณดอกเบี้ยทบต้น Compound Interest","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('compound.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Compound Interest</div>
+  <div class="page-title">ดอกเบี้ย<br>ทบต้น</div>
+  <div class="page-sub">เห็นพลังของเวลา · เงินงอกเงิน</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">เงินต้น (บาท)</label>
+      <input type="number" class="f-input" id="principal" value="100000">
+    </div>
+    <div class="field">
+      <label class="f-label">เงินที่เพิ่มต่อเดือน (บาท, ใส่ 0 ถ้าไม่เพิ่ม)</label>
+      <input type="number" class="f-input" id="monthly" value="0">
+    </div>
+    <div class="field">
+      <label class="f-label">ผลตอบแทนต่อปี (%)</label>
+      <input type="number" class="f-input" id="rate" value="7" step="0.1">
+      <div class="f-hint">ตลาดหุ้นไทยเฉลี่ย ~7-8% · ฝากประจำ 1.5-2%</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ทบต้นกี่ครั้งต่อปี</label>
+      <select class="f-input" id="periods">
+        <option value="1">ปีละครั้ง</option>
+        <option value="2">ปีละ 2 ครั้ง (ทุก 6 เดือน)</option>
+        <option value="4">ปีละ 4 ครั้ง (รายไตรมาส)</option>
+        <option value="12" selected>ปีละ 12 ครั้ง (รายเดือน)</option>
+        <option value="365">ทุกวัน</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">ระยะเวลา (ปี)</label>
+      <select class="f-input" id="years">
+        <option value="5">5 ปี</option>
+        <option value="10">10 ปี</option>
+        <option value="15">15 ปี</option>
+        <option value="20" selected>20 ปี</option>
+        <option value="30">30 ปี</option>
+        <option value="40">40 ปี</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcCompound()">คำนวณ</button>
+    <div class="result" id="ciResult">
+      <div class="r-label">มูลค่าสุดท้าย (ทบต้น)</div>
+      <div class="r-val up" id="ciVal">—</div>
+      <div class="r-detail" id="ciDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="ciStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="chart-card" id="ciChartCard" style="display:none">
+    <div class="chart-head">
+      <div class="chart-lbl">มูลค่าสะสมต่อปี — ทบต้น vs ดอกเบี้ยเดี่ยว</div>
+      <div style="display:flex;gap:10px;font-size:12px;color:var(--ink2);font-weight:500;align-items:center">
+        <span>▬ ทบต้น</span><span style="opacity:.5">▬ ดอกเบี้ยเดี่ยว</span>
+      </div>
+    </div>
+    <canvas id="ciChart"></canvas>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>สูตร A = P(1+r/n)^(nt) · ไม่รวมภาษีและค่าธรรมเนียม<br>ใช้สำหรับการศึกษาเท่านั้น · ผลตอบแทนในอดีตไม่รับประกันอนาคต</footer>
+
+<script>
+function calcCompound() {
+  const P = parseFloat(document.getElementById('principal').value) || 0;
+  const m = parseFloat(document.getElementById('monthly').value) || 0;
+  const r = parseFloat(document.getElementById('rate').value) / 100;
+  const n = parseInt(document.getElementById('periods').value);
+  const t = parseInt(document.getElementById('years').value);
+  if (!P && !m) { alert('กรุณาใส่เงินต้นหรือเงินที่เพิ่มต่อเดือน'); return; }
+
+  // Compound: A = P(1+r/n)^(nt) + m * ((1+r/12)^(12t) - 1) / (r/12)
+  const periodRate = r / n;
+  const totalPeriods = n * t;
+  const lump = P * Math.pow(1 + periodRate, totalPeriods);
+  const mr = r / 12;
+  const months = 12 * t;
+  const cont = mr > 0 ? m * (Math.pow(1 + mr, months) - 1) / mr : m * months;
+  const compound = lump + cont;
+
+  // Simple: P + P*r*t + m * months  (ดอกแบบไม่ทบ — ฝากธรรมดา)
+  const simple = P * (1 + r * t) + m * months;
+  const invested = P + m * months;
+  const compInterest = compound - invested;
+  const simpInterest = simple - invested;
+  const extra = compound - simple;
+
+  document.getElementById('ciVal').textContent = fmt(compound, 0) + ' บาท';
+  document.getElementById('ciDetail').textContent =
+    `ลงทุนรวม ${fmt(invested, 0)} · ดอกเบี้ยทบต้น ${fmt(compInterest, 0)} · มากกว่าดอกเบี้ยเดี่ยว ${fmt(extra, 0)} บาท`;
+  document.getElementById('ciResult').classList.add('show');
+
+  const s = document.getElementById('ciStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val up">${fmt(compound, 0)}</div><div class="stat-label">มูลค่าทบต้น</div></div>
+    <div class="stat"><div class="stat-val">${fmt(simple, 0)}</div><div class="stat-label">มูลค่าไม่ทบ</div></div>
+    <div class="stat"><div class="stat-val accent">${fmt(extra, 0)}</div><div class="stat-label">ส่วนต่างจากทบ</div></div>
+    <div class="stat"><div class="stat-val">${fmt((compound / invested - 1) * 100, 1)}%</div><div class="stat-label">ROI รวม</div></div>`;
+
+  document.getElementById('ciChartCard').style.display = 'block';
+  drawCI(P, m, r, n, t);
+}
+
+function drawCI(P, m, r, n, t) {
+  const canvas = document.getElementById('ciChart');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth, H = 120;
+  canvas.width = W * dpr; canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d'); ctx.scale(dpr, dpr); ctx.clearRect(0, 0, W, H);
+
+  const comp = [], simp = [];
+  for (let y = 1; y <= t; y++) {
+    const periodRate = r / n;
+    const lump = P * Math.pow(1 + periodRate, n * y);
+    const mr = r / 12;
+    const months = 12 * y;
+    const cont = mr > 0 ? m * (Math.pow(1 + mr, months) - 1) / mr : m * months;
+    comp.push(lump + cont);
+    simp.push(P * (1 + r * y) + m * months);
+  }
+  const maxV = Math.max(...comp);
+  const pad = { l: 4, r: 4, t: 8, b: 22 };
+  const cW = W - pad.l - pad.r, cH = H - pad.t - pad.b;
+  const px = i => pad.l + (i / (t - 1)) * cW;
+  const py = v => pad.t + cH - (v / maxV) * cH;
+
+  // fill
+  const grad = ctx.createLinearGradient(0, pad.t, 0, H);
+  grad.addColorStop(0, 'rgba(15,110,63,.2)');
+  grad.addColorStop(1, 'rgba(15,110,63,0)');
+  ctx.beginPath(); ctx.moveTo(px(0), py(comp[0]));
+  for (let i = 1; i < t; i++) ctx.lineTo(px(i), py(comp[i]));
+  ctx.lineTo(px(t - 1), H - pad.b); ctx.lineTo(px(0), H - pad.b);
+  ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+
+  // simple line
+  ctx.beginPath(); ctx.moveTo(px(0), py(simp[0]));
+  for (let i = 1; i < t; i++) ctx.lineTo(px(i), py(simp[i]));
+  ctx.strokeStyle = 'rgba(36,56,204,.4)'; ctx.lineWidth = 1.5; ctx.setLineDash([4, 3]); ctx.stroke(); ctx.setLineDash([]);
+
+  // compound line
+  ctx.beginPath(); ctx.moveTo(px(0), py(comp[0]));
+  for (let i = 1; i < t; i++) ctx.lineTo(px(i), py(comp[i]));
+  ctx.strokeStyle = '#0F6E3F'; ctx.lineWidth = 2; ctx.lineJoin = 'round'; ctx.stroke();
+
+  // labels
+  ctx.fillStyle = '#888'; ctx.font = '10px "IBM Plex Sans Thai",sans-serif'; ctx.textAlign = 'center';
+  const step = Math.max(1, Math.floor(t / 5));
+  for (let i = 0; i < t; i += step) ctx.fillText(`ปี${i + 1}`, px(i), H - 5);
+}
+
+window.addEventListener('load', calcCompound);
+</script>
+</body>
+</html>

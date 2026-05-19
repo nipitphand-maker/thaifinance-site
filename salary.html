@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณเงินเดือนสุทธิ — Gross to Net หลังหักภาษีและประกันสังคม | ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณเงินเดือนสุทธิ ใส่เงินเดือน gross รู้เงินที่ได้รับจริงต่อเดือน หลังหักประกันสังคม 5% และภาษีหัก ณ ที่จ่ายตามอัตรา 2568">
+<meta name="keywords" content="เงินเดือนสุทธิ, gross to net, คำนวณเงินเดือน, หักภาษี, ประกันสังคม 5%, take home pay">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/salary.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="คำนวณเงินเดือนสุทธิ — Gross to Net หลังหักภาษีและประกันสังคม | ThaiFinance">
+<meta property="og:description" content="เครื่องคำนวณเงินเดือนสุทธิ ใส่เงินเดือน gross รู้เงินที่ได้รับจริงต่อเดือน หลังหักประกันสังคม 5% และภาษีหัก ณ ที่จ่ายตามอัตรา 2568">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/salary.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-salary.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="คำนวณเงินเดือนสุทธิ — Gross to Net | ThaiFinance">
+<meta name="twitter:description" content="ใส่เงินเดือน gross รู้เงินที่ได้รับจริงหลังหักภาษีและประกันสังคม">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-salary.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-title" content="ThaiFinance">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณเงินเดือนสุทธิ","url":"https://thaifinance-site.pages.dev/salary.html","description":"เครื่องคำนวณเงินเดือนสุทธิ Gross to Net","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('salary.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Gross to Net Salary</div>
+  <div class="page-title">เงินเดือน<br>สุทธิ</div>
+  <div class="page-sub">หักประกันสังคม 5% · ภาษี ณ ที่จ่าย</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">เงินเดือน Gross (บาท/เดือน)</label>
+      <input type="number" class="f-input" id="salary" placeholder="เช่น 30,000" value="30000">
+    </div>
+    <div class="field">
+      <label class="f-label">โบนัส/รายได้พิเศษต่อปี (บาท)</label>
+      <input type="number" class="f-input" id="bonus" value="0">
+    </div>
+
+    <span class="f-group-title">ค่าลดหย่อนภาษี</span>
+
+    <div class="field">
+      <label class="f-label">ประกันชีวิต (บาท)</label>
+      <input type="number" class="f-input" id="ins" value="0">
+    </div>
+    <div class="field">
+      <label class="f-label">RMF / SSF (บาท)</label>
+      <input type="number" class="f-input" id="rmf" value="0">
+    </div>
+    <div class="field">
+      <label class="f-label">จำนวนบุตร</label>
+      <input type="number" class="f-input" id="kids" value="0" min="0">
+    </div>
+    <div class="field">
+      <label class="f-label">คู่สมรส (ไม่มีรายได้)</label>
+      <select class="f-input" id="spouse">
+        <option value="0">ไม่มี</option>
+        <option value="60000">มี — ลดหย่อน 60,000</option>
+      </select>
+    </div>
+
+    <button class="btn btn-dark" onclick="calcSalary()">คำนวณ</button>
+
+    <div class="result" id="salResult">
+      <div class="r-label">เงินสุทธิที่ได้รับ (ต่อเดือน)</div>
+      <div class="r-val up" id="salNet">—</div>
+      <div class="r-detail" id="salDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="salStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="salBreakdown" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณตามอัตราภาษี 2568 · ประกันสังคม 5% สูงสุด 750/เดือน<br>ประมาณการเท่านั้น — ปรึกษาฝ่ายบุคคล/บัญชีเพื่อความแม่นยำ</footer>
+
+<script>
+const BRACKETS = [
+  { l: 150000, r: 0 },
+  { l: 150000, r: 0.05 },
+  { l: 200000, r: 0.10 },
+  { l: 250000, r: 0.15 },
+  { l: 250000, r: 0.20 },
+  { l: 1000000, r: 0.25 },
+  { l: 3000000, r: 0.30 },
+  { l: Infinity, r: 0.35 },
+];
+
+function calcSalary() {
+  const monthly = parseFloat(document.getElementById('salary').value) || 0;
+  const bonus = parseFloat(document.getElementById('bonus').value) || 0;
+  const insurance = Math.min(parseFloat(document.getElementById('ins').value) || 0, 100000);
+  const rmf = parseFloat(document.getElementById('rmf').value) || 0;
+  const kids = (parseInt(document.getElementById('kids').value) || 0) * 30000;
+  const spouse = parseInt(document.getElementById('spouse').value) || 0;
+  if (!monthly) { alert('กรุณาใส่เงินเดือน'); return; }
+
+  // ประกันสังคม 5% สูงสุด 750/เดือน → 9,000/ปี
+  const ssoMonth = Math.min(monthly * 0.05, 750);
+  const ssoYear = ssoMonth * 12;
+
+  // รายได้ทั้งปี
+  const grossYear = monthly * 12 + bonus;
+
+  // ค่าใช้จ่ายส่วนตัว 40(1): 50% สูงสุด 100k
+  const expense = Math.min(grossYear * 0.5, 100000);
+  // ค่าลดหย่อนส่วนตัว 60,000
+  const personal = 60000;
+
+  const deductions = expense + personal + ssoYear + insurance + rmf + kids + spouse;
+  const taxable = Math.max(grossYear - deductions, 0);
+
+  let tax = 0, rem = taxable;
+  for (const b of BRACKETS) {
+    if (rem <= 0) break;
+    tax += Math.min(rem, b.l) * b.r;
+    rem -= b.l;
+  }
+  const taxMonth = tax / 12;
+  const netMonth = monthly - ssoMonth - taxMonth;
+  const netYear = grossYear - ssoYear - tax;
+  const effRate = grossYear > 0 ? (tax / grossYear * 100) : 0;
+
+  document.getElementById('salNet').textContent = fmt(netMonth, 2) + ' บาท';
+  document.getElementById('salDetail').textContent =
+    `Gross ${fmt(monthly, 0)} − SSO ${fmt(ssoMonth, 0)} − ภาษีเฉลี่ย ${fmt(taxMonth, 0)} = Net ${fmt(netMonth, 0)} · effective rate ${fmt(effRate, 2)}%`;
+  document.getElementById('salResult').classList.add('show');
+
+  const s = document.getElementById('salStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val up">${fmt(netMonth, 0)}</div><div class="stat-label">Net/เดือน</div></div>
+    <div class="stat"><div class="stat-val up">${fmt(netYear, 0)}</div><div class="stat-label">Net/ปี</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(tax, 0)}</div><div class="stat-label">ภาษีรวม/ปี</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(ssoYear, 0)}</div><div class="stat-label">SSO รวม/ปี</div></div>`;
+
+  const bd = document.getElementById('salBreakdown');
+  bd.style.display = 'block';
+  bd.innerHTML = `
+    <div class="c-row"><div><div class="c-label">รายได้รวมต่อปี</div><div class="c-sub">เงินเดือน + โบนัส</div></div><div class="c-price">${fmt(grossYear, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label">หักค่าใช้จ่าย 50%</div><div class="c-sub">สูงสุด 100,000</div></div><div class="c-price">−${fmt(expense, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label">หักลดหย่อนส่วนตัว</div></div><div class="c-price">−${fmt(personal, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label">หักประกันสังคม</div><div class="c-sub">5% สูงสุด 9,000/ปี</div></div><div class="c-price">−${fmt(ssoYear, 0)}</div></div>
+    ${insurance ? `<div class="c-row"><div><div class="c-label">หักประกันชีวิต</div></div><div class="c-price">−${fmt(insurance, 0)}</div></div>` : ''}
+    ${rmf ? `<div class="c-row"><div><div class="c-label">หัก RMF / SSF</div></div><div class="c-price">−${fmt(rmf, 0)}</div></div>` : ''}
+    ${kids ? `<div class="c-row"><div><div class="c-label">หักบุตร</div></div><div class="c-price">−${fmt(kids, 0)}</div></div>` : ''}
+    ${spouse ? `<div class="c-row"><div><div class="c-label">หักคู่สมรส</div></div><div class="c-price">−${fmt(spouse, 0)}</div></div>` : ''}
+    <div class="c-row"><div><div class="c-label">เงินได้สุทธิ (คำนวณภาษี)</div></div><div class="c-price">${fmt(taxable, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label">ภาษีที่ต้องจ่ายต่อปี</div><div class="c-sub">อัตราขั้นบันได</div></div><div class="c-price" style="color:var(--down)">${fmt(tax, 0)}</div></div>`;
+}
+
+window.addEventListener('load', calcSalary);
+</script>
+</body>
+</html>

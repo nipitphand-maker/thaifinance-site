@@ -1,69 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://thaifinance-site.pages.dev/</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-default.png</image:loc>
+      <image:title>ThaiFinance — เครื่องมือการเงินไทย</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/gold</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/gold.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-gold.png</image:loc>
+      <image:title>ราคาทองวันนี้</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/oil</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/oil.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-oil.png</image:loc>
+      <image:title>ราคาน้ำมันวันนี้</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/crypto</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/crypto.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>hourly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-crypto.png</image:loc>
+      <image:title>ราคาคริปโต</image:title>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/electricity</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/electricity.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-electricity.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/solar</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/solar.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-solar.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/dca</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/dca.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-dca.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/savings</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/savings.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-savings.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/travel</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/travel.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-travel.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/tax</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/tax.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-tax.png</image:loc>
+    </image:image>
   </url>
   <url>
-    <loc>https://thaifinance-site.pages.dev/mortgage</loc>
-    <lastmod>2026-05-19</lastmod>
+    <loc>https://thaifinance-site.pages.dev/mortgage.html</loc>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-mortgage.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/compound.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-compound.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/salary.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-salary.png</image:loc>
+    </image:image>
   </url>
 </urlset>
