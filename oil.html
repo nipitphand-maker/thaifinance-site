@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>ราคาน้ำมันวันนี้ — ThaiFinance</title>
 <meta name="description" content="ราคาน้ำมันวันนี้ทุกประเภท เบนซิน ดีเซล E20 E85 จากทุกปั๊ม PTT Shell Esso Caltex Bangchak">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=20260519b">
 <meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
 </head>
@@ -148,17 +148,37 @@ function updateHero(prices) {
   heroSeries = [hero.price, hero.price];
 }
 
+// รับทั้ง schema เก่า (today/yesterday/tomorrow) และใหม่ (price/nextDay/nextDiff)
+function normalize(prices) {
+  const out = {};
+  for (const [k, o] of Object.entries(prices)) {
+    const price = o.price ?? o.effective ?? o.today;
+    const nextDay = o.nextDay ?? o.tomorrow ?? price;
+    const nextDiff = o.nextDiff != null
+      ? o.nextDiff
+      : (typeof nextDay === 'number' && typeof price === 'number'
+          ? +(nextDay - price).toFixed(2)
+          : 0);
+    out[k] = { name: o.name, group: o.group, price, nextDay, nextDiff };
+  }
+  return out;
+}
+
 async function fetchOil() {
   let prices = MOCK;
   let effectiveText = '';
+  let announcedAt = '';
+  let source = '';
   try {
     const r = await fetch(WORKER);
     const j = await r.json();
     if (j.success && j.prices && Object.keys(j.prices).length) {
-      prices = j.prices;
+      prices = normalize(j.prices);
       effectiveText = j.effective || '';
+      announcedAt = j.announcedAt || j.updatedAtThai || '';
+      source = j.source || '';
       document.getElementById('updatedAt').textContent =
-        `ประกาศ ${j.announcedAt || ''} · ${j.source}`;
+        `ประกาศ ${announcedAt} · ${source}`;
     } else {
       document.getElementById('updatedAt').textContent =
         'แหล่งข้อมูลตอบไม่ได้ — แสดงค่าตัวอย่าง';
