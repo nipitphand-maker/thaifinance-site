@@ -105,7 +105,7 @@ function renderRows(cardId, order, prices) {
       const tcls = o.nextDiff > 0 ? 'up' : 'down';
       const tsign = o.nextDiff > 0 ? '▲' : '▼';
       const tmrw = el('div', 'c-tomorrow');
-      tmrw.style.cssText = 'font-size:11px;color:var(--ink3);margin-top:2px';
+      tmrw.style.cssText = 'font-size:13px;color:var(--ink2);margin-top:3px;font-weight:500';
       tmrw.append('วันถัดไป ' + fmt(o.nextDay, 2) + ' ');
       const tbadge = el('span', `badge ${tcls}`, `${tsign}${fmt(Math.abs(o.nextDiff), 2)}`);
       tmrw.appendChild(tbadge);

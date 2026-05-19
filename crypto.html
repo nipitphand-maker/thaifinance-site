@@ -9,10 +9,10 @@
 .coin-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line2);animation:up .3s ease both}
 .coin-row:last-child{border:none}
 .coin-img{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:var(--bg)}
-.coin-name{font-size:14px;font-weight:500}
-.coin-sym{font-size:11px;color:var(--ink3)}
-.coin-price{font-family:var(--fnum);font-size:16px;font-weight:700;text-align:right}
-.coin-chg{font-size:11px;text-align:right;margin-top:2px}
+.coin-name{font-size:16px;font-weight:600;color:var(--ink)}
+.coin-sym{font-size:13px;color:var(--ink2);font-weight:500;text-transform:uppercase;letter-spacing:0.5px}
+.coin-price{font-family:var(--fnum);font-size:18px;font-weight:700;text-align:right;color:var(--ink)}
+.coin-chg{font-size:13px;text-align:right;margin-top:3px;font-weight:600}
 </style>
 <meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
@@ -108,7 +108,7 @@ async function fetchFG(){
     const c=v<25?'var(--down)':v<55?'#F0A500':'var(--up)';
     document.getElementById('fgCard').innerHTML=`<div class="c-row">
       <div style="font-family:var(--fnum);font-size:42px;font-weight:700;color:${c};line-height:1">${v}</div>
-      <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:${c}">${label}</div><div style="font-size:11px;color:var(--ink3);margin-top:3px">0 = กลัวมาก · 100 = โลภมาก</div></div>
+      <div style="text-align:right"><div style="font-size:17px;font-weight:700;color:${c}">${label}</div><div style="font-size:13px;color:var(--ink2);margin-top:4px;font-weight:500">0 = กลัวมาก · 100 = โลภมาก</div></div>
     </div>`;
   }catch(e){document.getElementById('fgCard').innerHTML='<div class="c-row" style="color:var(--ink3);font-size:12px">โหลดไม่ได้</div>';}
 }
