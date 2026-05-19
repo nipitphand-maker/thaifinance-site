@@ -12,20 +12,10 @@
 <script>injectNav('oil.html')</script>
 
 <div class="page-hd">
-  <div class="eyebrow"><span class="live-dot"></span> อัปเดตทุกสัปดาห์</div>
-  <div class="page-title">35.94</div>
-  <div class="page-sub">บาท/ลิตร · ดีเซล B7</div>
-  <div class="change-pill down">▼ −0.50 จากสัปดาห์ก่อน</div>
-</div>
-
-<div class="sec">
-  <div class="filter-row" id="pumpFilter">
-    <button class="filter-btn active" onclick="setPump(this,'ptt')">PTT</button>
-    <button class="filter-btn" onclick="setPump(this,'shell')">Shell</button>
-    <button class="filter-btn" onclick="setPump(this,'esso')">Esso</button>
-    <button class="filter-btn" onclick="setPump(this,'caltex')">Caltex</button>
-    <button class="filter-btn" onclick="setPump(this,'bangchak')">Bangchak</button>
-  </div>
+  <div class="eyebrow"><span class="live-dot"></span> <span id="updatedAt">กำลังโหลด...</span></div>
+  <div class="page-title num" id="heroPrice">—</div>
+  <div class="page-sub">บาท/ลิตร · ดีเซล</div>
+  <div class="change-pill flat" id="heroBadge">—</div>
 </div>
 
 <div class="sec" style="padding-top:0">
@@ -45,50 +35,124 @@
   </div>
 </div>
 
-<footer>ข้อมูลอ้างอิงจากกรมธุรกิจพลังงาน · อัปเดตทุกสัปดาห์<br>ราคาอาจแตกต่างตามพื้นที่</footer>
+<footer>ข้อมูล: บางจาก (กทม.) · อัปเดตทุกสัปดาห์<br>ราคาขายปลีกอาจแตกต่างตามพื้นที่ ยี่ห้อ และโปรโมชั่น</footer>
 
 <script>
-const OILS = {
-  '95':{icon:'●',name:'เบนซิน 95',price:42.45,prev:42.95},
-  'E20':{icon:'●',name:'แก๊สโซฮอล์ E20',price:35.24,prev:35.74},
-  'E85':{icon:'●',name:'แก๊สโซฮอล์ E85',price:24.19,prev:24.69},
-  'B7':{icon:'●',name:'ดีเซล B7',price:35.94,prev:36.44},
-  'B20':{icon:'●',name:'ดีเซล B20',price:34.44,prev:34.94},
-  'พรีเมียม':{icon:'●',name:'ดีเซลพรีเมียม',price:38.64,prev:39.14},
+const WORKER = 'https://oil-price.nipitphand.workers.dev';
+const ORDER = ['95','91','E20','E85','98','B7','B20','พรีเมียม'];
+const MOCK = {
+  '95':{name:'แก๊สโซฮอล์ 95', today:44.90, yesterday:44.90, diff:0},
+  'E20':{name:'แก๊สโซฮอล์ E20', today:37.90, yesterday:37.90, diff:0},
+  'E85':{name:'แก๊สโซฮอล์ E85', today:33.84, yesterday:33.84, diff:0},
+  'B7':{name:'ดีเซล', today:42.20, yesterday:42.20, diff:0},
+  'B20':{name:'ดีเซล B20', today:35.20, yesterday:35.20, diff:0},
 };
 
-function renderOil() {
+let heroSeries = null;
+
+function el(tag, className, text) {
+  const e = document.createElement(tag);
+  if (className) e.className = className;
+  if (text != null) e.textContent = text;
+  return e;
+}
+
+function renderOil(prices) {
   const card = document.getElementById('oilCard');
-  card.innerHTML = Object.entries(OILS).map(([k,o],i)=>{
-    const diff = o.price - o.prev;
-    const cls = diff>0?'up':diff<0?'down':'flat';
-    const sign = diff>0?'▲':diff<0?'▼':'–';
-    return `<div class="c-row" style="animation-delay:${i*0.05}s">
-      <div><div class="c-label">${o.name}</div></div>
-      <div style="text-align:right">
-        <div class="c-price">${fmt(o.price,2)}</div>
-        <div class="c-unit">บาท/ลิตร &nbsp;<span class="badge ${cls}">${sign}${fmt(Math.abs(diff),2)}</span></div>
-      </div>
-    </div>`;
-  }).join('');
+  card.replaceChildren();
+  const entries = ORDER.map(k => [k, prices[k]]).filter(([, o]) => o);
+  entries.forEach(([k, o], i) => {
+    const cls = o.diff > 0 ? 'up' : o.diff < 0 ? 'down' : 'flat';
+    const sign = o.diff > 0 ? '▲' : o.diff < 0 ? '▼' : '–';
+
+    const row = el('div', 'c-row');
+    row.style.animationDelay = `${i * 0.05}s`;
+
+    const left = el('div');
+    left.appendChild(el('div', 'c-label', o.name));
+    row.appendChild(left);
+
+    const right = document.createElement('div');
+    right.style.textAlign = 'right';
+    right.appendChild(el('div', 'c-price', fmt(o.today, 2)));
+
+    const unit = el('div', 'c-unit');
+    unit.append('บาท/ลิตร ');
+    const badge = el('span', `badge ${cls}`, `${sign}${fmt(Math.abs(o.diff), 2)}`);
+    unit.appendChild(badge);
+    right.appendChild(unit);
+
+    row.appendChild(right);
+    card.appendChild(row);
+  });
 }
 
-function setPump(btn,pump) {
-  btn.closest('.filter-row').querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  renderOil(); // same prices for now
+function updateHero(prices) {
+  const hero = prices['B7'] || prices['95'] || Object.values(prices)[0];
+  if (!hero) return;
+  document.getElementById('heroPrice').textContent = fmt(hero.today, 2);
+  const cls = hero.diff > 0 ? 'up' : hero.diff < 0 ? 'down' : 'flat';
+  const sign = hero.diff > 0 ? '▲' : hero.diff < 0 ? '▼' : '–';
+  const badge = document.getElementById('heroBadge');
+  badge.className = `change-pill ${cls}`;
+  badge.textContent = hero.diff
+    ? `${sign} ${fmt(Math.abs(hero.diff), 2)} จากเมื่อวาน`
+    : 'ราคาคงที่จากเมื่อวาน';
+  heroSeries = [hero.yesterday, hero.today];
 }
 
-const d7=[36.44,36.44,36.44,35.94,35.94,35.94,35.94];
-const d30=Array.from({length:30},(_,i)=>36.44-(i>20?0.5:0));
-function drawOil(r){
-  const v=r==='7d'?d7:d30;
-  const l=r==='7d'?['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.']:Array.from({length:30},(_,i)=>String(i+1));
-  drawLineChart('oilChart',v,l,'#2D3FE0');
+async function fetchOil() {
+  let prices = MOCK;
+  try {
+    const r = await fetch(WORKER);
+    const j = await r.json();
+    if (j.success && j.prices && Object.keys(j.prices).length) {
+      prices = j.prices;
+      document.getElementById('updatedAt').textContent =
+        `${j.updatedAtThai} · ${j.source}`;
+      if (j.effective) {
+        const note = el('div', null, j.effective);
+        note.style.cssText = 'font-size:11px;color:var(--ink3);margin-bottom:6px';
+        document.querySelector('footer').prepend(note);
+      }
+    } else {
+      document.getElementById('updatedAt').textContent =
+        'แหล่งข้อมูลตอบไม่ได้ — แสดงค่าตัวอย่าง';
+    }
+  } catch (e) {
+    document.getElementById('updatedAt').textContent =
+      'เชื่อมต่อไม่ได้ — แสดงค่าตัวอย่าง';
+  }
+  updateHero(prices);
+  renderOil(prices);
+  drawOil('7d');
 }
 
-window.addEventListener('load',()=>{renderOil();drawOil('7d');});
-window.addEventListener('resize',()=>drawOil('7d'));
+function drawOil(r) {
+  let vals, labs;
+  if (heroSeries && heroSeries.length >= 2) {
+    vals = r === '7d'
+      ? [heroSeries[0], heroSeries[0], heroSeries[0], heroSeries[0], heroSeries[0], heroSeries[1], heroSeries[1]]
+      : Array.from({ length: 30 }, (_, i) => (i < 28 ? heroSeries[0] : heroSeries[1]));
+    labs = r === '7d'
+      ? ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.', 'อา.']
+      : Array.from({ length: 30 }, (_, i) => String(i + 1));
+  } else {
+    vals = r === '7d'
+      ? [36.44, 36.44, 36.44, 35.94, 35.94, 35.94, 35.94]
+      : Array.from({ length: 30 }, (_, i) => 36.44 - (i > 20 ? 0.5 : 0));
+    labs = r === '7d'
+      ? ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.', 'อา.']
+      : Array.from({ length: 30 }, (_, i) => String(i + 1));
+  }
+  drawLineChart('oilChart', vals, labs, '#2D3FE0');
+}
+
+window.addEventListener('load', () => {
+  fetchOil();
+  setInterval(fetchOil, 30 * 60 * 1000);
+});
+window.addEventListener('resize', () => drawOil('7d'));
 </script>
 </body>
 </html>
