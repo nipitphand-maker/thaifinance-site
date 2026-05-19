@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>คำนวณโซล่าเซลล์ คุ้มมั้ย กี่ปีคืนทุน 2568 — ThaiFinance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('solar.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Solar Calculator</div>
+  <div class="page-title">ติดโซล่า<br>คุ้มมั้ย?</div>
+  <div class="page-sub">คำนวณปีคืนทุน · ROI 25 ปี · ประหยัดค่าไฟ</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">ค่าไฟเฉลี่ยต่อเดือน (บาท)</label>
+      <input type="number" class="f-input" id="bill" value="3000">
+    </div>
+    <div class="field">
+      <label class="f-label">ขนาดระบบ (kW)</label>
+      <select class="f-input" id="kw">
+        <option value="3">3 kW (~90 หน่วย/เดือน)</option>
+        <option value="5" selected>5 kW (~150 หน่วย/เดือน)</option>
+        <option value="8">8 kW (~240 หน่วย/เดือน)</option>
+        <option value="10">10 kW (~300 หน่วย/เดือน)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">ราคาติดตั้งต่อ kW (บาท)</label>
+      <input type="number" class="f-input" id="costpkw" value="35000">
+      <div class="f-hint">ราคาตลาด ~30,000–40,000 บาท/kW รวมติดตั้ง</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ราคาค่าไฟ (บาท/หน่วย)</label>
+      <input type="number" class="f-input" id="erate" value="4.5" step="0.1">
+    </div>
+    <div class="field">
+      <label class="f-label">ประเภทระบบ</label>
+      <select class="f-input" id="stype" onchange="toggleBatt(this)">
+        <option value="on">On-Grid (ไม่มีแบตเตอรี่)</option>
+        <option value="hybrid">Hybrid (มีแบตเตอรี่)</option>
+      </select>
+    </div>
+    <div class="field" id="battField" style="display:none">
+      <label class="f-label">ราคาแบตเตอรี่ (บาท)</label>
+      <input type="number" class="f-input" id="batt" value="80000">
+    </div>
+    <button class="btn btn-dark" onclick="calcSolar()">คำนวณ</button>
+    <div class="result" id="solarResult">
+      <div class="r-label">คืนทุนใน</div>
+      <div class="r-val" id="solarPayback">—</div>
+      <div class="r-detail" id="solarDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="solarStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="chart-card" id="solarChartCard" style="display:none">
+    <div class="chart-head"><div class="chart-lbl">กราฟคืนทุนสะสม 25 ปี</div></div>
+    <canvas id="solarChart"></canvas>
+  </div>
+</div>
+
+<footer>ประมาณการจากแสงแดดเฉลี่ยไทย 4.5 ชม./วัน · แผงเสื่อม 0.5%/ปี<br>ขอใบเสนอราคาจากผู้ติดตั้งก่อนตัดสินใจ</footer>
+
+<script>
+function toggleBatt(sel){document.getElementById('battField').style.display=sel.value==='hybrid'?'block':'none';}
+
+function calcSolar(){
+  const bill=parseFloat(document.getElementById('bill').value)||3000;
+  const kw=parseFloat(document.getElementById('kw').value)||5;
+  const cpkw=parseFloat(document.getElementById('costpkw').value)||35000;
+  const erate=parseFloat(document.getElementById('erate').value)||4.5;
+  const hybrid=document.getElementById('stype').value==='hybrid';
+  const batt=hybrid?(parseFloat(document.getElementById('batt').value)||80000):0;
+
+  const monthKwh=kw*4.5*0.8*30;
+  const totalCost=kw*cpkw+batt;
+  const monthSave=Math.min(monthKwh*erate,bill);
+  const yearSave=monthSave*12;
+  const payback=totalCost/yearSave;
+
+  let save25=0;
+  for(let y=1;y<=25;y++) save25+=yearSave*Math.pow(0.995,y);
+  const roi=(save25-totalCost)/totalCost*100;
+
+  document.getElementById('solarPayback').textContent=fmt(payback,1)+' ปี';
+  document.getElementById('solarDetail').textContent=
+    `ลงทุน ${fmt(totalCost,0)} บาท · ประหยัด ${fmt(yearSave,0)} บาท/ปี · ผลิต ${fmt(monthKwh,0)} หน่วย/เดือน`;
+  document.getElementById('solarResult').classList.add('show');
+
+  const s=document.getElementById('solarStats');
+  s.style.display='grid';
+  s.innerHTML=`
+    <div class="stat"><div class="stat-val up">${fmt(monthSave,0)}</div><div class="stat-label">ประหยัด/เดือน (บาท)</div></div>
+    <div class="stat"><div class="stat-val accent">${fmt(monthKwh,0)}</div><div class="stat-label">ผลิต/เดือน (หน่วย)</div></div>
+    <div class="stat"><div class="stat-val ${roi>0?'up':'down'}">${fmt(roi,0)}%</div><div class="stat-label">ROI 25 ปี</div></div>
+    <div class="stat"><div class="stat-val">${fmt(save25,0)}</div><div class="stat-label">ประหยัดรวม 25 ปี</div></div>`;
+
+  document.getElementById('solarChartCard').style.display='block';
+  drawSolar(totalCost,yearSave);
+}
+
+function drawSolar(cost,ySave){
+  const canvas=document.getElementById('solarChart');
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth,H=120;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
+  const yrs=25,pad={l:4,r:4,t:8,b:22};
+  const cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+  const cum=[];let acc=0;
+  for(let y=1;y<=yrs;y++){acc+=ySave*Math.pow(0.995,y);cum.push(acc-cost);}
+  const minV=Math.min(...cum),maxV=Math.max(...cum),range=maxV-minV||1;
+  const px=i=>pad.l+(i/(yrs-1))*cW;
+  const py=v=>pad.t+cH-((v-minV)/range)*cH;
+  const zeroY=py(0);
+  ctx.strokeStyle='rgba(0,0,0,0.08)';ctx.lineWidth=1;ctx.setLineDash([3,3]);
+  ctx.beginPath();ctx.moveTo(pad.l,zeroY);ctx.lineTo(W-pad.r,zeroY);ctx.stroke();ctx.setLineDash([]);
+  const grad=ctx.createLinearGradient(0,pad.t,0,H);
+  grad.addColorStop(0,'rgba(26,127,75,0.2)');grad.addColorStop(1,'rgba(26,127,75,0)');
+  ctx.beginPath();ctx.moveTo(px(0),py(cum[0]));
+  for(let i=1;i<yrs;i++)ctx.lineTo(px(i),py(cum[i]));
+  ctx.lineTo(px(yrs-1),H-pad.b);ctx.lineTo(px(0),H-pad.b);ctx.closePath();
+  ctx.fillStyle=grad;ctx.fill();
+  ctx.beginPath();ctx.moveTo(px(0),py(cum[0]));
+  for(let i=1;i<yrs;i++)ctx.lineTo(px(i),py(cum[i]));
+  ctx.strokeStyle='#1A7F4B';ctx.lineWidth=1.5;ctx.lineJoin='round';ctx.stroke();
+  ctx.fillStyle='#888';ctx.font='10px "IBM Plex Sans Thai",sans-serif';ctx.textAlign='center';
+  [0,4,9,14,19,24].forEach(i=>ctx.fillText(`ปี${i+1}`,px(i),H-5));
+}
+</script>
+</body>
+</html>

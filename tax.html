@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>คำนวณภาษีเงินได้บุคคลธรรมดา 2568 — ThaiFinance</title>
+<meta name="description" content="คำนวณภาษีเงินได้บุคคลธรรมดาปี 2568 ใส่รายได้และค่าลดหย่อน รู้ภาษีที่ต้องจ่ายทันที">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('tax.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">ปีภาษี 2568</div>
+  <div class="page-title">คำนวณภาษี</div>
+  <div class="page-sub">ภาษีเงินได้บุคคลธรรมดา · อัตราขั้นบันได</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">รายได้ต่อปี (บาท)</label>
+      <input type="number" class="f-input" id="income" placeholder="เช่น 600,000">
+    </div>
+    <div class="field">
+      <label class="f-label">ประเภทรายได้</label>
+      <select class="f-input" id="incomeType">
+        <option value="0.5,100000">40(1) เงินเดือน — หักได้ 50% สูงสุด 100,000</option>
+        <option value="0.5,100000">40(2) รับจ้างทั่วไป/ฟรีแลนซ์ — หักได้ 50% สูงสุด 100,000</option>
+        <option value="0.6,60000">40(8) ธุรกิจ/อาชีพอิสระ — หักได้ 60% สูงสุด 60,000</option>
+      </select>
+    </div>
+
+    <span class="f-group-title">ค่าลดหย่อน</span>
+
+    <div class="field">
+      <label class="f-label">ประกันสังคม (บาท)</label>
+      <input type="number" class="f-input" id="sso" placeholder="สูงสุด 9,000" value="9000">
+    </div>
+    <div class="field">
+      <label class="f-label">ประกันชีวิต (บาท)</label>
+      <input type="number" class="f-input" id="ins" placeholder="สูงสุด 100,000" value="0">
+    </div>
+    <div class="field">
+      <label class="f-label">RMF / SSF (บาท)</label>
+      <input type="number" class="f-input" id="rmf" placeholder="สูงสุด 30% ของรายได้" value="0">
+    </div>
+    <div class="field">
+      <label class="f-label">จำนวนบุตร (คน)</label>
+      <input type="number" class="f-input" id="kids" value="0" min="0">
+    </div>
+    <div class="field">
+      <label class="f-label">คู่สมรส (ไม่มีรายได้)</label>
+      <select class="f-input" id="spouse">
+        <option value="0">ไม่มี</option>
+        <option value="60000">มี — ลดหย่อน 60,000 บาท</option>
+      </select>
+    </div>
+
+    <button class="btn btn-dark" onclick="calcTax()">คำนวณภาษี</button>
+
+    <div class="result" id="taxResult">
+      <div class="r-label">ภาษีที่ต้องชำระ</div>
+      <div class="r-val" id="taxVal">—</div>
+      <div class="r-detail" id="taxDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">อัตราภาษีขั้นบันได 2568</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>เงินได้สุทธิ</th><th style="text-align:right">อัตรา</th></tr></thead>
+      <tbody>
+        <tr><td>1 – 150,000</td><td style="color:var(--up)">ยกเว้น</td></tr>
+        <tr><td>150,001 – 300,000</td><td>5%</td></tr>
+        <tr><td>300,001 – 500,000</td><td>10%</td></tr>
+        <tr><td>500,001 – 750,000</td><td>15%</td></tr>
+        <tr><td>750,001 – 1,000,000</td><td>20%</td></tr>
+        <tr><td>1,000,001 – 2,000,000</td><td>25%</td></tr>
+        <tr><td>2,000,001 – 5,000,000</td><td>30%</td></tr>
+        <tr><td>เกิน 5,000,000</td><td style="color:var(--down)">35%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>คำนวณตามอัตราภาษีปีภาษี 2568 · ประมาณการเท่านั้น<br>กรุณาปรึกษานักบัญชีหรือกรมสรรพากร</footer>
+
+<script>
+const BRACKETS=[{l:150000,r:0},{l:150000,r:.05},{l:200000,r:.1},{l:250000,r:.15},{l:250000,r:.2},{l:1000000,r:.25},{l:3000000,r:.3},{l:Infinity,r:.35}];
+
+function calcTax(){
+  const income=parseFloat(document.getElementById('income').value)||0;
+  const [expRate,expMax]=document.getElementById('incomeType').value.split(',').map(Number);
+  const sso=Math.min(parseFloat(document.getElementById('sso').value)||0,9000);
+  const ins=Math.min(parseFloat(document.getElementById('ins').value)||0,100000);
+  const rmf=parseFloat(document.getElementById('rmf').value)||0;
+  const kids=(parseInt(document.getElementById('kids').value)||0)*30000;
+  const spouse=parseInt(document.getElementById('spouse').value)||0;
+
+  const exp=Math.min(income*expRate,expMax);
+  const deduct=exp+60000+sso+ins+rmf+kids+spouse;
+  const net=Math.max(income-deduct,0);
+
+  let tax=0,rem=net;
+  for(const b of BRACKETS){
+    if(rem<=0)break;
+    tax+=Math.min(rem,b.l)*b.r;
+    rem-=b.l;
+  }
+  const eff=income>0?tax/income*100:0;
+
+  document.getElementById('taxVal').textContent=fmt(tax,2)+' บาท';
+  document.getElementById('taxDetail').textContent=
+    `รายได้ ${fmt(income,0)} − ค่าใช้จ่าย ${fmt(exp,0)} − ลดหย่อนอื่น ${fmt(deduct-exp,0)} = เงินได้สุทธิ ${fmt(net,0)} บาท\nEffective rate: ${fmt(eff,2)}%`;
+  document.getElementById('taxResult').classList.add('show');
+}
+</script>
+</body>
+</html>

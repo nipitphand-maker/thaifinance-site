@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>คำนวณค่าไฟ กฟน. กฟภ. 2568 — ThaiFinance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('electricity.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">คำนวณค่าไฟฟ้า · ปี 2568</div>
+  <div class="page-title">ค่าไฟเดือนนี้<br>เท่าไหร่?</div>
+  <div class="page-sub">กฟน. · กฟภ. · คำนวณแบบขั้นบันได</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">การไฟฟ้า</label>
+      <select class="f-input" id="auth">
+        <option value="mea">กฟน. — กรุงเทพฯ / ปริมณฑล</option>
+        <option value="pea">กฟภ. — ต่างจังหวัด</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">จำนวนหน่วยที่ใช้ (kWh)</label>
+      <input type="number" class="f-input" id="units" placeholder="เช่น 250">
+    </div>
+    <button class="btn btn-dark" onclick="calcElec()">คำนวณ</button>
+    <div class="result" id="elecResult">
+      <div class="r-label">ค่าไฟประมาณการ (รวม VAT)</div>
+      <div class="r-val" id="elecTotal">—</div>
+      <div class="r-detail" id="elecDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid g4">
+    <div class="stat"><div class="stat-val accent">4.27</div><div class="stat-label">บาท/หน่วย (กฟน.)</div></div>
+    <div class="stat"><div class="stat-val accent">4.22</div><div class="stat-label">บาท/หน่วย (กฟภ.)</div></div>
+    <div class="stat"><div class="stat-val">38.22</div><div class="stat-label">ค่าบริการ/เดือน</div></div>
+    <div class="stat"><div class="stat-val">7%</div><div class="stat-label">VAT</div></div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">อัตราค่าไฟฟ้า กฟน. (บ้านอยู่อาศัย)</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>ช่วงหน่วย</th><th style="text-align:right">บาท/หน่วย</th></tr></thead>
+      <tbody>
+        <tr><td>1–15</td><td>2.3488</td></tr>
+        <tr><td>16–25</td><td>2.9882</td></tr>
+        <tr><td>26–35</td><td>3.2405</td></tr>
+        <tr><td>36–100</td><td>3.6237</td></tr>
+        <tr><td>101–150</td><td>3.7171</td></tr>
+        <tr><td>151–400</td><td>4.2218</td></tr>
+        <tr><td>เกิน 400</td><td>4.4217</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>อัตราอ้างอิงจาก กฟน. และ กฟภ. ปี 2568 · ประมาณการเท่านั้น<br>กรุณาตรวจสอบใบแจ้งหนี้จริง</footer>
+
+<script>
+const RATES=[{l:15,r:2.3488},{l:10,r:2.9882},{l:10,r:3.2405},{l:65,r:3.6237},{l:50,r:3.7171},{l:250,r:4.2218},{l:Infinity,r:4.4217}];
+const SVC=38.22,VAT=1.07;
+function calcElec(){
+  const u=parseFloat(document.getElementById('units').value)||0;
+  if(!u){alert('กรุณาใส่จำนวนหน่วย');return;}
+  let e=0,rem=u;
+  for(const r of RATES){if(rem<=0)break;const use=Math.min(rem,r.l);e+=use*r.r;rem-=use;}
+  const sub=e+SVC,total=sub*VAT;
+  document.getElementById('elecTotal').textContent=fmt(total,2)+' บาท';
+  document.getElementById('elecDetail').textContent=`ค่าพลังงาน ${fmt(e,2)} + ค่าบริการ ${fmt(SVC,2)} = ${fmt(sub,2)} (ก่อน VAT) · ${fmt(total/u,2)} บาท/หน่วย`;
+  document.getElementById('elecResult').classList.add('show');
+}
+</script>
+</body>
+</html>

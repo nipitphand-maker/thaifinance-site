@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>เปรียบค่าเดินทาง รถ vs BTS vs Grab — ThaiFinance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('travel.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">เปรียบค่าเดินทาง</div>
+  <div class="page-title">ไปทำงาน<br>วิธีไหนถูกกว่า?</div>
+  <div class="page-sub">รถยนต์ · BTS/MRT · รถเมล์ · Grab · มอไซค์</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field"><label class="f-label">ระยะทางไป-กลับ (กม./วัน)</label><input type="number" class="f-input" id="dist" value="30"></div>
+    <div class="field"><label class="f-label">วันทำงานต่อเดือน</label><input type="number" class="f-input" id="days" value="22"></div>
+    <span class="f-group-title">ค่าใช้จ่ายรถยนต์</span>
+    <div class="field"><label class="f-label">อัตราสิ้นเปลือง (กม./ลิตร)</label><input type="number" class="f-input" id="kmL" value="15"></div>
+    <div class="field"><label class="f-label">ราคาน้ำมัน (บาท/ลิตร)</label><input type="number" class="f-input" id="oil" value="35.94" step="0.01"></div>
+    <div class="field"><label class="f-label">ค่าจอดรถ/วัน (บาท)</label><input type="number" class="f-input" id="park" value="60"></div>
+    <span class="f-group-title">ค่าโดยสาร</span>
+    <div class="field"><label class="f-label">BTS/MRT ต่อเที่ยว (บาท)</label><input type="number" class="f-input" id="bts" value="44"></div>
+    <div class="field"><label class="f-label">Grab ต่อเที่ยว (บาท)</label><input type="number" class="f-input" id="grab" value="80"></div>
+    <button class="btn btn-dark" onclick="calcTravel()">เปรียบเลย</button>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0" id="resultSec" style="display:none">
+  <div class="sec-title">ค่าใช้จ่ายต่อเดือน (เรียงถูก→แพง)</div>
+  <div class="card" id="travelResult"></div>
+</div>
+
+<div class="sec" style="padding-top:0" id="saveSec" style="display:none">
+  <div class="stat-grid" id="saveStats"></div>
+</div>
+
+<footer>คำนวณเฉพาะค่าน้ำมัน ค่าจอด และค่าโดยสาร<br>ไม่รวมค่าเสื่อมราคา ประกัน และค่าซ่อม</footer>
+
+<script>
+function calcTravel(){
+  const dist=parseFloat(document.getElementById('dist').value)||30;
+  const days=parseFloat(document.getElementById('days').value)||22;
+  const kmL=parseFloat(document.getElementById('kmL').value)||15;
+  const oil=parseFloat(document.getElementById('oil').value)||35.94;
+  const park=parseFloat(document.getElementById('park').value)||60;
+  const bts=parseFloat(document.getElementById('bts').value)||44;
+  const grab=parseFloat(document.getElementById('grab').value)||80;
+
+  const opts=[
+    {icon:'🚌',name:'รถเมล์',monthly:15*2*days},
+    {icon:'🚇',name:'BTS / MRT',monthly:bts*2*days},
+    {icon:'🏍️',name:'มอเตอร์ไซค์',monthly:((dist/40)*oil*0.5+15)*days},
+    {icon:'🚗',name:'รถยนต์',monthly:((dist/kmL)*oil+park)*days},
+    {icon:'🚖',name:'Grab',monthly:grab*2*days},
+  ].sort((a,b)=>a.monthly-b.monthly);
+
+  const maxM=Math.max(...opts.map(o=>o.monthly));
+  document.getElementById('resultSec').style.display='block';
+  document.getElementById('travelResult').innerHTML=opts.map((o,i)=>`
+    <div class="c-row" style="animation-delay:${i*.07}s">
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:20px">${o.icon}</span>
+          <div>
+            <div class="c-label">${o.name}${i===0?' <span style="font-size:10px;background:var(--up);color:#fff;padding:2px 6px;border-radius:3px;font-weight:700">ถูกสุด</span>':''}</div>
+            <div style="margin-top:5px;height:2px;background:var(--line2);border-radius:1px;width:120px">
+              <div style="height:100%;width:${(o.monthly/maxM*100).toFixed(0)}%;background:${i===0?'var(--up)':i===opts.length-1?'var(--down)':'var(--ink3)'};border-radius:1px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="c-price" style="color:${i===0?'var(--up)':i===opts.length-1?'var(--down)':'var(--ink)'}">${fmt(o.monthly,0)}</div>
+        <div class="c-unit">บาท/เดือน</div>
+      </div>
+    </div>`).join('');
+
+  const saved=(opts[opts.length-1].monthly-opts[0].monthly)*12;
+  document.getElementById('saveSec').style.display='block';
+  document.getElementById('saveStats').innerHTML=`
+    <div class="stat"><div class="stat-val up">${fmt(opts[0].monthly*12,0)}</div><div class="stat-label">ถูกสุด/ปี (${opts[0].name})</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(opts[opts.length-1].monthly*12,0)}</div><div class="stat-label">แพงสุด/ปี</div></div>
+    <div class="stat" style="grid-column:span 2"><div class="stat-val accent">${fmt(saved,0)}</div><div class="stat-label">ประหยัดได้ต่อปีถ้าเปลี่ยนมาใช้ ${opts[0].name}</div></div>`;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ราคาทองวันนี้ — ThaiFinance</title>
+<meta name="description" content="ราคาทองคำวันนี้ ทองแท่ง 96.5% 99.99% ทองรูปพรรณ อัปเดตทุก 30 นาที">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('gold.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow"><span class="live-dot"></span> <span id="updatedAt">กำลังโหลด...</span></div>
+  <div class="page-title num" id="heroPrice">—</div>
+  <div class="page-sub">บาท / บาททอง · ทองแท่ง 96.5% รับซื้อ</div>
+  <div class="change-pill flat" id="heroBadge">—</div>
+</div>
+
+<div class="sec">
+  <div class="sec-title">ราคาทองวันนี้</div>
+  <div class="card">
+    <div class="c-row" style="animation-delay:0.05s">
+      <div><div class="c-label">ทองแท่ง 96.5%</div><div class="c-sub">Gold Bar 96.5%</div></div>
+      <div style="text-align:right">
+        <div style="display:flex;gap:16px;align-items:baseline;justify-content:flex-end">
+          <div><div style="font-size:10px;color:var(--ink3)">รับซื้อ</div><div class="c-price gold" id="b965buy">—</div></div>
+          <div><div style="font-size:10px;color:var(--ink3)">ขายออก</div><div class="c-price" id="b965sell">—</div></div>
+        </div>
+        <div style="margin-top:4px"><span class="badge flat auto-badge" id="badge965">—</span></div>
+      </div>
+    </div>
+    <div class="c-row" style="animation-delay:0.1s">
+      <div><div class="c-label">ทองแท่ง 99.99%</div><div class="c-sub">Gold Bar 99.99%</div></div>
+      <div style="text-align:right">
+        <div style="display:flex;gap:16px;align-items:baseline;justify-content:flex-end">
+          <div><div style="font-size:10px;color:var(--ink3)">รับซื้อ</div><div class="c-price gold" id="b9999buy">—</div></div>
+          <div><div style="font-size:10px;color:var(--ink3)">ขายออก</div><div class="c-price" id="b9999sell">—</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="c-row" style="animation-delay:0.15s">
+      <div><div class="c-label">ทองรูปพรรณ</div><div class="c-sub">Gold Jewelry</div></div>
+      <div style="text-align:right">
+        <div style="display:flex;gap:16px;align-items:baseline;justify-content:flex-end">
+          <div><div style="font-size:10px;color:var(--ink3)">รับซื้อ</div><div class="c-price gold" id="jewbuy">—</div></div>
+          <div><div style="font-size:10px;color:var(--ink3)">ขายออก</div><div class="c-price" id="jewsell">—</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="pill-row">
+    <div class="pill"><div class="pill-val" id="spread">—</div><div class="pill-label">Spread (บาท)</div></div>
+    <div class="pill"><div class="pill-val" id="workFee">—</div><div class="pill-label">ค่าแปรรูป</div></div>
+    <div class="pill"><div class="pill-val gold" id="usdoz">—</div><div class="pill-label">USD/oz</div></div>
+    <div class="pill"><div class="pill-val" id="usdthb">34.2</div><div class="pill-label">USD/THB</div></div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="chart-card">
+    <div class="chart-head">
+      <div class="chart-lbl">ทองแท่ง 96.5% ย้อนหลัง</div>
+      <div class="tab-row">
+        <button class="tab active" onclick="switchTab(this,()=>drawGold('7d'))">7 วัน</button>
+        <button class="tab" onclick="switchTab(this,()=>drawGold('30d'))">30 วัน</button>
+      </div>
+    </div>
+    <canvas id="goldChart"></canvas>
+  </div>
+</div>
+
+<footer>ข้อมูลจากสมาคมค้าทองคำไทย · อัปเดตทุก 30 นาที<br>กรุณาตรวจสอบกับร้านทองก่อนซื้อขาย</footer>
+
+<script>
+const WORKER = 'https://gold-price.YOUR-SUBDOMAIN.workers.dev';
+const mock = {b965b:43750,b965s:43850,b9999b:45120,b9999s:45220,jewb:43167,jews:44350,change:150,status:'UP'};
+
+async function fetchGold() {
+  let d = mock;
+  try {
+    const r = await fetch(WORKER);
+    const j = await r.json();
+    if(j.success) {
+      d = {
+        b965b:j.prices.bar965.buy, b965s:j.prices.bar965.sell,
+        b9999b:j.prices.bar9999.buy, b9999s:j.prices.bar9999.sell,
+        jewb:j.prices.jewelry.buy, jews:j.prices.jewelry.sell,
+        change:Math.abs(j.change.amount||150), status:j.change.status||'UP',
+      };
+      document.getElementById('updatedAt').textContent = j.updatedAtThai;
+    }
+  } catch(e) {
+    document.getElementById('updatedAt').textContent = 'ข้อมูล mock (Worker ยังไม่ deploy)';
+  }
+
+  const isUp = d.status==='UP', isDown = d.status==='DOWN';
+  const cls = isUp?'up':isDown?'down':'flat';
+  const sign = isUp?'▲':isDown?'▼':'–';
+
+  setText('heroPrice', Number(d.b965b).toLocaleString('th-TH'));
+  setText('b965buy', Number(d.b965b).toLocaleString('th-TH'));
+  setText('b965sell', Number(d.b965s).toLocaleString('th-TH'));
+  setText('b9999buy', Number(d.b9999b).toLocaleString('th-TH'));
+  setText('b9999sell', Number(d.b9999s).toLocaleString('th-TH'));
+  setText('jewbuy', Number(d.jewb).toLocaleString('th-TH'));
+  setText('jewsell', Number(d.jews).toLocaleString('th-TH'));
+  setText('spread', fmt(d.b965s-d.b965b,0));
+  setText('workFee', '1,183');
+  setText('usdoz', '3,283');
+
+  const badge = document.getElementById('heroBadge');
+  badge.textContent = `${sign} ${fmt(d.change,0)} บาท จากเมื่อวาน`;
+  badge.className = `change-pill ${cls}`;
+  const b965badge = document.getElementById('badge965');
+  b965badge.textContent = `${sign}${fmt(d.change,0)}`;
+  b965badge.className = `badge ${cls} auto-badge`;
+
+  // save history
+  let hist = JSON.parse(localStorage.getItem('goldHist')||'[]');
+  hist.push({t:Date.now(),v:d.b965b});
+  const cut = Date.now()-30*864e5;
+  hist = hist.filter(h=>h.t>cut);
+  localStorage.setItem('goldHist',JSON.stringify(hist));
+  drawGold('7d');
+}
+
+function setText(id,val) { const el=document.getElementById(id); if(el) el.textContent=val; }
+
+function drawGold(range) {
+  let hist = JSON.parse(localStorage.getItem('goldHist')||'[]');
+  const cutMs = range==='7d'?7*864e5:30*864e5;
+  const filtered = hist.filter(h=>h.t>Date.now()-cutMs);
+  let vals,labs;
+  if(filtered.length>=2){
+    vals=filtered.map(h=>h.v);
+    labs=filtered.map(h=>{const d=new Date(h.t);return`${d.getDate()}/${d.getMonth()+1}`;});
+  } else {
+    vals=range==='7d'?[43200,43350,43100,43500,43680,43600,43750]:Array.from({length:30},(_,i)=>42000+i*60);
+    labs=range==='7d'?['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.']:Array.from({length:30},(_,i)=>String(i+1));
+  }
+  drawLineChart('goldChart',vals,labs,'#A07830');
+}
+
+window.addEventListener('load',()=>{fetchGold();setInterval(fetchGold,30*60*1000);});
+window.addEventListener('resize',()=>drawGold('7d'));
+</script>
+</body>
+</html>

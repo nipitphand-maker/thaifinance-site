@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>คำนวณ DCA ลงทุนทุกเดือน — ThaiFinance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('dca.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Dollar Cost Averaging</div>
+  <div class="page-title">ลงทุนทุกเดือน<br>ได้เท่าไหร่?</div>
+  <div class="page-sub">คำนวณผลตอบแทนแบบ DCA · พอร์ตสะสม</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field"><label class="f-label">ลงทุนต่อเดือน (บาท)</label><input type="number" class="f-input" id="monthly" value="5000"></div>
+    <div class="field"><label class="f-label">เงินเริ่มต้น (บาท)</label><input type="number" class="f-input" id="init" value="0"></div>
+    <div class="field">
+      <label class="f-label">ผลตอบแทนต่อปี</label>
+      <select class="f-input" id="rate">
+        <option value="4">4% — พันธบัตร / เงินฝาก</option>
+        <option value="7" selected>7% — กองทุนรวม SET เฉลี่ย</option>
+        <option value="10">10% — หุ้นไทย / ต่างประเทศ</option>
+        <option value="15">15% — หุ้นเติบโต</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">ระยะเวลา</label>
+      <select class="f-input" id="yrs">
+        <option value="5">5 ปี</option>
+        <option value="10" selected>10 ปี</option>
+        <option value="15">15 ปี</option>
+        <option value="20">20 ปี</option>
+        <option value="30">30 ปี</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcDCA()">คำนวณ</button>
+    <div class="result" id="dcaResult">
+      <div class="r-label">มูลค่าพอร์ตสุดท้าย</div>
+      <div class="r-val up" id="dcaVal">—</div>
+      <div class="r-detail" id="dcaDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0"><div class="stat-grid" id="dcaStats" style="display:none"></div></div>
+
+<div class="sec" style="padding-top:0">
+  <div class="chart-card" id="dcaChartCard" style="display:none">
+    <div class="chart-head">
+      <div class="chart-lbl">พอร์ตสะสม</div>
+      <div style="display:flex;gap:10px;font-size:10px;color:var(--ink3);align-items:center">
+        <span>▬ พอร์ตจริง</span><span style="opacity:.5">▬ เงินที่ลงทุน</span>
+      </div>
+    </div>
+    <canvas id="dcaChart"></canvas>
+  </div>
+</div>
+
+<footer>ผลตอบแทนในอดีตไม่รับประกันอนาคต · ไม่รวมภาษีและค่าธรรมเนียม<br>การลงทุนมีความเสี่ยง</footer>
+
+<script>
+function calcDCA(){
+  const m=parseFloat(document.getElementById('monthly').value)||5000;
+  const ini=parseFloat(document.getElementById('init').value)||0;
+  const ar=parseFloat(document.getElementById('rate').value)||7;
+  const yrs=parseInt(document.getElementById('yrs').value);
+  const r=ar/100/12,n=yrs*12;
+  const port=ini*Math.pow(1+r,n)+m*(Math.pow(1+r,n)-1)/r;
+  const invested=ini+m*n;
+  const profit=port-invested;
+  const roi=profit/invested*100;
+  document.getElementById('dcaVal').textContent=fmt(port,0)+' บาท';
+  document.getElementById('dcaDetail').textContent=`ลงทุนรวม ${fmt(invested,0)} · กำไร ${fmt(profit,0)} บาท · ROI ${fmt(roi,1)}%`;
+  document.getElementById('dcaResult').classList.add('show');
+  const s=document.getElementById('dcaStats');s.style.display='grid';
+  s.innerHTML=`
+    <div class="stat"><div class="stat-val up">${fmt(port,0)}</div><div class="stat-label">มูลค่าพอร์ต</div></div>
+    <div class="stat"><div class="stat-val accent">${fmt(profit,0)}</div><div class="stat-label">กำไรรวม</div></div>
+    <div class="stat"><div class="stat-val">${fmt(invested,0)}</div><div class="stat-label">เงินที่ลงทุน</div></div>
+    <div class="stat"><div class="stat-val up">${fmt(roi,1)}%</div><div class="stat-label">ROI</div></div>`;
+  document.getElementById('dcaChartCard').style.display='block';
+  drawDCA(m,ini,r,n,yrs);
+}
+
+function drawDCA(m,ini,r,n,yrs){
+  const canvas=document.getElementById('dcaChart');
+  const dpr=window.devicePixelRatio||1,W=canvas.offsetWidth,H=120;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
+  const port=[],inv=[];
+  for(let y=1;y<=yrs;y++){const mn=y*12;port.push(ini*Math.pow(1+r,mn)+m*(Math.pow(1+r,mn)-1)/r);inv.push(ini+m*mn);}
+  const maxV=Math.max(...port);
+  const pad={l:4,r:4,t:8,b:22},cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+  const px=i=>pad.l+(i/(yrs-1))*cW,py=v=>pad.t+cH-(v/maxV)*cH;
+  const grad=ctx.createLinearGradient(0,pad.t,0,H);
+  grad.addColorStop(0,'rgba(26,127,75,.25)');grad.addColorStop(1,'rgba(26,127,75,0)');
+  ctx.beginPath();ctx.moveTo(px(0),py(port[0]));for(let i=1;i<yrs;i++)ctx.lineTo(px(i),py(port[i]));
+  ctx.lineTo(px(yrs-1),H-pad.b);ctx.lineTo(px(0),H-pad.b);ctx.closePath();ctx.fillStyle=grad;ctx.fill();
+  ctx.beginPath();ctx.moveTo(px(0),py(inv[0]));for(let i=1;i<yrs;i++)ctx.lineTo(px(i),py(inv[i]));
+  ctx.strokeStyle='rgba(45,63,224,.3)';ctx.lineWidth=1.5;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(px(0),py(port[0]));for(let i=1;i<yrs;i++)ctx.lineTo(px(i),py(port[i]));
+  ctx.strokeStyle='#1A7F4B';ctx.lineWidth=1.5;ctx.lineJoin='round';ctx.stroke();
+  ctx.fillStyle='#888';ctx.font='10px "IBM Plex Sans Thai",sans-serif';ctx.textAlign='center';
+  const step=Math.max(1,Math.floor(yrs/5));
+  for(let i=0;i<yrs;i+=step)ctx.fillText(`ปี${i+1}`,px(i),H-5);
+}
+</script>
+</body>
+</html>

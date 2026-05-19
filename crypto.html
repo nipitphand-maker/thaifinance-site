@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ราคาคริปโตวันนี้ — ThaiFinance</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.coin-row{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line2);animation:up .3s ease both}
+.coin-row:last-child{border:none}
+.coin-img{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:var(--bg)}
+.coin-name{font-size:14px;font-weight:500}
+.coin-sym{font-size:11px;color:var(--ink3)}
+.coin-price{font-family:var(--fnum);font-size:16px;font-weight:700;text-align:right}
+.coin-chg{font-size:11px;text-align:right;margin-top:2px}
+</style>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('crypto.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow"><span class="live-dot"></span> CoinGecko · อัปเดตทุก 60 วิ</div>
+  <div class="page-title num" id="btcPrice">—</div>
+  <div class="page-sub">USD · Bitcoin</div>
+  <div class="change-pill flat" id="btcChange">กำลังโหลด...</div>
+</div>
+
+<div class="sec">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+    <div class="sec-title" style="margin:0">ราคาวันนี้</div>
+    <div class="tab-row">
+      <button class="tab active" id="btnUSD" onclick="setCur('usd',this)">USD</button>
+      <button class="tab" id="btnTHB" onclick="setCur('thb',this)">THB</button>
+    </div>
+  </div>
+  <div class="card" id="coinList">
+    <div style="padding:16px;color:var(--ink3);font-size:13px;text-align:center">กำลังโหลดราคา...</div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">Fear & Greed Index</div>
+  <div class="card" id="fgCard">
+    <div class="c-row"><div class="skel" style="width:60%;height:16px"></div></div>
+  </div>
+</div>
+
+<footer>ข้อมูลจาก CoinGecko API ฟรี · ไม่ใช่คำแนะนำการลงทุน</footer>
+
+<script>
+const COINS=['bitcoin','ethereum','binancecoin','solana','ripple','dogecoin','cardano','tron','avalanche-2','chainlink'];
+const NAMES={bitcoin:'Bitcoin',ethereum:'Ethereum',binancecoin:'BNB',solana:'Solana',ripple:'XRP',dogecoin:'Dogecoin',cardano:'Cardano',tron:'TRON','avalanche-2':'Avalanche',chainlink:'Chainlink'};
+let cur='usd',lastData=null;
+const THB=34.2;
+
+function setCur(c,btn){cur=c;btn.closest('.tab-row').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(lastData)render(lastData);}
+
+async function fetchCoins(){
+  try{
+    const r=await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.join(',')}&order=market_cap_desc&sparkline=false&price_change_percentage=24h`);
+    const d=await r.json();lastData=d;
+    const btc=d.find(c=>c.id==='bitcoin');
+    if(btc){
+      document.getElementById('btcPrice').textContent='$'+Number(btc.current_price).toLocaleString('en-US');
+      const chg=btc.price_change_percentage_24h||0;
+      const pill=document.getElementById('btcChange');
+      pill.textContent=`${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}% (24h)`;
+      pill.className=`change-pill ${chg>=0?'up':'down'}`;
+    }
+    render(d);
+  }catch(e){document.getElementById('coinList').innerHTML='<div style="padding:20px;text-align:center;font-size:13px;color:var(--ink3)">โหลดไม่ได้ (CoinGecko rate limit) — ลองใหม่ในอีกสักครู่</div>';}
+}
+
+function render(data){
+  const list=document.getElementById('coinList');
+  list.innerHTML=data.map((c,i)=>{
+    const price=cur==='usd'?c.current_price:c.current_price*THB;
+    const sym=cur==='usd'?'$':'฿';
+    const dec=price>1000?0:price>1?2:4;
+    const chg=c.price_change_percentage_24h||0;
+    const cls=chg>=0?'up':'down';
+    return`<div class="coin-row" style="animation-delay:${i*.04}s">
+      <img class="coin-img" src="${c.image}" alt="${c.name}" loading="lazy" onerror="this.style.display='none'">
+      <div style="flex:1"><div class="coin-name">${NAMES[c.id]||c.name}</div><div class="coin-sym">${c.symbol?.toUpperCase()}</div></div>
+      <div><div class="coin-price">${sym}${Number(price).toLocaleString('th-TH',{minimumFractionDigits:dec,maximumFractionDigits:dec})}</div>
+      <div class="coin-chg"><span class="badge ${cls}">${chg>=0?'▲':'▼'}${Math.abs(chg).toFixed(2)}%</span></div></div>
+    </div>`;
+  }).join('');
+}
+
+async function fetchFG(){
+  try{
+    const r=await fetch('https://api.alternative.me/fng/');
+    const d=await r.json();
+    const v=d.data[0].value,label=d.data[0].value_classification;
+    const c=v<25?'var(--down)':v<55?'#F0A500':'var(--up)';
+    document.getElementById('fgCard').innerHTML=`<div class="c-row">
+      <div style="font-family:var(--fnum);font-size:42px;font-weight:700;color:${c};line-height:1">${v}</div>
+      <div style="text-align:right"><div style="font-size:15px;font-weight:600;color:${c}">${label}</div><div style="font-size:11px;color:var(--ink3);margin-top:3px">0 = กลัวมาก · 100 = โลภมาก</div></div>
+    </div>`;
+  }catch(e){document.getElementById('fgCard').innerHTML='<div class="c-row" style="color:var(--ink3);font-size:12px">โหลดไม่ได้</div>';}
+}
+
+fetchCoins();fetchFG();
+setInterval(fetchCoins,60000);
+</script>
+</body>
+</html>

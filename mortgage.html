@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>คำนวณผ่อนบ้าน ดอกเบี้ยกู้บ้าน — ThaiFinance</title>
+<meta name="description" content="คำนวณยอดผ่อนบ้านต่อเดือน ดอกเบี้ยรวม ตลอดอายุสัญญา">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('mortgage.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">สินเชื่อที่อยู่อาศัย</div>
+  <div class="page-title">คำนวณ<br>ผ่อนบ้าน</div>
+  <div class="page-sub">งวด · ดอกเบี้ย · กราฟตลอดสัญญา</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">วงเงินกู้ (บาท)</label>
+      <input type="number" class="f-input" id="principal" placeholder="เช่น 3,000,000">
+    </div>
+    <div class="field">
+      <label class="f-label">อัตราดอกเบี้ยต่อปี (%)</label>
+      <input type="number" class="f-input" id="rate" value="6.5" step="0.1">
+    </div>
+    <div class="field">
+      <label class="f-label">ระยะเวลาผ่อน</label>
+      <select class="f-input" id="years">
+        <option value="10">10 ปี</option>
+        <option value="15">15 ปี</option>
+        <option value="20" selected>20 ปี</option>
+        <option value="25">25 ปี</option>
+        <option value="30">30 ปี</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcMort()">คำนวณ</button>
+    <div class="result" id="mortResult">
+      <div class="r-label">ผ่อนต่อเดือน</div>
+      <div class="r-val" id="mortMonthly">—</div>
+      <div class="r-detail" id="mortDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="mortStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="chart-card" id="mortChartCard" style="display:none">
+    <div class="chart-head">
+      <div class="chart-lbl">เงินต้น vs ดอกเบี้ยต่อปี</div>
+    </div>
+    <canvas id="mortChart"></canvas>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">อัตราดอกเบี้ย MRR ธนาคาร (พ.ค. 2568)</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>ธนาคาร</th><th style="text-align:right">MRR</th></tr></thead>
+      <tbody>
+        <tr><td>ธนาคารออมสิน</td><td>6.775%</td></tr>
+        <tr><td>ธ.กรุงไทย (KTB)</td><td>6.875%</td></tr>
+        <tr><td>ธ.กรุงเทพ (BBL)</td><td>7.125%</td></tr>
+        <tr><td>ธ.กสิกรไทย (KBank)</td><td>7.175%</td></tr>
+        <tr><td>ธ.ไทยพาณิชย์ (SCB)</td><td>7.245%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<footer>คำนวณตามสูตร PMT · อัตราดอกเบี้ยคงที่ตลอดสัญญา<br>อัตราจริงอาจแตกต่าง กรุณาปรึกษาธนาคาร</footer>
+
+<script>
+function calcMort(){
+  const P=parseFloat(document.getElementById('principal').value)||0;
+  const ar=parseFloat(document.getElementById('rate').value)||6.5;
+  const yrs=parseInt(document.getElementById('years').value);
+  if(!P){alert('กรุณาใส่วงเงินกู้');return;}
+  const r=ar/100/12, n=yrs*12;
+  const monthly=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+  const total=monthly*n, interest=total-P;
+
+  document.getElementById('mortMonthly').textContent=fmt(monthly,2)+' บาท';
+  document.getElementById('mortDetail').textContent=
+    `เงินต้น ${fmt(P,0)} · ดอกเบี้ยรวม ${fmt(interest,0)} · จ่ายรวม ${fmt(total,0)} บาท`;
+  document.getElementById('mortResult').classList.add('show');
+
+  const s=document.getElementById('mortStats');
+  s.style.display='grid';
+  s.innerHTML=`
+    <div class="stat"><div class="stat-val accent">${fmt(monthly,0)}</div><div class="stat-label">บาท/เดือน</div></div>
+    <div class="stat"><div class="stat-val down">${fmt(interest,0)}</div><div class="stat-label">ดอกเบี้ยรวม</div></div>
+    <div class="stat"><div class="stat-val">${fmt(total,0)}</div><div class="stat-label">จ่ายรวม</div></div>
+    <div class="stat"><div class="stat-val muted">${fmt(interest/P*100,1)}%</div><div class="stat-label">ดอก/เงินต้น</div></div>`;
+
+  document.getElementById('mortChartCard').style.display='block';
+  drawMort(P,r,n,monthly,yrs);
+}
+
+function drawMort(P,r,n,monthly,yrs){
+  const canvas=document.getElementById('mortChart');
+  const dpr=window.devicePixelRatio||1;
+  const W=canvas.offsetWidth,H=120;
+  canvas.width=W*dpr;canvas.height=H*dpr;
+  const ctx=canvas.getContext('2d');ctx.scale(dpr,dpr);ctx.clearRect(0,0,W,H);
+  const pad={l:4,r:4,t:8,b:22};
+  const bW=(W-pad.l-pad.r)/yrs;
+  let bal=P,maxV=0;
+  const data=[];
+  for(let y=0;y<yrs;y++){
+    let yP=0,yI=0;
+    for(let m=0;m<12;m++){const i=bal*r;yI+=i;yP+=monthly-i;bal-=(monthly-i);}
+    data.push({p:Math.max(yP,0),i:Math.max(yI,0)});
+    maxV=Math.max(maxV,yP+yI);
+  }
+  for(let i=0;i<yrs;i++){
+    const x=pad.l+i*bW;
+    const th=(data[i].p+data[i].i)/maxV*(H-pad.t-pad.b);
+    const ih=data[i].i/(data[i].p+data[i].i)*th;
+    ctx.fillStyle='rgba(192,57,43,0.5)';ctx.fillRect(x+1,H-pad.b-th,bW-2,ih);
+    ctx.fillStyle='rgba(26,127,75,0.5)';ctx.fillRect(x+1,H-pad.b-th+ih,bW-2,th-ih);
+  }
+  ctx.fillStyle='#888';ctx.font='10px "IBM Plex Sans Thai",sans-serif';ctx.textAlign='center';
+  const step=Math.max(1,Math.floor(yrs/5));
+  for(let i=0;i<yrs;i+=step)ctx.fillText(`ปี${i+1}`,pad.l+i*bW+bW/2,H-5);
+}
+</script>
+</body>
+</html>

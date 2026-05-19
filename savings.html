@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>เปรียบดอกเบี้ยเงินฝากประจำ 2568 — ThaiFinance</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('savings.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">เงินฝากประจำ · พ.ค. 2568</div>
+  <div class="page-title">ฝากไหน<br>ได้ดอกมากกว่า?</div>
+  <div class="page-sub">เปรียบ 10 ธนาคาร · คำนวณดอกเบี้ยที่ได้รับ</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field"><label class="f-label">เงินที่ฝาก (บาท)</label><input type="number" class="f-input" id="dep" value="100000"></div>
+    <div class="field">
+      <label class="f-label">ระยะเวลา</label>
+      <select class="f-input" id="term" onchange="render()">
+        <option value="3">3 เดือน</option><option value="6">6 เดือน</option>
+        <option value="12" selected>12 เดือน</option><option value="24">24 เดือน</option><option value="36">36 เดือน</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="render()">คำนวณ</button>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เรียงมากไปน้อย</div>
+  <div class="card" id="bankList"></div>
+</div>
+
+<footer>อัตราดอกเบี้ยประกาศ พ.ค. 2568 · หักภาษี ณ ที่จ่าย 15%<br>กรุณาตรวจสอบกับธนาคารโดยตรง</footer>
+
+<script>
+const BANKS=[
+  {name:'ธนาคารออมสิน',rates:{3:1.5,6:1.75,12:2.0,24:2.1,36:2.2}},
+  {name:'ธ.ยูโอบี (UOB)',rates:{3:1.35,6:1.55,12:1.75,24:1.8,36:1.85}},
+  {name:'ธ.ทหารไทยธนชาต (ttb)',rates:{3:1.3,6:1.5,12:1.7,24:1.75,36:1.8}},
+  {name:'ธ.แลนด์แอนด์เฮ้าส์ (LHB)',rates:{3:1.5,6:1.75,12:2.0,24:2.05,36:2.1}},
+  {name:'ธ.ซีไอเอ็มบี (CIMB)',rates:{3:1.4,6:1.6,12:1.8,24:1.85,36:1.9}},
+  {name:'ธ.กรุงไทย (KTB)',rates:{3:1.25,6:1.45,12:1.6,24:1.65,36:1.7}},
+  {name:'ธ.กสิกรไทย (KBank)',rates:{3:1.2,6:1.4,12:1.55,24:1.6,36:1.65}},
+  {name:'ธ.กรุงศรี (BAY)',rates:{3:1.2,6:1.4,12:1.55,24:1.6,36:1.65}},
+  {name:'ธ.ไทยพาณิชย์ (SCB)',rates:{3:1.15,6:1.35,12:1.5,24:1.55,36:1.6}},
+  {name:'ธ.กรุงเทพ (BBL)',rates:{3:1.1,6:1.3,12:1.5,24:1.55,36:1.6}},
+];
+
+function render(){
+  const dep=parseFloat(document.getElementById('dep').value)||100000;
+  const term=parseInt(document.getElementById('term').value);
+  const sorted=[...BANKS].map(b=>({...b,rate:b.rates[term]||b.rates[12]})).sort((a,b)=>b.rate-a.rate);
+  const maxR=sorted[0].rate;
+  document.getElementById('bankList').innerHTML=sorted.map((b,i)=>{
+    const interest=dep*(b.rate/100)*(term/12)*0.85;
+    return`<div class="c-row" style="animation-delay:${i*.04}s">
+      <div style="flex:1">
+        <div class="c-label" style="font-size:13px">${i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':''}${b.name}</div>
+        <div style="margin-top:5px;height:3px;background:var(--line2);border-radius:2px;overflow:hidden">
+          <div style="height:100%;width:${(b.rate/maxR*100).toFixed(0)}%;background:var(--accent);border-radius:2px;transition:width .5s"></div>
+        </div>
+      </div>
+      <div style="text-align:right;padding-left:12px">
+        <div class="c-price" style="font-size:18px;color:var(--accent)">${b.rate.toFixed(2)}%</div>
+        <div class="c-unit">ดอก ${fmt(interest,2)} บาท*</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+window.addEventListener('load',render);
+</script>
+</body>
+</html>
