@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณเงินสำรองฉุกเฉิน — ควรมีเท่าไหร่ | ThaiFinance</title>
+<meta name="description" content="คำนวณเงินสำรองฉุกเฉินที่ควรมี ตามค่าใช้จ่ายและสถานการณ์ส่วนตัว เผื่อตกงาน เจ็บป่วย หรือเหตุไม่คาดฝัน">
+<meta name="keywords" content="เงินสำรองฉุกเฉิน, emergency fund, เก็บเงิน, รับมือฉุกเฉิน, ตกงาน">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/emergency.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="คำนวณเงินสำรองฉุกเฉิน — ควรมีเท่าไหร่ | ThaiFinance">
+<meta property="og:description" content="คำนวณเงินสำรองตามค่าใช้จ่าย เผื่อตกงาน เจ็บป่วย เหตุไม่คาดฝัน">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/emergency.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-emergency.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="เงินสำรองฉุกเฉิน | ThaiFinance">
+<meta name="twitter:description" content="คำนวณเงินสำรองที่ควรมี">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-emergency.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณเงินสำรองฉุกเฉิน","url":"https://thaifinance-site.pages.dev/emergency.html","description":"เครื่องคำนวณเงินสำรองฉุกเฉินตามค่าใช้จ่ายและสถานการณ์","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('emergency.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Emergency Fund</div>
+  <div class="page-title">เงินสำรอง<br>ฉุกเฉิน</div>
+  <div class="page-sub">ควรมีเท่าไหร่ · เก็บที่ไหนดี</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">ค่าใช้จ่ายจำเป็นต่อเดือน (บาท)</label>
+      <input type="number" class="f-input" id="expense" value="20000">
+      <div class="f-hint">ค่าเช่า/ผ่อน + อาหาร + ค่าเดินทาง + ค่าน้ำ-ไฟ-เน็ต ที่ตัดไม่ได้</div>
+    </div>
+    <div class="field">
+      <label class="f-label">สถานการณ์การงาน</label>
+      <select class="f-input" id="job">
+        <option value="3">มนุษย์เงินเดือน รายได้มั่นคง — 3 เดือน</option>
+        <option value="6" selected>มนุษย์เงินเดือนทั่วไป — 6 เดือน</option>
+        <option value="9">รับจ้าง freelance — 9 เดือน</option>
+        <option value="12">ธุรกิจส่วนตัว / รายได้ผันผวน — 12 เดือน</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">มีคนในความดูแล</label>
+      <select class="f-input" id="deps">
+        <option value="0">ไม่มี (โสด)</option>
+        <option value="1">คู่สมรส (ไม่มีรายได้)</option>
+        <option value="2">คู่สมรส + บุตร 1-2 คน</option>
+        <option value="3">ครอบครัวใหญ่ (3+ คน)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">เงินสำรองตอนนี้ (บาท)</label>
+      <input type="number" class="f-input" id="current" value="0">
+    </div>
+    <div class="field">
+      <label class="f-label">ออมได้ต่อเดือน (บาท)</label>
+      <input type="number" class="f-input" id="saving" value="5000">
+    </div>
+    <button class="btn btn-dark" onclick="calcEm()">คำนวณ</button>
+    <div class="result" id="emResult">
+      <div class="r-label">เป้าหมายเงินสำรอง</div>
+      <div class="r-val accent" id="emGoal">—</div>
+      <div class="r-detail" id="emDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="emStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เก็บเงินสำรองที่ไหนดี</div>
+  <div class="card">
+    <div class="c-row"><div><div class="c-label">✅ ออมทรัพย์ดอกสูง</div><div class="c-sub">TMRW 1.6%, ttb me SAVE 2%, LH B-You 1.7% — ถอนได้ตลอด</div></div></div>
+    <div class="c-row"><div><div class="c-label">✅ MMF กองทุนตลาดเงิน</div><div class="c-sub">2-3%/ปี · ขายคืน T+1 (ใช้ได้พรุ่งนี้) · เสี่ยงต่ำมาก</div></div></div>
+    <div class="c-row"><div><div class="c-label">✅ บัญชี Auto-Save</div><div class="c-sub">SCB Easy Save, K-eSavings — ตั้งโอนอัตโนมัติทุกเดือน</div></div></div>
+    <div class="c-row"><div><div class="c-label">❌ ห้ามฝากในหุ้น/คริปโต</div><div class="c-sub">ผันผวนสูง — ตอนต้องใช้อาจขาดทุน 30-50%</div></div></div>
+    <div class="c-row"><div><div class="c-label">❌ ห้ามล็อกในเงินฝากประจำ</div><div class="c-sub">ถอนก่อนกำหนดจะไม่ได้ดอกหรือหายไปเกือบหมด</div></div></div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>หลัก "3-6 เดือน" จาก Dave Ramsey และ FPA · ปรับตามสถานการณ์ส่วนตัว</footer>
+
+<script>
+function calcEm() {
+  const exp = parseFloat(document.getElementById('expense').value) || 0;
+  const months = parseInt(document.getElementById('job').value);
+  const depBonus = parseInt(document.getElementById('deps').value);
+  const current = parseFloat(document.getElementById('current').value) || 0;
+  const saving = parseFloat(document.getElementById('saving').value) || 0;
+  if (!exp) { alert('กรุณาใส่ค่าใช้จ่ายต่อเดือน'); return; }
+
+  // adjust for dependents (add 1-2 months)
+  const totalMonths = months + depBonus;
+  const goal = exp * totalMonths;
+  const gap = Math.max(0, goal - current);
+  const monthsToGoal = saving > 0 ? gap / saving : Infinity;
+  const pct = goal > 0 ? (current / goal * 100) : 0;
+
+  document.getElementById('emGoal').textContent = fmt(goal, 0) + ' บาท';
+  document.getElementById('emDetail').textContent =
+    `${totalMonths} เดือน × ค่าใช้จ่าย ${fmt(exp, 0)} · ${pct < 100 ? `ยังขาด ${fmt(gap, 0)} · เก็บได้ใน ${monthsToGoal === Infinity ? '∞' : monthsToGoal.toFixed(1)} เดือน` : '✅ ถึงเป้าหมายแล้ว'}`;
+  document.getElementById('emResult').classList.add('show');
+
+  const s = document.getElementById('emStats');
+  s.style.display = 'grid';
+
+  let progressColor = pct < 33 ? 'down' : pct < 100 ? 'accent' : 'up';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val accent">${fmt(goal, 0)}</div><div class="stat-label">เป้าหมาย (บาท)</div></div>
+    <div class="stat"><div class="stat-val ${progressColor}">${pct.toFixed(0)}%</div><div class="stat-label">ปัจจุบัน ${fmt(current, 0)}</div></div>
+    <div class="stat"><div class="stat-val ${gap > 0 ? 'down' : 'up'}">${fmt(gap, 0)}</div><div class="stat-label">ยังขาด</div></div>
+    <div class="stat"><div class="stat-val">${monthsToGoal === Infinity ? '—' : monthsToGoal.toFixed(1)}</div><div class="stat-label">เดือนที่ต้องเก็บ</div></div>`;
+}
+window.addEventListener('load', calcEm);
+</script>
+</body>
+</html>

@@ -127,6 +127,9 @@ function injectNav(active) {
     ['carloan.html', '🚙 ผ่อนรถ'],
     ['travel.html', '🚗 เดินทาง'],
     ['bmi.html', '⚖️ BMI'],
+    ['refinance.html', '🔄 Refinance'],
+    ['retirement.html', '👴 เกษียณ'],
+    ['emergency.html', '🆘 ฉุกเฉิน'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

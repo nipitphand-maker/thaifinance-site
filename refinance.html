@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณ Refinance บ้าน — คุ้มมั้ย ประหยัดเท่าไหร่ | ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณ Refinance สินเชื่อบ้าน เปรียบเทียบดอกเบี้ยเก่ากับใหม่ รู้ว่าคุ้มมั้ย ประหยัดได้เท่าไหร่ หลังหักค่าใช้จ่ายการ refinance">
+<meta name="keywords" content="refinance บ้าน, รีไฟแนนซ์, คุ้มมั้ย, เปรียบดอกเบี้ยบ้าน, ค่าใช้จ่าย refinance">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/refinance.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="คำนวณ Refinance บ้าน — คุ้มมั้ย ประหยัดเท่าไหร่ | ThaiFinance">
+<meta property="og:description" content="เปรียบดอกเบี้ยเก่า-ใหม่ รู้ว่ารีไฟแนนซ์คุ้มมั้ย หลังหักค่าใช้จ่าย">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/refinance.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-refinance.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="คำนวณ Refinance บ้าน | ThaiFinance">
+<meta name="twitter:description" content="คุ้มมั้ย ประหยัดเท่าไหร่หลังรีไฟแนนซ์">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-refinance.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณ Refinance บ้าน","url":"https://thaifinance-site.pages.dev/refinance.html","description":"เปรียบดอกเบี้ยเก่าและใหม่ คำนวณว่าคุ้มกับการ refinance หรือไม่","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('refinance.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Refinance</div>
+  <div class="page-title">รีไฟแนนซ์<br>คุ้มมั้ย?</div>
+  <div class="page-sub">เปรียบดอกเบี้ยเก่า-ใหม่ · หักค่าใช้จ่าย</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <span class="f-group-title">สินเชื่อปัจจุบัน</span>
+    <div class="field">
+      <label class="f-label">เงินต้นคงเหลือ (บาท)</label>
+      <input type="number" class="f-input" id="balance" value="2500000">
+    </div>
+    <div class="field">
+      <label class="f-label">ดอกเบี้ยปัจจุบัน (% ต่อปี)</label>
+      <input type="number" class="f-input" id="oldRate" value="6.5" step="0.1">
+    </div>
+    <div class="field">
+      <label class="f-label">ระยะเวลาเหลือ (ปี)</label>
+      <input type="number" class="f-input" id="yearsLeft" value="20">
+    </div>
+
+    <span class="f-group-title">โปร Refinance ใหม่</span>
+    <div class="field">
+      <label class="f-label">ดอกเบี้ยใหม่ (% ต่อปี)</label>
+      <input type="number" class="f-input" id="newRate" value="3.5" step="0.1">
+      <div class="f-hint">โปร refinance ปกติ 2.99-4.50%</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ค่าใช้จ่าย Refinance (บาท)</label>
+      <input type="number" class="f-input" id="cost" value="50000">
+      <div class="f-hint">ค่าจดจำนอง 1% + ค่าธรรมเนียม + ค่าประเมิน (รวม 1-2% ของวงเงิน)</div>
+    </div>
+
+    <button class="btn btn-dark" onclick="calcRefi()">คำนวณ</button>
+    <div class="result" id="refiResult">
+      <div class="r-label">ประหยัดได้ตลอดสัญญา (หักค่าใช้จ่าย)</div>
+      <div class="r-val up" id="refiSave">—</div>
+      <div class="r-detail" id="refiDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="refiStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="refiCompare" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เมื่อไหร่ควร Refinance?</div>
+  <div class="card">
+    <div class="c-row"><div><div class="c-label">✅ หลังครบ 3 ปีแรก</div><div class="c-sub">โปรดอกเบี้ยพิเศษหมด · กลับสู่ MRR เต็มที่</div></div></div>
+    <div class="c-row"><div><div class="c-label">✅ ดอกใหม่ต่ำกว่าเดิม 0.5%+</div><div class="c-sub">ต้องประหยัดเกินค่าใช้จ่าย refinance เป็นเรื่องที่คุ้ม</div></div></div>
+    <div class="c-row"><div><div class="c-label">✅ ผ่อนเหลือเกิน 5 ปี</div><div class="c-sub">ระยะเหลือสั้น ส่วนต่างดอกเบี้ยน้อย ไม่คุ้มจ่ายค่าใช้จ่าย</div></div></div>
+    <div class="c-row"><div><div class="c-label">⚠️ ไม่อยู่ในช่วง Lock-in</div><div class="c-sub">สัญญาเดิมบางฉบับห้ามปิดก่อน 3 ปี ปรับ 2-3% ของวงเงิน</div></div></div>
+    <div class="c-row"><div><div class="c-label">⚠️ เครดิตยังดี</div><div class="c-sub">ผ่อนสม่ำเสมอไม่ผิดนัด · ไม่มีหนี้บัตรค้างชำระ</div></div></div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณยอดผ่อนคงที่ตลอดสัญญา ใช้สำหรับเปรียบเทียบเบื้องต้น<br>ดอกเบี้ยจริงอาจเป็นแบบลอยตัวหลัง 3 ปี · ปรึกษาธนาคารก่อนตัดสินใจ</footer>
+
+<script>
+function pmt(P, r, n) {
+  if (r === 0) return P / n;
+  return P * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+}
+
+function calcRefi() {
+  const P = parseFloat(document.getElementById('balance').value) || 0;
+  const oldR = parseFloat(document.getElementById('oldRate').value) / 100;
+  const newR = parseFloat(document.getElementById('newRate').value) / 100;
+  const yrs = parseInt(document.getElementById('yearsLeft').value);
+  const cost = parseFloat(document.getElementById('cost').value) || 0;
+  if (!P || !yrs) { alert('กรุณาใส่เงินต้นและระยะเวลา'); return; }
+
+  const n = yrs * 12;
+  const oldMonthly = pmt(P, oldR / 12, n);
+  const newMonthly = pmt(P, newR / 12, n);
+
+  const oldTotal = oldMonthly * n;
+  const newTotal = newMonthly * n + cost;
+  const saveTotal = oldTotal - newTotal;
+  const saveMonthly = oldMonthly - newMonthly;
+  const breakeven = cost / saveMonthly; // months
+
+  const verdict = saveTotal > 0 ? 'คุ้ม' : 'ไม่คุ้ม';
+  const cls = saveTotal > 0 ? 'up' : 'down';
+
+  document.getElementById('refiSave').textContent =
+    (saveTotal >= 0 ? '+' : '−') + fmt(Math.abs(saveTotal), 0) + ' บาท';
+  document.getElementById('refiSave').className = 'r-val ' + cls;
+  document.getElementById('refiDetail').textContent =
+    `${verdict} · ประหยัด ${fmt(saveMonthly, 0)} บาท/เดือน · คืนทุนค่า refinance ใน ${breakeven > 0 ? breakeven.toFixed(1) : '∞'} เดือน`;
+  document.getElementById('refiResult').classList.add('show');
+
+  const s = document.getElementById('refiStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val down">${fmt(oldMonthly, 0)}</div><div class="stat-label">งวดเก่า (บาท/ด.)</div></div>
+    <div class="stat"><div class="stat-val up">${fmt(newMonthly, 0)}</div><div class="stat-label">งวดใหม่ (บาท/ด.)</div></div>
+    <div class="stat"><div class="stat-val accent">${fmt(saveMonthly, 0)}</div><div class="stat-label">ประหยัด/เดือน</div></div>
+    <div class="stat"><div class="stat-val">${breakeven > 0 ? breakeven.toFixed(1) : '∞'}</div><div class="stat-label">เดือนคืนค่าใช้จ่าย</div></div>`;
+
+  const cmp = document.getElementById('refiCompare');
+  cmp.style.display = 'block';
+  cmp.innerHTML = `
+    <div class="c-row"><div><div class="c-label">สินเชื่อเดิม (${(oldR * 100).toFixed(2)}%)</div></div>
+      <div style="text-align:right"><div class="c-price">${fmt(oldTotal, 0)}</div><div class="c-unit">บาท ตลอดสัญญา</div></div></div>
+    <div class="c-row"><div><div class="c-label">หลัง Refinance (${(newR * 100).toFixed(2)}%)</div></div>
+      <div style="text-align:right"><div class="c-price">${fmt(newMonthly * n, 0)}</div><div class="c-unit">+ ค่า refi ${fmt(cost, 0)} = ${fmt(newTotal, 0)}</div></div></div>
+    <div class="c-row"><div><div class="c-label" style="color:${saveTotal > 0 ? 'var(--up)' : 'var(--down)'}">${saveTotal > 0 ? '✅ ประหยัด' : '❌ ขาดทุน'}</div></div>
+      <div style="text-align:right"><div class="c-price" style="color:${saveTotal > 0 ? 'var(--up)' : 'var(--down)'}">${(saveTotal >= 0 ? '+' : '−') + fmt(Math.abs(saveTotal), 0)}</div><div class="c-unit">บาท</div></div></div>`;
+}
+window.addEventListener('load', calcRefi);
+</script>
+</body>
+</html>

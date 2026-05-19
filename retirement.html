@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>วางแผนเกษียณ — เก็บเงินเท่าไหร่ถึงพอใช้หลังเลิกทำงาน | ThaiFinance</title>
+<meta name="description" content="เครื่องคำนวณแผนเกษียณ ใส่อายุปัจจุบัน ค่าใช้จ่ายต่อเดือน รู้ว่าต้องเก็บเงินกี่บาทถึงเกษียณได้อย่างสบาย พร้อมเป้าหมายออม/เดือน">
+<meta name="keywords" content="วางแผนเกษียณ, เงินเกษียณ, ออมเงินเกษียณ, retirement planning, FIRE, อิสรภาพทางการเงิน">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/retirement.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:locale" content="th_TH">
+<meta property="og:title" content="วางแผนเกษียณ — เก็บเงินเท่าไหร่ถึงพอ | ThaiFinance">
+<meta property="og:description" content="คำนวณว่าต้องเก็บเงินกี่บาท ออมเดือนละเท่าไหร่ เกษียณแบบสบาย">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/retirement.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-retirement.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="วางแผนเกษียณ | ThaiFinance">
+<meta name="twitter:description" content="คำนวณเงินเกษียณที่ต้องการ + แผนการออม">
+<meta name="twitter:image" content="https://thaifinance-site.pages.dev/img/og-retirement.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=20260520a">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"วางแผนเกษียณ","url":"https://thaifinance-site.pages.dev/retirement.html","description":"คำนวณเงินที่ต้องเก็บก่อนเกษียณและแผนการออม","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('retirement.html')</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Retirement Planning</div>
+  <div class="page-title">วางแผน<br>เกษียณ</div>
+  <div class="page-sub">เก็บเงินเท่าไหร่ถึงพอใช้ทั้งชีวิต</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">อายุปัจจุบัน</label>
+      <input type="number" class="f-input" id="ageNow" value="30">
+    </div>
+    <div class="field">
+      <label class="f-label">อายุที่อยากเกษียณ</label>
+      <input type="number" class="f-input" id="ageRetire" value="60">
+    </div>
+    <div class="field">
+      <label class="f-label">คาดอายุขัย (ปี)</label>
+      <input type="number" class="f-input" id="ageLife" value="85">
+      <div class="f-hint">ค่าเฉลี่ยคนไทย ชาย 73 หญิง 80 · เผื่ออายุยืน 85-90 ปลอดภัยกว่า</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ค่าใช้จ่ายต่อเดือนหลังเกษียณ (บาท)</label>
+      <input type="number" class="f-input" id="expense" value="30000">
+      <div class="f-hint">ใช้ราคาวันนี้ ระบบจะคำนวณเงินเฟ้อให้</div>
+    </div>
+    <div class="field">
+      <label class="f-label">เงินออมตอนนี้ (บาท)</label>
+      <input type="number" class="f-input" id="current" value="200000">
+    </div>
+    <div class="field">
+      <label class="f-label">ผลตอบแทนการลงทุน (%/ปี)</label>
+      <select class="f-input" id="rate">
+        <option value="4">4% — กองทุนตราสารหนี้</option>
+        <option value="6">6% — กองทุนผสม</option>
+        <option value="7" selected>7% — กองทุนหุ้นไทย</option>
+        <option value="9">9% — กองทุนหุ้นโลก</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">เงินเฟ้อ (%/ปี)</label>
+      <input type="number" class="f-input" id="inflation" value="2.5" step="0.1">
+    </div>
+    <button class="btn btn-dark" onclick="calcRetire()">คำนวณ</button>
+    <div class="result" id="retResult">
+      <div class="r-label">ต้องเก็บเงินก่อนเกษียณ</div>
+      <div class="r-val" id="retGoal">—</div>
+      <div class="r-detail" id="retDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="stat-grid" id="retStats" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="retVerdict" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">หลัก "กฎ 4%" (Safe Withdrawal Rate)</div>
+  <div class="card" style="padding:16px;font-size:14px;line-height:1.8;color:var(--ink2)">
+    <p>นักวิจัยจาก Trinity Study พบว่าถ้าถอนปีละ 4% ของเงินก้อนเกษียณ พร้อมปรับตามเงินเฟ้อ มีโอกาส 95% ที่เงินจะอยู่ได้ครบ 30 ปี ดังนั้นถ้าคุณต้องการใช้ปีละ 360,000 บาท ต้องมีเงินก้อน 9 ล้านบาท (= 360,000 ÷ 4%)</p>
+    <p style="margin-top:10px">กฎนี้สมมติว่าเงินก้อนลงทุนในพอร์ตหุ้น 60% + ตราสารหนี้ 40% ถ้าลงทุนปลอดภัยกว่า อาจต้องใช้ 3-3.5% แทน (ต้องเก็บเงินมากขึ้น)</p>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<footer>คำนวณตามหลัก 4% Safe Withdrawal Rate · เงินเฟ้อสะสมแบบทบต้น<br>ผลตอบแทนจริงไม่การันตี ปรึกษานักวางแผนการเงินสำหรับแผนแบบครบครัน</footer>
+
+<script>
+function calcRetire() {
+  const ageNow = parseFloat(document.getElementById('ageNow').value);
+  const ageRet = parseFloat(document.getElementById('ageRetire').value);
+  const ageLife = parseFloat(document.getElementById('ageLife').value);
+  const expenseToday = parseFloat(document.getElementById('expense').value);
+  const current = parseFloat(document.getElementById('current').value) || 0;
+  const rate = parseFloat(document.getElementById('rate').value) / 100;
+  const infl = parseFloat(document.getElementById('inflation').value) / 100;
+
+  if (!ageNow || !ageRet || ageRet <= ageNow) { alert('กรุณาตรวจอายุให้ถูกต้อง'); return; }
+
+  const yearsToRetire = ageRet - ageNow;
+  const yearsInRetire = ageLife - ageRet;
+
+  // ค่าใช้จ่ายตอนเกษียณ (ปรับเงินเฟ้อ)
+  const expenseAtRetire = expenseToday * Math.pow(1 + infl, yearsToRetire);
+  const annualExpenseAtRetire = expenseAtRetire * 12;
+
+  // เงินที่ต้องมี — สูตร present value of annuity with inflation-adjusted withdrawals
+  // ใช้ "real rate" = (1+r)/(1+i) - 1
+  const realRate = (1 + rate) / (1 + infl) - 1;
+  let nestEgg;
+  if (Math.abs(realRate) < 1e-6) {
+    nestEgg = annualExpenseAtRetire * yearsInRetire;
+  } else {
+    nestEgg = annualExpenseAtRetire * (1 - Math.pow(1 + realRate, -yearsInRetire)) / realRate;
+  }
+
+  // เงินที่ต้องออมเพิ่มต่อเดือน
+  const monthlyR = rate / 12;
+  const monthsToRetire = yearsToRetire * 12;
+  const futureCurrent = current * Math.pow(1 + rate, yearsToRetire);
+  const gap = Math.max(0, nestEgg - futureCurrent);
+  let monthlyNeed;
+  if (Math.abs(monthlyR) < 1e-6) {
+    monthlyNeed = gap / monthsToRetire;
+  } else {
+    monthlyNeed = gap * monthlyR / (Math.pow(1 + monthlyR, monthsToRetire) - 1);
+  }
+
+  document.getElementById('retGoal').textContent = fmt(nestEgg, 0) + ' บาท';
+  document.getElementById('retGoal').className = 'r-val accent';
+  document.getElementById('retDetail').textContent =
+    `อายุ ${ageRet} ใช้เงิน ${fmt(expenseAtRetire, 0)} บาท/เดือน · ใช้ ${yearsInRetire} ปี · เงินเฟ้อ ${(infl * 100).toFixed(1)}%`;
+  document.getElementById('retResult').classList.add('show');
+
+  const s = document.getElementById('retStats');
+  s.style.display = 'grid';
+  s.innerHTML = `
+    <div class="stat"><div class="stat-val accent">${fmt(nestEgg, 0)}</div><div class="stat-label">เป้าหมายเงินก้อน</div></div>
+    <div class="stat"><div class="stat-val">${fmt(futureCurrent, 0)}</div><div class="stat-label">เงินตอนเกษียณ (ถ้าไม่เก็บเพิ่ม)</div></div>
+    <div class="stat"><div class="stat-val ${monthlyNeed > 0 ? 'down' : 'up'}">${fmt(monthlyNeed, 0)}</div><div class="stat-label">ต้องออมเพิ่ม/เดือน</div></div>
+    <div class="stat"><div class="stat-val">${yearsToRetire}</div><div class="stat-label">ปีที่เหลือ</div></div>`;
+
+  const v = document.getElementById('retVerdict');
+  v.style.display = 'block';
+  const ok = monthlyNeed === 0;
+  v.innerHTML = `
+    <div class="c-row"><div><div class="c-label" style="color:${ok ? 'var(--up)' : 'var(--ink)'}">${ok ? '✅ คุณบรรลุเป้าหมายแล้ว' : '📊 แผนของคุณ'}</div></div></div>
+    <div class="c-row"><div><div class="c-label">ค่าใช้จ่ายปัจจุบัน</div><div class="c-sub">ตอนนี้</div></div><div class="c-price">${fmt(expenseToday, 0)}/ด.</div></div>
+    <div class="c-row"><div><div class="c-label">ค่าใช้จ่ายตอนเกษียณ</div><div class="c-sub">หลังเงินเฟ้อ ${yearsToRetire} ปี</div></div><div class="c-price">${fmt(expenseAtRetire, 0)}/ด.</div></div>
+    <div class="c-row"><div><div class="c-label">ที่ปรึกษาแนะนำ</div><div class="c-sub">${monthlyNeed > 50000 ? 'ออมเดือนละนี้อาจสูง ลองยืดอายุเกษียณหรือลดค่าใช้จ่าย' : monthlyNeed > 10000 ? 'ตั้งเป้า DCA กองทุนรวม + RMF/SSF เพื่อลดหย่อนภาษีด้วย' : 'อยู่ในเป้าหมายที่ทำได้สบาย ตั้งค่าตัด DCA อัตโนมัติทุกเดือน'}</div></div></div>`;
+}
+window.addEventListener('load', calcRetire);
+</script>
+</body>
+</html>
