@@ -85,6 +85,9 @@ body { font-family: var(--fn); background: var(--bg); color: var(--ink); -webkit
 /* FORM */
 .form-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px 16px; }
 .field { margin-bottom: 16px; }
+.field-row { display: flex; gap: 12px; }
+.field-row > .field { flex: 1; min-width: 0; }
+@media (max-width: 480px) { .field-row { flex-direction: column; gap: 0; } }
 .f-label { font-size: 14px; font-weight: 600; color: var(--ink); display: block; margin-bottom: 6px; }
 .f-hint  { font-size: 13px; color: var(--ink2); margin-top: 5px; font-weight: 500; }
 .f-input {
