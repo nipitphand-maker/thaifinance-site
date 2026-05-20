@@ -138,6 +138,7 @@ function injectNav(active) {
     ['sso.html', '🛡️ ประกันสังคม'],
     ['ev.html', '⚡ EV vs น้ำมัน'],
     ['fire.html', '🔥 FIRE'],
+    ['rmf-ssf.html', '📈 SSF/RMF'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

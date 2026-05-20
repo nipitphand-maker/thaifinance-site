@@ -267,4 +267,14 @@
       <image:title>FIRE Calculator — อิสรภาพทางการเงิน</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/rmf-ssf.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.90</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-rmf-ssf.png</image:loc>
+      <image:title>SSF RMF ลดหย่อนภาษี 2568</image:title>
+    </image:image>
+  </url>
 </urlset>
