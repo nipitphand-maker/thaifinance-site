@@ -123,15 +123,16 @@
 
 <script>
 const RATES=[{l:15,r:2.3488},{l:10,r:2.9882},{l:10,r:3.2405},{l:65,r:3.6237},{l:50,r:3.7171},{l:250,r:4.2218},{l:Infinity,r:4.4217}];
-const SVC=38.22,VAT=1.07;
+const SVC=38.22,VAT=1.07,FT=0.3672; // Ft พ.ค.-ส.ค. 2568
 function calcElec(){
   const u=parseFloat(document.getElementById('units').value)||0;
   if(!u){alert('กรุณาใส่จำนวนหน่วย');return;}
   let e=0,rem=u;
   for(const r of RATES){if(rem<=0)break;const use=Math.min(rem,r.l);e+=use*r.r;rem-=use;}
-  const sub=e+SVC,total=sub*VAT;
+  const ft=FT*u;
+  const sub=e+ft+SVC,total=sub*VAT;
   document.getElementById('elecTotal').textContent=fmt(total,2)+' บาท';
-  document.getElementById('elecDetail').textContent=`ค่าพลังงาน ${fmt(e,2)} + ค่าบริการ ${fmt(SVC,2)} = ${fmt(sub,2)} (ก่อน VAT) · ${fmt(total/u,2)} บาท/หน่วย`;
+  document.getElementById('elecDetail').textContent=`ค่าพลังงาน ${fmt(e,2)} + Ft ${fmt(ft,2)} + ค่าบริการ ${fmt(SVC,2)} = ${fmt(sub,2)} (ก่อน VAT) · ${fmt(total/u,2)} บาท/หน่วย`;
   document.getElementById('elecResult').classList.add('show');
 }
 </script>
