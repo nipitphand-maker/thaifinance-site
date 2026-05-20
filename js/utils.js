@@ -141,6 +141,7 @@ function injectNav(active) {
     ['rmf-ssf.html', '📈 SSF/RMF'],
     ['water.html', '💧 ค่าน้ำ'],
     ['gold-profit.html', '💰 กำไรทอง'],
+    ['hourly.html', '⏰ OT/ชั่วโมง'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';
