@@ -133,6 +133,8 @@ function injectNav(active) {
     ['debt.html', '🪜 ปลดหนี้'],
     ['bonus.html', '🎁 โบนัส'],
     ['transfer.html', '📋 โอนบ้าน'],
+    ['tdee.html', '🔥 TDEE'],
+    ['severance.html', '⚖️ ค่าชดเชย'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';
@@ -162,6 +164,26 @@ function closeStickyAd() {
   const ad = document.getElementById('stickyAd');
   if (ad) ad.classList.remove('show');
   try { localStorage.setItem('tf-sticky-dismiss', Date.now()); } catch (e) {}
+}
+
+// ── URL state sharing ─────────────────────────
+// Usage: loadURLState(['principal','rate','years']) — fills inputs from ?key=val
+// Usage: pushURLState({principal:3000000, rate:6.5}) — updates URL silently
+function loadURLState(ids) {
+  var p = new URLSearchParams(location.search);
+  ids.forEach(function (id) {
+    if (p.has(id)) {
+      var el = document.getElementById(id);
+      if (el) el.value = p.get(id);
+    }
+  });
+}
+function pushURLState(obj) {
+  try {
+    var p = new URLSearchParams();
+    Object.keys(obj).forEach(function (k) { p.set(k, obj[k]); });
+    history.replaceState(null, '', location.pathname + '?' + p.toString());
+  } catch (e) {}
 }
 
 // ── Service Worker register ──────────────────

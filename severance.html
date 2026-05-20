@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณค่าชดเชยเลิกจ้าง 2568 | ThaiFinance</title>
+<meta name="description" content="คำนวณค่าชดเชยเลิกจ้างตามกฎหมายแรงงาน 2568 ครบถ้วน ทั้งค่าชดเชย ค่าบอกกล่าวล่วงหน้า ค่าชดเชยพิเศษ พร้อมอธิบายสิทธิแรงงาน">
+<meta name="keywords" content="ค่าชดเชยเลิกจ้าง, คำนวณค่าชดเชย, กฎหมายแรงงาน, เลิกจ้าง, สิทธิแรงงาน, ค่าบอกกล่าว">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/severance.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="คำนวณค่าชดเชยเลิกจ้าง 2568 | ThaiFinance">
+<meta property="og:description" content="คำนวณค่าชดเชยเลิกจ้างตามกฎหมายแรงงาน · สิทธิที่ลูกจ้างพึงมี">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/severance.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-severance.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณค่าชดเชยเลิกจ้าง","url":"https://thaifinance-site.pages.dev/severance.html","description":"คำนวณค่าชดเชยเลิกจ้างตามกฎหมายแรงงานไทย 2568","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('severance.html'); loadURLState(['salary','years','reason','noticeGiven','vacDays']);</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Severance Pay</div>
+  <div class="page-title">ค่าชดเชย<br>เลิกจ้าง</div>
+  <div class="page-sub">ค่าชดเชย · ค่าบอกกล่าว · ค่าชดเชยพิเศษ</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field-row">
+      <div class="field">
+        <label class="f-label">เงินเดือนล่าสุด (บาท/เดือน)</label>
+        <input type="number" class="f-input" id="salary" value="35000">
+      </div>
+      <div class="field">
+        <label class="f-label">อายุงาน (ปี)</label>
+        <input type="number" class="f-input" id="years" value="5" step="0.5" min="0.25">
+        <div class="f-hint">ตัวอย่าง: 2.5 = 2 ปี 6 เดือน</div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="f-label">สาเหตุการเลิกจ้าง</label>
+      <select class="f-input" id="reason">
+        <option value="normal">เลิกจ้างทั่วไป (ไม่ใช่ความผิดลูกจ้าง)</option>
+        <option value="closure">ปิดกิจการ / เลิกประกอบกิจการ</option>
+        <option value="resign">ลาออกเอง</option>
+        <option value="cause">เลิกจ้างเหตุผิดวินัย (มีความผิด)</option>
+      </select>
+    </div>
+    <div class="field" id="noticeField">
+      <label class="f-label">ได้รับแจ้งล่วงหน้ากี่วัน?</label>
+      <select class="f-input" id="noticeGiven">
+        <option value="0">ไม่ได้แจ้งล่วงหน้า / แจ้งวันเดียวกัน</option>
+        <option value="30">แจ้งล่วงหน้า 1 เดือน (30 วัน)</option>
+        <option value="60">แจ้งล่วงหน้า 2 เดือน (60 วัน)</option>
+        <option value="90">แจ้งล่วงหน้า 3 เดือนหรือมากกว่า</option>
+      </select>
+      <div class="f-hint">นายจ้างต้องแจ้งล่วงหน้าอย่างน้อย 1 รอบการจ่ายค่าจ้าง (ปกติ 1 เดือน)</div>
+    </div>
+    <div class="field">
+      <label class="f-label">วันหยุดพักร้อนคงเหลือ (วัน)</label>
+      <input type="number" class="f-input" id="vacDays" value="0" min="0">
+      <div class="f-hint">วันหยุดพักร้อนที่ยังไม่ได้ใช้ — นายจ้างต้องจ่ายเป็นเงิน</div>
+    </div>
+    <button class="btn btn-dark" onclick="calcSeverance()">คำนวณ</button>
+    <div class="result" id="sevResult">
+      <div class="r-label">ค่าชดเชยทั้งหมดที่ควรได้รับ</div>
+      <div class="r-val" id="sevTotal">—</div>
+      <div class="r-detail" id="sevDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="sevBreakdown" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">อัตราค่าชดเชยตามกฎหมายแรงงาน 2567</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>อายุงาน</th><th style="text-align:right">ค่าชดเชย</th></tr></thead>
+      <tbody>
+        <tr><td>ครบ 120 วัน แต่ไม่ถึง 1 ปี</td><td style="text-align:right">30 วัน</td></tr>
+        <tr><td>ครบ 1 ปี แต่ไม่ถึง 3 ปี</td><td style="text-align:right">90 วัน</td></tr>
+        <tr><td>ครบ 3 ปี แต่ไม่ถึง 6 ปี</td><td style="text-align:right">180 วัน</td></tr>
+        <tr><td>ครบ 6 ปี แต่ไม่ถึง 10 ปี</td><td style="text-align:right">240 วัน</td></tr>
+        <tr><td>ครบ 10 ปี แต่ไม่ถึง 20 ปี</td><td style="text-align:right">300 วัน</td></tr>
+        <tr><td>ครบ 20 ปีขึ้นไป</td><td style="text-align:right">400 วัน</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="sec"><div class="sec-title">วิธีใช้เครื่องคำนวณค่าชดเชย</div><div class="card"><div class="c-row"><div><div class="c-label">เงินเดือนล่าสุด</div><div class="c-sub">ใช้ฐานเงินเดือนเดือนสุดท้ายก่อนเลิกจ้าง · รวมค่าคอมมิชชัน</div></div></div><div class="c-row"><div><div class="c-label">อายุงาน</div><div class="c-sub">นับตั้งแต่วันเริ่มต้นทำงานจนถึงวันสุดท้าย · รวมเดือนเศษ</div></div></div><div class="c-row"><div><div class="c-label">สาเหตุ</div><div class="c-sub">ลาออกเองไม่ได้รับค่าชดเชย · เลิกจ้างโดยไม่มีความผิดได้เต็มสิทธิ์</div></div></div><div class="c-row"><div><div class="c-label">การบอกกล่าว</div><div class="c-sub">ถ้าไม่แจ้งล่วงหน้า นายจ้างต้องจ่ายค่าบอกกล่าวแทน 1 เดือน</div></div></div><div class="c-row"><div><div class="c-label">ปรึกษาทนาย/แรงงาน</div><div class="c-sub">ตัวเลขนี้เป็นแนวทาง ข้อพิพาทจริงควรปรึกษาผู้เชี่ยวชาญ</div></div></div></div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<details class="faq-item"><summary class="faq-q">ลาออกเองได้รับค่าชดเชยไหม?</summary><div class="faq-a">ไม่ได้รับค่าชดเชยถ้าลาออกเอง อย่างไรก็ตาม ถ้าลาออกเพราะนายจ้างทำให้สภาพการทำงานเลวร้ายโดยเจตนา เช่น ลดเงินเดือน เปลี่ยนงานที่ต่ำกว่า กฎหมายอาจถือว่าเป็น "การบังคับให้ออก" และอาจมีสิทธิ์ได้รับค่าชดเชย ปรึกษาทนายแรงงาน</div></details>
+<details class="faq-item"><summary class="faq-q">ถูกเลิกจ้างเหตุปรับลดพนักงาน ได้ค่าชดเชยไหม?</summary><div class="faq-a">ได้รับค่าชดเชยตามอัตราปกติ เพราะการลดพนักงานไม่ใช่ความผิดของลูกจ้าง บริษัทต้องจ่ายค่าชดเชยตามอายุงาน + ค่าบอกกล่าวล่วงหน้า 1 เดือน (ถ้าไม่ได้แจ้งล่วงหน้า) + ค่าหยุดพักร้อนคงเหลือ</div></details>
+<details class="faq-item"><summary class="faq-q">ค่าบอกกล่าวล่วงหน้าคืออะไร?</summary><div class="faq-a">กฎหมายกำหนดให้นายจ้างแจ้งการเลิกจ้างล่วงหน้าอย่างน้อย 1 รอบการจ่ายค่าจ้าง (ปกติ 1 เดือน) ถ้าไม่แจ้งล่วงหน้า ต้องจ่ายเงินแทนการบอกกล่าว = เงินเดือน 1 เดือน ถ้าแจ้ง 2 สัปดาห์แต่ต้องแจ้ง 1 เดือน ต้องจ่ายค่าบอกกล่าวเพิ่มอีกครึ่งเดือน</div></details>
+<details class="faq-item"><summary class="faq-q">นายจ้างเลิกจ้างแล้วไม่จ่ายค่าชดเชย ทำยังไงได้บ้าง?</summary><div class="faq-a">ร้องเรียนที่ กรมสวัสดิการและคุ้มครองแรงงาน (กสร.) ทุกจังหวัด ฟรีและไม่ต้องใช้ทนาย หรือยื่นฟ้องศาลแรงงาน ซึ่งไม่เสียค่าธรรมเนียม นายจ้างที่ไม่จ่ายค่าชดเชยยังต้องจ่ายดอกเบี้ย 15%/ปี นับจากวันที่ถึงกำหนดจ่ายด้วย</div></details>
+<details class="faq-item"><summary class="faq-q">ค่าชดเชยเสียภาษีไหม?</summary><div class="faq-a">ค่าชดเชยตามกฎหมายแรงงานได้รับยกเว้นภาษีเงินได้ส่วนที่ไม่เกิน 300 วัน × เงินเดือน หรือ 600,000 บาท (แล้วแต่น้อยกว่า) ส่วนที่เกินต้องเสียภาษีตามปกติ ค่าชดเชยพิเศษปิดกิจการมีการยกเว้นพิเศษเพิ่มเติม</div></details>
+<details class="faq-item"><summary class="faq-q">บริษัทปิดกิจการได้รับค่าชดเชยพิเศษไหม?</summary><div class="faq-a">ใช่ ถ้าบริษัทปิดกิจการ ลูกจ้างได้รับค่าชดเชยพิเศษ 1 เท่าของค่าชดเชยปกติ (รวมเป็น 2 เท่า) ถ้าทำงานมา 6 ปีขึ้นไป และมีสิทธิ์ได้รับค่าชดเชยพิเศษแทนการบอกกล่าว 60 วันด้วย</div></details>
+<details class="faq-item"><summary class="faq-q">ทำงานไม่ถึง 120 วัน มีสิทธิ์อะไรบ้าง?</summary><div class="faq-a">ทำงานไม่ถึง 120 วัน ไม่มีสิทธิ์ค่าชดเชยตามกฎหมายแรงงาน แต่ยังมีสิทธิ์ได้รับเงินเดือนค้างจ่าย ค่าล่วงเวลาค้างจ่าย และวันหยุดพักร้อนสัดส่วน (ถ้ามีในสัญญา)</div></details>
+<details class="faq-item"><summary class="faq-q">ประกันสังคมได้เงินทดแทนการว่างงานเท่าไหร่?</summary><div class="faq-a">ถ้าส่งประกันสังคม (ม.33) มาแล้ว 6 เดือน ใน 15 เดือน ก่อนตกงาน มีสิทธิ์รับเงินทดแทน: ถูกเลิกจ้าง 50% ของเงินเดือน (สูงสุด 15,000 บาท) นาน 6 เดือน / ลาออกเอง 30% นาน 3 เดือน ยื่นที่สำนักงานประกันสังคมภายใน 30 วัน</div></details>
+</div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">รู้จักสิทธิ์ค่าชดเชยตามกฎหมายแรงงาน</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">ค่าชดเชยเลิกจ้างในไทยกำหนดโดย <b>พระราชบัญญัติคุ้มครองแรงงาน (พ.ร.บ. แรงงาน)</b> ที่แก้ไขล่าสุดปี 2562 ซึ่งเพิ่มสิทธิ์ให้ลูกจ้างที่ทำงาน 20 ปีขึ้นไปได้รับค่าชดเชย 400 วัน (เพิ่มจาก 300 วันเดิม) กฎหมายนี้ใช้กับลูกจ้างทุกคนที่มีสัญญาจ้าง ยกเว้นงานบ้านและงานเกษตรกรรม</p><p style="margin-bottom:14px;line-height:1.7"><b>สิทธิ์ที่ลูกจ้างพึงได้รับเมื่อเลิกจ้าง (ไม่ใช่ความผิดตนเอง):</b> 1) <b>ค่าชดเชยตามอายุงาน</b> 30-400 วัน 2) <b>ค่าบอกกล่าวล่วงหน้า</b> 1 เดือน (ถ้านายจ้างไม่แจ้งล่วงหน้า) 3) <b>ค่าวันหยุดพักร้อนคงเหลือ</b> ทั้งหมด 4) <b>เงินทดแทนการว่างงาน</b> จากประกันสังคม 50% × 6 เดือน</p><p style="line-height:1.7"><b>สาเหตุที่นายจ้างเลิกจ้างได้โดยไม่ต้องจ่ายค่าชดเชย:</b> ลูกจ้างทุจริตหรือจงใจทำให้นายจ้างเสียหาย, กระทำผิดอาญาโดยเจตนา, ทำให้นายจ้างเสียหายหนักจากความประมาทเลินเล่อ, ฝ่าฝืนข้อบังคับร้ายแรง, ละทิ้งหน้าที่เกิน 3 วันติดต่อกัน, ถูกจำคุกโดยคำพิพากษา — กรณีอื่นนอกจากนี้ต้องจ่ายค่าชดเชย</p></div></div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <div class="card">
+    <a class="c-row" href="/salary.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">💰 เงินเดือน Net</div><div class="c-sub">หักภาษีและ SSO เหลือเท่าไหร่</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/tax.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">🧾 ภาษีเงินได้บุคคลธรรมดา</div><div class="c-sub">คำนวณภาษีประจำปี</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/emergency.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">🆘 เงินสำรองฉุกเฉิน</div><div class="c-sub">ควรมีเท่าไหร่ถ้าตกงาน</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/debt.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">💳 ปลดหนี้</div><div class="c-sub">วางแผนจัดการหนี้</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+  </div>
+</div>
+
+<footer>อ้างอิงจาก พ.ร.บ.คุ้มครองแรงงาน พ.ศ. 2541 และฉบับแก้ไข พ.ศ. 2562<br>ข้อมูลนี้เพื่อการศึกษา ปรึกษาทนายแรงงานหรือกรมสวัสดิการและคุ้มครองแรงงานสำหรับกรณีจริง</footer>
+
+<script>
+// Severance rate table (days of salary)
+function getSeveranceDays(years) {
+  if (years < 120/365) return 0;  // less than 120 days
+  if (years < 1)   return 30;
+  if (years < 3)   return 90;
+  if (years < 6)   return 180;
+  if (years < 10)  return 240;
+  if (years < 20)  return 300;
+  return 400;
+}
+
+function calcSeverance() {
+  const salary = parseFloat(document.getElementById('salary').value) || 0;
+  const years = parseFloat(document.getElementById('years').value) || 0;
+  const reason = document.getElementById('reason').value;
+  const noticeGiven = parseInt(document.getElementById('noticeGiven').value);
+  const vacDays = parseFloat(document.getElementById('vacDays').value) || 0;
+  if (!salary) { alert('กรุณาใส่เงินเดือน'); return; }
+  pushURLState({salary, years, reason, noticeGiven, vacDays});
+
+  const dailyRate = salary / 30;
+
+  let sevDays = 0;
+  let noticePay = 0;
+  let specialBonus = 0;
+  let reasonNote = '';
+
+  if (reason === 'resign' || reason === 'cause') {
+    sevDays = 0;
+    reasonNote = reason === 'resign' ? 'ลาออกเองไม่มีสิทธิ์ค่าชดเชย' : 'เลิกจ้างด้วยเหตุผิดวินัยไม่มีสิทธิ์ค่าชดเชย';
+  } else {
+    sevDays = getSeveranceDays(years);
+    // Notice pay: if not given enough notice
+    if (noticeGiven < 30) {
+      noticePay = salary; // 1 month
+    }
+    // Special bonus for closure: extra equal amount if 6+ years
+    if (reason === 'closure' && years >= 6) {
+      specialBonus = sevDays * dailyRate;
+    }
+  }
+
+  const sevAmount = sevDays * dailyRate;
+  const vacPay = vacDays * dailyRate;
+  const total = sevAmount + noticePay + specialBonus + vacPay;
+
+  const result = document.getElementById('sevResult');
+  const totalEl = document.getElementById('sevTotal');
+  const detailEl = document.getElementById('sevDetail');
+
+  if (reason === 'resign' || reason === 'cause') {
+    totalEl.textContent = '0 บาท';
+    detailEl.textContent = reasonNote;
+  } else {
+    totalEl.textContent = fmt(total, 0) + ' บาท';
+    detailEl.textContent = `อายุงาน ${years} ปี · ค่าชดเชย ${sevDays} วัน`;
+  }
+  result.classList.add('show');
+
+  const bd = document.getElementById('sevBreakdown');
+  bd.style.display = 'block';
+
+  if (reason === 'resign' || reason === 'cause') {
+    bd.innerHTML = `<div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--ink2)">${reasonNote}</div></div></div>`;
+    return;
+  }
+
+  bd.innerHTML = `
+    <div class="c-row"><div><div class="c-label">ค่าชดเชยตามกฎหมาย</div><div class="c-sub">อายุงาน ${years} ปี → ${sevDays} วัน × ${fmt(dailyRate, 2)} บาท/วัน</div></div><div class="c-price">${fmt(sevAmount, 0)}</div></div>
+    ${noticePay ? `<div class="c-row"><div><div class="c-label">ค่าบอกกล่าวแทนการแจ้งล่วงหน้า</div><div class="c-sub">นายจ้างไม่แจ้งล่วงหน้าครบ 1 เดือน</div></div><div class="c-price">${fmt(noticePay, 0)}</div></div>` : ''}
+    ${specialBonus ? `<div class="c-row"><div><div class="c-label">ค่าชดเชยพิเศษ (ปิดกิจการ)</div><div class="c-sub">อายุงาน ${years} ปี ≥ 6 ปี → ได้รับเพิ่มเท่าตัว</div></div><div class="c-price">${fmt(specialBonus, 0)}</div></div>` : ''}
+    ${vacPay ? `<div class="c-row"><div><div class="c-label">ค่าวันหยุดพักร้อนคงเหลือ</div><div class="c-sub">${vacDays} วัน × ${fmt(dailyRate, 2)} บาท/วัน</div></div><div class="c-price">${fmt(vacPay, 0)}</div></div>` : ''}
+    <div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--accent)">รวมทั้งหมด</div></div><div class="c-price" style="color:var(--accent)">${fmt(total, 0)}</div></div>
+    <div class="c-row"><div><div class="c-label" style="font-size:12px;color:var(--ink3)">+ เงินทดแทนประกันสังคม (ถ้าส่งครบ) อีก ${fmt(Math.min(salary * 0.5, 15000), 0)} บาท/เดือน สูงสุด 6 เดือน</div></div></div>`;
+}
+window.addEventListener('load', calcSeverance);
+</script>
+</body>
+</html>

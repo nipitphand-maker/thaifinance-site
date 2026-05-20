@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณ TDEE และแคลอรี่ต่อวัน 2568 | ThaiFinance</title>
+<meta name="description" content="คำนวณ TDEE (Total Daily Energy Expenditure) แคลอรี่ที่ต้องกินต่อวัน เพื่อลดน้ำหนัก เพิ่มกล้ามเนื้อ หรือรักษาน้ำหนัก ตามระดับกิจกรรม">
+<meta name="keywords" content="คำนวณ TDEE, แคลอรี่ต่อวัน, ลดน้ำหนัก, BMR, กินกี่แคลต้องลด, คำนวณแคลอรี่">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/tdee.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="คำนวณ TDEE แคลอรี่ต่อวัน | ThaiFinance">
+<meta property="og:description" content="คำนวณ TDEE · BMR · แคลอรี่ที่ควรกินต่อวันเพื่อลด/เพิ่ม/รักษาน้ำหนัก">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/tdee.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-tdee.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณ TDEE แคลอรี่ต่อวัน","url":"https://thaifinance-site.pages.dev/tdee.html","description":"คำนวณ TDEE · BMR · แคลอรี่ที่ควรกินต่อวันเพื่อลด/เพิ่ม/รักษาน้ำหนัก","applicationCategory":"HealthApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('tdee.html'); loadURLState(['gender','age','weight','height','activity','goal']);</script>
+
+<div class="page-hd">
+  <div class="eyebrow">TDEE Calculator</div>
+  <div class="page-title">คำนวณ<br>TDEE</div>
+  <div class="page-sub">BMR · แคลอรี่ต่อวัน · แผนลด/เพิ่มน้ำหนัก</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field-row">
+      <div class="field">
+        <label class="f-label">เพศ</label>
+        <select class="f-input" id="gender">
+          <option value="male">ชาย</option>
+          <option value="female">หญิง</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="f-label">อายุ (ปี)</label>
+        <input type="number" class="f-input" id="age" value="28" min="10" max="99">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="f-label">น้ำหนัก (กก.)</label>
+        <input type="number" class="f-input" id="weight" value="65" step="0.1">
+      </div>
+      <div class="field">
+        <label class="f-label">ส่วนสูง (ซม.)</label>
+        <input type="number" class="f-input" id="height" value="170">
+      </div>
+    </div>
+    <div class="field">
+      <label class="f-label">ระดับกิจกรรม</label>
+      <select class="f-input" id="activity">
+        <option value="1.2">นั่งทำงาน ไม่ออกกำลังกาย (Sedentary)</option>
+        <option value="1.375">ออกกำลังกายเบา 1-3 วัน/สัปดาห์ (Light)</option>
+        <option value="1.55" selected>ออกกำลังกายปานกลาง 3-5 วัน/สัปดาห์ (Moderate)</option>
+        <option value="1.725">ออกกำลังกายหนัก 6-7 วัน/สัปดาห์ (Active)</option>
+        <option value="1.9">งานหนักมากหรือออกกำลังกาย 2 รอบ/วัน (Very Active)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="f-label">เป้าหมาย</label>
+      <select class="f-input" id="goal">
+        <option value="-500">ลดน้ำหนัก ~0.5 กก./สัปดาห์ (−500 kcal)</option>
+        <option value="-750">ลดน้ำหนักเร็ว ~0.75 กก./สัปดาห์ (−750 kcal)</option>
+        <option value="0" selected>รักษาน้ำหนักเดิม</option>
+        <option value="300">เพิ่มกล้ามเนื้อ แบบ Lean Bulk (+300 kcal)</option>
+        <option value="500">เพิ่มน้ำหนัก ~0.5 กก./สัปดาห์ (+500 kcal)</option>
+      </select>
+    </div>
+    <button class="btn btn-dark" onclick="calcTDEE()">คำนวณ</button>
+    <div class="result" id="tdeeResult">
+      <div class="r-label">แคลอรี่ที่ควรกินต่อวัน</div>
+      <div class="r-val" id="tdeeVal">—</div>
+      <div class="r-detail" id="tdeeDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="tdeeBreakdown" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">สัดส่วนสารอาหาร (Macros)</div>
+  <div class="card" id="tdeeMarcos" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">ระดับกิจกรรม — อธิบาย</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>ระดับ</th><th>ตัวอย่าง</th><th style="text-align:right">ตัวคูณ</th></tr></thead>
+      <tbody>
+        <tr><td>Sedentary</td><td>นักเรียน/พนักงานออฟฟิศ ไม่ออกกำลังกาย</td><td style="text-align:right">×1.2</td></tr>
+        <tr><td>Light</td><td>เดิน/ไปยิม 1-3 วัน/สัปดาห์</td><td style="text-align:right">×1.375</td></tr>
+        <tr><td>Moderate</td><td>ออกกำลังกาย 3-5 วัน/สัปดาห์</td><td style="text-align:right">×1.55</td></tr>
+        <tr><td>Active</td><td>ออกกำลังกายหนักทุกวัน</td><td style="text-align:right">×1.725</td></tr>
+        <tr><td>Very Active</td><td>งานที่ต้องใช้แรงกาย/นักกีฬาอาชีพ</td><td style="text-align:right">×1.9</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="sec"><div class="sec-title">วิธีใช้เครื่องคำนวณ TDEE</div><div class="card"><div class="c-row"><div><div class="c-label">ใส่ข้อมูลร่างกาย</div><div class="c-sub">น้ำหนัก ส่วนสูง อายุ เพศ — ยิ่งแม่นยำยิ่งดี</div></div></div><div class="c-row"><div><div class="c-label">เลือกระดับกิจกรรม</div><div class="c-sub">คนส่วนใหญ่มักเลือกระดับที่สูงกว่าจริง — ซื่อสัตย์กับตัวเอง</div></div></div><div class="c-row"><div><div class="c-label">เลือกเป้าหมาย</div><div class="c-sub">ลดน้ำหนัก: กิน TDEE−500 · รักษา: กิน TDEE · เพิ่มกล้าม: กิน TDEE+300</div></div></div><div class="c-row"><div><div class="c-label">แบ่ง Macros</div><div class="c-sub">โปรตีน 2g/กก. · ไขมัน 25% · ส่วนที่เหลือ = คาร์โบไฮเดรต</div></div></div><div class="c-row"><div><div class="c-label">ปรับทุก 2-4 สัปดาห์</div><div class="c-sub">เมื่อน้ำหนักเปลี่ยน ให้คำนวณ TDEE ใหม่เพราะร่างกายปรับตัว</div></div></div></div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<details class="faq-item"><summary class="faq-q">TDEE คืออะไร?</summary><div class="faq-a">TDEE (Total Daily Energy Expenditure) คือพลังงานทั้งหมดที่ร่างกายเผาผลาญใน 1 วัน รวมทั้ง BMR (พลังงานฐานที่อวัยวะใช้ขณะพัก) + พลังงานที่ใช้ในการเคลื่อนไหวทุกอย่าง ถ้ากินน้อยกว่า TDEE จะลดน้ำหนัก ถ้ากินมากกว่าจะน้ำหนักขึ้น</div></details>
+<details class="faq-item"><summary class="faq-q">BMR กับ TDEE ต่างกันยังไง?</summary><div class="faq-a">BMR (Basal Metabolic Rate) คือพลังงานที่ร่างกายต้องการขั้นต่ำขณะพักนิ่งสนิท (หัวใจเต้น หายใจ สมองทำงาน) ส่วน TDEE คือ BMR คูณด้วยตัวคูณกิจกรรม ดังนั้น TDEE สูงกว่า BMR เสมอ คนทั่วไป TDEE มักอยู่ที่ BMR × 1.5-1.7</div></details>
+<details class="faq-item"><summary class="faq-q">ลดน้ำหนัก 1 กก. ต้องลดกี่แคล?</summary><div class="faq-a">ไขมัน 1 กก. มีพลังงานประมาณ 7,700 kcal ดังนั้น ถ้า deficit 500 kcal/วัน จะลดได้ ~0.5 กก./สัปดาห์ ถ้า deficit 1,000 kcal/วัน จะลดได้ ~1 กก./สัปดาห์ อย่าง deficit เกิน 500-750 kcal/วัน เพราะจะสูญเสียกล้ามเนื้อด้วย</div></details>
+<details class="faq-item"><summary class="faq-q">กินแคลต่ำเกินไปอันตรายไหม?</summary><div class="faq-a">อันตราย ถ้ากินต่ำกว่า 1,200 kcal/วัน (ผู้หญิง) หรือ 1,500 kcal/วัน (ผู้ชาย) ร่างกายจะลดอัตราเผาผลาญ สูญเสียกล้ามเนื้อ อ่อนเพลีย ขาดสารอาหาร และพอหยุดลดน้ำหนักจะกลับมาเร็วมาก (Yo-yo effect)</div></details>
+<details class="faq-item"><summary class="faq-q">โปรตีนกินวันละเท่าไหร่?</summary><div class="faq-a">คนทั่วไปที่ออกกำลังกาย แนะนำ 1.6-2.2g ต่อน้ำหนักตัว 1 กก. เช่น หนัก 65 กก. กินโปรตีน 104-143g/วัน โปรตีนช่วยรักษากล้ามเนื้อระหว่างลดน้ำหนัก และทำให้อิ่มนานกว่าคาร์โบไฮเดรตและไขมัน</div></details>
+<details class="faq-item"><summary class="faq-q">ทำไมน้ำหนักไม่ลดทั้งที่กินตาม TDEE?</summary><div class="faq-a">สาเหตุที่พบบ่อย: 1) ประมาณกิจกรรมสูงไป (เลือก TDEE สูงกว่าจริง) 2) นับแคลอรี่ต่ำไป (อาหารไทยน้ำมันและน้ำตาลซ่อนเยอะ) 3) น้ำหนักน้ำขึ้นลง (เกลือ, ฮอร์โมน, ของเสียในลำไส้) ให้วัดค่าเฉลี่ย 2-3 สัปดาห์แทนวัดทุกวัน</div></details>
+<details class="faq-item"><summary class="faq-q">Intermittent Fasting ช่วยลดน้ำหนักได้จริงไหม?</summary><div class="faq-a">IF ได้ผลเพราะทำให้กินน้อยลงโดยธรรมชาติในเวลาจำกัด ไม่ใช่เพราะ "กิน timing" มีผลต่อร่างกาย งานวิจัยพบว่าพลังงานที่กินรวมกันต่ำกว่าเดิมจึงลดน้ำหนักได้ ถ้ากิน TDEE เท่าเดิมใน window แคบกว่า ผลลัพธ์จะเท่ากัน</div></details>
+<details class="faq-item"><summary class="faq-q">คำนวณแล้วต้องกินตรงๆ เลยไหม?</summary><div class="faq-a">TDEE เป็นจุดเริ่มต้น ไม่ใช่ตัวเลขศักดิ์สิทธิ์ แต่ละคนมีเมตาบอลิซึมต่างกัน ลองกินตาม TDEE 2-3 สัปดาห์แล้วดูผล ถ้าน้ำหนักไม่เปลี่ยนตามเป้า ปรับขึ้นหรือลง 100-150 kcal แล้วสังเกตอีก 2 สัปดาห์</div></details>
+</div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">เข้าใจ TDEE และการควบคุมน้ำหนัก</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">TDEE คำนวณจาก <b>สูตร Mifflin-St Jeor</b> ที่ได้รับการยืนยันว่าแม่นยำที่สุดในปัจจุบัน: BMR (ชาย) = 10×น้ำหนัก + 6.25×ส่วนสูง − 5×อายุ + 5 / BMR (หญิง) = 10×น้ำหนัก + 6.25×ส่วนสูง − 5×อายุ − 161 แล้วคูณตัวคูณกิจกรรม (Activity Multiplier) เพื่อได้ TDEE ที่รวมพลังงานที่ใช้ในการเคลื่อนไหวทั้งหมด</p><p style="margin-bottom:14px;line-height:1.7"><b>หลักการ Energy Balance:</b> น้ำหนักขึ้น/ลง ขึ้นอยู่กับ <b>แคลอรี่เข้า vs แคลอรี่ออก</b> เป็นหลัก การกินต่ำกว่า TDEE 500 kcal/วัน จะลดน้ำหนักได้ ~0.5 กก./สัปดาห์ โดยไม่ต้องออกกำลังกายเพิ่ม แต่การออกกำลังกายเพิ่ม TDEE ทำให้กินได้มากขึ้นและรักษากล้ามเนื้อได้ดีกว่า</p><p style="line-height:1.7"><b>Macronutrients สำคัญ:</b> โปรตีน 4 kcal/g รักษากล้ามเนื้อ อิ่มนาน ให้ความสำคัญ 1.6-2g/กก. ไขมัน 9 kcal/g จำเป็นสำหรับฮอร์โมนและสมอง ไม่ควรต่ำกว่า 0.5g/กก. คาร์โบไฮเดรต 4 kcal/g เป็นพลังงานหลักสำหรับสมองและกล้ามเนื้อระหว่างออกกำลังกาย ปรับตามความชอบและไลฟ์สไตล์</p></div></div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <div class="card">
+    <a class="c-row" href="/bmi.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">⚖️ คำนวณ BMI</div><div class="c-sub">ดัชนีมวลกาย · น้ำหนักเหมาะสม</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/salary.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">💰 เงินเดือน Net</div><div class="c-sub">หักภาษี SSO ได้เท่าไหร่</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/compound.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">📈 ดอกเบี้ยทบต้น</div><div class="c-sub">ออมแล้วได้เท่าไหร่</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/savings.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">🏦 เป้าออมเงิน</div><div class="c-sub">ออมทุกเดือนกี่ปีถึงเป้า</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+  </div>
+</div>
+
+<footer>คำนวณจากสูตร Mifflin-St Jeor ที่แม่นยำที่สุดสำหรับประชากรทั่วไป<br>ปรึกษานักโภชนาการหรือแพทย์สำหรับแผนที่เหมาะกับสุขภาพของคุณ</footer>
+
+<script>
+function calcTDEE() {
+  const gender = document.getElementById('gender').value;
+  const age = parseFloat(document.getElementById('age').value) || 28;
+  const weight = parseFloat(document.getElementById('weight').value) || 65;
+  const height = parseFloat(document.getElementById('height').value) || 170;
+  const activity = parseFloat(document.getElementById('activity').value);
+  const goal = parseInt(document.getElementById('goal').value);
+  pushURLState({gender, age, weight, height, activity, goal});
+
+  // Mifflin-St Jeor BMR
+  let bmr;
+  if (gender === 'male') {
+    bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+  } else {
+    bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+  }
+
+  const tdee = Math.round(bmr * activity);
+  const target = tdee + goal;
+
+  const goalLabels = {
+    '-500': 'ลดน้ำหนัก ~0.5 กก./สัปดาห์',
+    '-750': 'ลดน้ำหนักเร็ว ~0.75 กก./สัปดาห์',
+    '0': 'รักษาน้ำหนักเดิม',
+    '300': 'เพิ่มกล้ามเนื้อ Lean Bulk',
+    '500': 'เพิ่มน้ำหนัก ~0.5 กก./สัปดาห์',
+  };
+  const goalLabel = goalLabels[String(goal)] || '';
+
+  document.getElementById('tdeeVal').textContent = fmt(target, 0) + ' kcal/วัน';
+  document.getElementById('tdeeDetail').textContent = `TDEE ${fmt(tdee, 0)} · BMR ${fmt(Math.round(bmr), 0)} · ${goalLabel}`;
+  document.getElementById('tdeeResult').classList.add('show');
+
+  // Breakdown
+  const bd = document.getElementById('tdeeBreakdown');
+  bd.style.display = 'block';
+  const diffLabel = goal > 0 ? `+${goal}` : goal === 0 ? '±0' : String(goal);
+  bd.innerHTML = `
+    <div class="c-row"><div><div class="c-label">BMR (พลังงานฐาน)</div><div class="c-sub">ร่างกายใช้ขณะพักนิ่งสนิท</div></div><div class="c-price">${fmt(Math.round(bmr), 0)} kcal</div></div>
+    <div class="c-row"><div><div class="c-label">TDEE (รวมกิจกรรม)</div><div class="c-sub">BMR × ${activity} ตัวคูณกิจกรรม</div></div><div class="c-price">${fmt(tdee, 0)} kcal</div></div>
+    <div class="c-row"><div><div class="c-label">ปรับตามเป้าหมาย</div><div class="c-sub">${goalLabel}</div></div><div class="c-price">${diffLabel} kcal</div></div>
+    <div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--accent)">แคลอรี่ที่ควรกิน/วัน</div></div><div class="c-price" style="color:var(--accent)">${fmt(target, 0)} kcal</div></div>`;
+
+  // Macros suggestion
+  const protein = Math.round(weight * 2);     // 2g/kg
+  const proteinKcal = protein * 4;
+  const fatKcal = Math.round(target * 0.25);
+  const fat = Math.round(fatKcal / 9);
+  const carbKcal = target - proteinKcal - fatKcal;
+  const carb = Math.round(carbKcal / 4);
+
+  const md = document.getElementById('tdeeMarcos');
+  md.style.display = 'block';
+  md.innerHTML = `
+    <div class="c-row"><div><div class="c-label">🥩 โปรตีน</div><div class="c-sub">2g × ${weight}กก. (รักษากล้ามเนื้อ)</div></div><div class="c-price">${protein}g <span style="font-size:12px;color:var(--ink3)">${proteinKcal} kcal</span></div></div>
+    <div class="c-row"><div><div class="c-label">🥑 ไขมัน</div><div class="c-sub">25% ของแคลอรี่รวม</div></div><div class="c-price">${fat}g <span style="font-size:12px;color:var(--ink3)">${fatKcal} kcal</span></div></div>
+    <div class="c-row"><div><div class="c-label">🍚 คาร์โบไฮเดรต</div><div class="c-sub">ส่วนที่เหลือ (ข้าว ผัก ผลไม้)</div></div><div class="c-price">${carb}g <span style="font-size:12px;color:var(--ink3)">${carbKcal} kcal</span></div></div>
+    <div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--ink2);font-size:12px">ข้าวสวย 1 ทัพพี ≈ 90 kcal · หมูสามชั้น 100g ≈ 300 kcal · ไข่ต้ม 1 ฟอง ≈ 70 kcal</div></div></div>`;
+}
+window.addEventListener('load', calcTDEE);
+</script>
+</body>
+</html>

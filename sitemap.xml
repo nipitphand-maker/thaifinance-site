@@ -221,4 +221,22 @@
       <image:loc>https://thaifinance-site.pages.dev/img/og-debt.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/tdee.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-tdee.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/severance.html</loc>
+    <lastmod>2026-05-19</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-severance.png</image:loc>
+    </image:image>
+  </url>
 </urlset>
