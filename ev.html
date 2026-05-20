@@ -32,15 +32,16 @@
 <script src="js/utils.js"></script>
 <script>injectNav('ev.html'); loadURLState(['evPrice','gasPrice','kmYear','gasKm','evKwh','elecRate','yearsOwn']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="eyebrow">EV vs Gasoline</div>
-  <div class="page-title">รถ EV<br>vs น้ำมัน</div>
+  <h1 class="page-title">รถ EV<br>vs น้ำมัน</h1>
   <div class="page-sub">ค่าใช้จ่ายตลอดอายุ · จุดคุ้มทุน · ประหยัดได้เท่าไหร่</div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="form-card">
-    <div class="sec-title" style="margin:0 0 12px;padding:0;font-size:14px;color:var(--accent)">🔋 รถ EV</div>
+    <h2 class="sec-title" style="margin:0 0 12px;padding:0;font-size:14px;color:var(--accent)">🔋 รถ EV</h2>
     <div class="field-row">
       <div class="field">
         <label class="f-label">ราคารถ EV (บาท)</label>
@@ -65,7 +66,7 @@
       </div>
     </div>
 
-    <div class="sec-title" style="margin:16px 0 12px;padding:0;font-size:14px;color:var(--ink2)">⛽ รถน้ำมัน (เปรียบเทียบ)</div>
+    <h2 class="sec-title" style="margin:16px 0 12px;padding:0;font-size:14px;color:var(--ink2)">⛽ รถน้ำมัน (เปรียบเทียบ)</h2>
     <div class="field-row">
       <div class="field">
         <label class="f-label">ราคารถน้ำมัน (บาท)</label>
@@ -90,7 +91,7 @@
       </div>
     </div>
 
-    <div class="sec-title" style="margin:16px 0 12px;padding:0;font-size:14px;color:var(--ink2)">🛣️ การใช้งาน</div>
+    <h2 class="sec-title" style="margin:16px 0 12px;padding:0;font-size:14px;color:var(--ink2)">🛣️ การใช้งาน</h2>
     <div class="field-row">
       <div class="field">
         <label class="f-label">ระยะทางต่อปี (กม.)</label>
@@ -114,7 +115,7 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ค่าใช้จ่ายทั่วไปของ EV ในไทย 2568</div>
+  <h2 class="sec-title">ค่าใช้จ่ายทั่วไปของ EV ในไทย 2568</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>รายการ</th><th style="text-align:right">EV</th><th style="text-align:right">น้ำมัน</th></tr></thead>
@@ -140,7 +141,7 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">EV คุ้มกว่ารถน้ำมันไหม?</summary><div class="faq-a">ขึ้นกับระยะทางและราคารถ สำหรับคนที่ขับปีละ 20,000+ กม. EV มักคุ้มกว่าในระยะยาว 5-7 ปี เพราะค่าไฟต่ำกว่าค่าน้ำมันมาก แต่ถ้าขับน้อยกว่า 10,000 กม./ปี อาจไม่คุ้มเพราะราคาตัวรถสูงกว่า</div></details>
 <details class="faq-item"><summary class="faq-q">รถ EV ค่าบำรุงรักษาถูกกว่าจริงไหม?</summary><div class="faq-a">ใช่ EV ไม่มีระบบน้ำมันเครื่อง กรองน้ำมัน หม้อน้ำเครื่อง คลัตช์ (รุ่นส่วนใหญ่) ประหยัดได้ 30-50% ของค่าซ่อมเทียบรถน้ำมัน แต่ถ้าแบตเสื่อมก่อนกำหนด ค่าเปลี่ยนแบตแพงมาก (150,000-500,000 บาท)</div></details>
 <details class="faq-item"><summary class="faq-q">แบตเตอรี่ EV อายุนานแค่ไหน?</summary><div class="faq-a">แบตเตอรี่ EV ส่วนใหญ่รับประกัน 8 ปีหรือ 160,000 กม. ความจุแบตลดลงปีละ 2-3% หลัง 8-10 ปี อาจเหลือ 70-80% ของความจุเดิม รถยี่ห้อจีนราคาถูกอาจเสื่อมเร็วกว่า สายพานผู้ผลิต BYD/Tesla ทนกว่า</div></details>
@@ -151,10 +152,10 @@
 <details class="faq-item"><summary class="faq-q">ติดตั้ง EV Charger ที่บ้านราคาเท่าไหร่?</summary><div class="faq-a">Wall Box AC ที่บ้าน ราคา 8,000-25,000 บาท รวมติดตั้ง ต้องเพิ่มขนาดมิเตอร์ไฟฟ้าถ้ายังเป็น 5 แอมป์ → 15 แอมป์ ค่า PEA ประมาณ 3,000-7,000 บาท รวมค่าใช้จ่ายแรก ~15,000-30,000 บาท แต่ชาร์จที่บ้านประหยัดได้คืนทุนใน 1-2 ปี</div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">ทำไม TCO ถึงสำคัญกว่าราคาซื้อ</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">TCO (Total Cost of Ownership) คือค่าใช้จ่ายทั้งหมดตลอดอายุการถือครองรถ ประกอบด้วย <b>ราคาซื้อ + ค่าเชื้อเพลิง/ชาร์จ + ค่าบำรุงรักษา + ค่าประกัน + ค่าเสื่อมราคา + ค่าดอกเบี้ย (ถ้าผ่อน)</b> ในไทยปัจจุบัน ราคา EV มักสูงกว่ารถน้ำมัน 200,000-400,000 บาท แต่ค่าชาร์จต่ำกว่าน้ำมันมาก</p><p style="margin-bottom:14px;line-height:1.7"><b>ตัวอย่างการประหยัดค่าเชื้อเพลิง:</b> ขับ 20,000 กม./ปี · รถน้ำมัน 15 กม./ลิตร × 40 บาท = 53,333 บาท/ปี · EV 6 กม./kWh × 4.5 บาท = 15,000 บาท/ปี → ประหยัดได้ <b>38,333 บาท/ปี</b> หรือ 268,000 บาทใน 7 ปี ซึ่งชดเชยส่วนต่างราคารถได้มากทีเดียว</p><p style="line-height:1.7"><b>สิ่งที่ต้องพิจารณาเพิ่มเติม:</b> มีที่จอดชาร์จที่บ้านได้ไหม? ขับระยะยาวต่างจังหวัดบ่อยไหม? มีศูนย์บริการยี่ห้อนั้นใกล้บ้านไหม? การรับประกันแบตและชิ้นส่วน ราคาตัวรถมือสองในอนาคต — ทั้งหมดนี้ส่งผลต่อ TCO จริงของคุณ</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">ทำไม TCO ถึงสำคัญกว่าราคาซื้อ</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">TCO (Total Cost of Ownership) คือค่าใช้จ่ายทั้งหมดตลอดอายุการถือครองรถ ประกอบด้วย <b>ราคาซื้อ + ค่าเชื้อเพลิง/ชาร์จ + ค่าบำรุงรักษา + ค่าประกัน + ค่าเสื่อมราคา + ค่าดอกเบี้ย (ถ้าผ่อน)</b> ในไทยปัจจุบัน ราคา EV มักสูงกว่ารถน้ำมัน 200,000-400,000 บาท แต่ค่าชาร์จต่ำกว่าน้ำมันมาก</p><p style="margin-bottom:14px;line-height:1.7"><b>ตัวอย่างการประหยัดค่าเชื้อเพลิง:</b> ขับ 20,000 กม./ปี · รถน้ำมัน 15 กม./ลิตร × 40 บาท = 53,333 บาท/ปี · EV 6 กม./kWh × 4.5 บาท = 15,000 บาท/ปี → ประหยัดได้ <b>38,333 บาท/ปี</b> หรือ 268,000 บาทใน 7 ปี ซึ่งชดเชยส่วนต่างราคารถได้มากทีเดียว</p><p style="line-height:1.7"><b>สิ่งที่ต้องพิจารณาเพิ่มเติม:</b> มีที่จอดชาร์จที่บ้านได้ไหม? ขับระยะยาวต่างจังหวัดบ่อยไหม? มีศูนย์บริการยี่ห้อนั้นใกล้บ้านไหม? การรับประกันแบตและชิ้นส่วน ราคาตัวรถมือสองในอนาคต — ทั้งหมดนี้ส่งผลต่อ TCO จริงของคุณ</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/oil.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">⛽ ราคาน้ำมันวันนี้</div><div class="c-sub">เบนซิน ดีเซล E20 E85</div></div>
@@ -175,6 +176,7 @@
   </div>
 </div>
 
+</main>
 <footer>ค่าใช้จ่ายเป็นการประมาณจากราคาตลาด 2568 · ราคาน้ำมัน ค่าไฟ และราคารถอาจเปลี่ยนแปลง<br>ตรวจสอบกับดีลเลอร์และการไฟฟ้าก่อนตัดสินใจซื้อ</footer>
 
 <script>

@@ -16,18 +16,19 @@
 <script src="js/utils.js"></script>
 <script>injectNav('status.html')</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="eyebrow"><span class="live-dot"></span> ตรวจสอบแบบสด</div>
-  <div class="page-title">สถานะ<br>ระบบ</div>
+  <h1 class="page-title">สถานะ<br>ระบบ</h1>
   <div class="page-sub">ทุกแหล่งข้อมูลที่ใช้ในเว็บ · กดเพื่อ refresh</div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <button class="btn btn-dark" onclick="runChecks()" id="runBtn">ตรวจซ้ำ</button>
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">แหล่งข้อมูลทั้งหมด</div>
+  <h2 class="sec-title">แหล่งข้อมูลทั้งหมด</h2>
   <div class="card" id="statusList"></div>
 </div>
 
@@ -40,6 +41,7 @@
   </div>
 </div>
 
+</main>
 <footer>ThaiFinance · ถ้าเห็นทุกอย่าง 🟢 = ทุกเครื่องมือใช้งานได้ครบ</footer>
 
 <script>

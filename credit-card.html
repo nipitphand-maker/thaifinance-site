@@ -33,12 +33,13 @@
 <script src="js/utils.js"></script>
 <script>injectNav('credit-card.html'); loadURLState(['balance','rate','payment','payType']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="page-hd-inner">
     <h1 class="page-title">ดอกเบี้ยบัตรเครดิต</h1>
     <p class="page-sub">จ่ายขั้นต่ำ 10% · กี่เดือนหมด · ดอกเบี้ยสะสม</p>
   </div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="card">
@@ -76,7 +77,7 @@
 <div class="card" id="ccBreakdown" style="display:none;margin:0 16px 16px"></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เปรียบเทียบ: จ่ายขั้นต่ำ vs จ่ายเพิ่ม</div>
+  <h2 class="sec-title">เปรียบเทียบ: จ่ายขั้นต่ำ vs จ่ายเพิ่ม</h2>
   <div class="card" id="compTable">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>วิธีจ่าย</th><th style="text-align:right">ระยะเวลา</th><th style="text-align:right">ดอกเบี้ยรวม</th></tr></thead>
@@ -86,7 +87,7 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ดอกเบี้ยบัตรเครดิตตามธนาคาร 2568</div>
+  <h2 class="sec-title">ดอกเบี้ยบัตรเครดิตตามธนาคาร 2568</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>ธนาคาร/บัตร</th><th style="text-align:right">อัตรา (% ต่อปี)</th><th style="text-align:right">อัตรา (% ต่อเดือน)</th></tr></thead>
@@ -111,9 +112,9 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">วิธีใช้เครื่องคำนวณดอกเบี้ยบัตรเครดิต</div><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>กรอก <b>ยอดค้างชำระ</b> — ดูจาก statement บัตรเครดิต ณ ปัจจุบัน</li><li>กรอก <b>อัตราดอกเบี้ย</b> — ดูจาก statement หรือสัญญาบัตร ส่วนใหญ่ 25%/ปี</li><li>เลือก <b>วิธีจ่าย</b> — จ่ายขั้นต่ำ 10% หรือจ่ายคงที่ทุกเดือน</li><li>ดู <b>ดอกเบี้ยรวม</b> และ <b>ระยะเวลา</b> ที่ต้องใช้จ่ายหมด</li><li>เปรียบเทียบ <b>ผลของการจ่ายเพิ่ม</b> เพื่อประหยัดดอกเบี้ย</li></ol></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">วิธีใช้เครื่องคำนวณดอกเบี้ยบัตรเครดิต</h2><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>กรอก <b>ยอดค้างชำระ</b> — ดูจาก statement บัตรเครดิต ณ ปัจจุบัน</li><li>กรอก <b>อัตราดอกเบี้ย</b> — ดูจาก statement หรือสัญญาบัตร ส่วนใหญ่ 25%/ปี</li><li>เลือก <b>วิธีจ่าย</b> — จ่ายขั้นต่ำ 10% หรือจ่ายคงที่ทุกเดือน</li><li>ดู <b>ดอกเบี้ยรวม</b> และ <b>ระยะเวลา</b> ที่ต้องใช้จ่ายหมด</li><li>เปรียบเทียบ <b>ผลของการจ่ายเพิ่ม</b> เพื่อประหยัดดอกเบี้ย</li></ol></div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec" style="padding-top:0"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">ดอกเบี้ยบัตรเครดิตคิดอย่างไร?</summary><div class="faq-a">ดอกเบี้ยบัตรเครดิตในไทยสูงสุด 25% ต่อปี ตามประกาศธนาคารแห่งประเทศไทย ปี 2567 คำนวณจากยอดค้างชำระทั้งหมดรายวัน: ดอกเบี้ยรายวัน = ยอดค้างชำระ × (25% ÷ 365) ถ้ามีหนี้ 50,000 บาท ดอกเบี้ยต่อวัน = 34.25 บาท ต่อเดือนประมาณ 1,027 บาท หรือปีละ 12,500 บาท ดอกเบี้ยเริ่มคิดทันทีหลังรอบบิลถ้าไม่ได้ชำระเต็มจำนวน</div></details>
 <details class="faq-item"><summary class="faq-q">จ่ายขั้นต่ำ 10% ใช้เวลานานแค่ไหน?</summary><div class="faq-a">หนี้บัตร 50,000 บาท ดอก 25%/ปี จ่ายขั้นต่ำ 10% ทุกเดือน ปีแรกจ่าย 5,000 บาท แต่ยอดลดลงน้อยมากเพราะกว่า 1,000 บาทเป็นดอกเบี้ย ใช้เวลาประมาณ 8-12 ปีจ่ายหมด และเสียดอกเบี้ยสะสมรวม 80,000-120,000 บาท มากกว่าต้นทุนเดิม ขั้นต่ำที่ลดลงเรื่อยๆ ทำให้กระบวนการช้าลง</div></details>
 <details class="faq-item"><summary class="faq-q">Balance Transfer คืออะไร คุ้มไหม?</summary><div class="faq-a">Balance Transfer คือการโอนหนี้บัตรเครดิตไปยังบัตรใหม่หรือสินเชื่อที่ดอกเบี้ยต่ำกว่า ช่วงโปรโมชัน 3-6 เดือน ดอก 0% ถ้าตั้งใจจ่ายให้หมดในช่วงนั้น ประหยัดได้มาก ข้อระวัง: มีค่าธรรมเนียม Balance Transfer 1-3% ของยอดโอน ถ้าจ่ายไม่หมดในช่วงโปร ดอกหลังโปรมักสูงกว่าเดิม 2-5% ต้องระวังอย่าใช้บัตรเก่าสะสมหนี้เพิ่มอีก</div></details>
@@ -124,10 +125,10 @@
 <details class="faq-item"><summary class="faq-q">ถ้ามีบัตรหลายใบ ควรปิดบัตรไหนก่อน?</summary><div class="faq-a">วิธี Debt Avalanche (ประหยัดดอกที่สุด): จ่ายบัตรที่มีอัตราดอกเบี้ยสูงสุดก่อน ส่วนบัตรอื่นจ่ายขั้นต่ำ พอบัตรแรกหมดแล้วโยนเงินก้อนนั้นไปบัตรต่อไป วิธี Debt Snowball (สร้าง Momentum): จ่ายบัตรยอดน้อยสุดก่อน ได้ "ชัยชนะ" เร็วกว่า สร้างแรงจูงใจ ดูรายละเอียดได้ที่ <a href="/debt.html">เครื่องคำนวณปลดหนี้ Snowball/Avalanche</a></div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">ความจริงที่โหดร้ายของดอกเบี้ยบัตรเครดิต</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>25% ต่อปี หมายความว่าอะไร?</b> ถ้ามีหนี้บัตรเครดิต 100,000 บาทและไม่จ่ายเลยเป็นปี ดอกเบี้ยสะสม 25,000 บาท ทำให้หนี้กลายเป็น 125,000 บาท แต่ในทางปฏิบัติเราจ่ายขั้นต่ำทุกเดือน แต่ขั้นต่ำไม่ได้ลดหนี้มากเลย เพราะส่วนใหญ่เป็น "ดอกเบี้ย + ต้นนิดเดียว"</p><p style="margin-bottom:14px;line-height:1.7"><b>ผลตอบแทนที่รับประกัน:</b> ทุก 1 บาทที่นำไปปิดหนี้บัตรเครดิต 25% = ผลตอบแทนรับประกัน 25% ทันที ไม่มีการลงทุนที่ไหนในโลกที่ให้ผลตอบแทนแน่นอน 25%/ปี ดังนั้นถ้ามีหนี้บัตรเครดิต ให้ <b>ปลดหนี้ก่อน</b> แล้วค่อยลงทุน</p><p style="line-height:1.7"><b>แผนฉุกเฉิน:</b> ถ้าหนี้บัตรเกิน 50% ของรายได้ต่อปีและไม่สามารถจ่ายได้ปกติ อย่ารอ ติดต่อ กรมสวัสดิการและคุ้มครองแรงงาน หรือ ศูนย์คุ้มครองผู้ใช้บริการทางการเงิน (ศคง.) ธปท. โทร 1213 ฟรี เพื่อขอคำปรึกษาและช่วยเจรจากับธนาคาร</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">ความจริงที่โหดร้ายของดอกเบี้ยบัตรเครดิต</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>25% ต่อปี หมายความว่าอะไร?</b> ถ้ามีหนี้บัตรเครดิต 100,000 บาทและไม่จ่ายเลยเป็นปี ดอกเบี้ยสะสม 25,000 บาท ทำให้หนี้กลายเป็น 125,000 บาท แต่ในทางปฏิบัติเราจ่ายขั้นต่ำทุกเดือน แต่ขั้นต่ำไม่ได้ลดหนี้มากเลย เพราะส่วนใหญ่เป็น "ดอกเบี้ย + ต้นนิดเดียว"</p><p style="margin-bottom:14px;line-height:1.7"><b>ผลตอบแทนที่รับประกัน:</b> ทุก 1 บาทที่นำไปปิดหนี้บัตรเครดิต 25% = ผลตอบแทนรับประกัน 25% ทันที ไม่มีการลงทุนที่ไหนในโลกที่ให้ผลตอบแทนแน่นอน 25%/ปี ดังนั้นถ้ามีหนี้บัตรเครดิต ให้ <b>ปลดหนี้ก่อน</b> แล้วค่อยลงทุน</p><p style="line-height:1.7"><b>แผนฉุกเฉิน:</b> ถ้าหนี้บัตรเกิน 50% ของรายได้ต่อปีและไม่สามารถจ่ายได้ปกติ อย่ารอ ติดต่อ กรมสวัสดิการและคุ้มครองแรงงาน หรือ ศูนย์คุ้มครองผู้ใช้บริการทางการเงิน (ศคง.) ธปท. โทร 1213 ฟรี เพื่อขอคำปรึกษาและช่วยเจรจากับธนาคาร</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/debt.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">💳 ปลดหนี้ Snowball/Avalanche</div><div class="c-sub">วางแผนปลดหนี้หลายก้อนพร้อมกัน</div></div>
@@ -148,6 +149,7 @@
   </div>
 </div>
 
+</main>
 <footer>อัตราดอกเบี้ยสูงสุด 25%/ปี อ้างอิงจากประกาศธนาคารแห่งประเทศไทย ปี 2567<br>ข้อมูลเพื่อการศึกษาเท่านั้น ตรวจสอบอัตราดอกเบี้ยจริงจาก statement บัตรของคุณ</footer>
 
 <script>

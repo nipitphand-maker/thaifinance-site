@@ -33,11 +33,12 @@
 <script src="js/utils.js"></script>
 <script>injectNav('fire.html'); loadURLState(['expense','savings','portfolio','returnRate','inflation','safeRate']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="eyebrow">Financial Independence</div>
-  <div class="page-title">FIRE<br>เกษียณเร็ว</div>
+  <h1 class="page-title">FIRE<br>เกษียณเร็ว</h1>
   <div class="page-sub">4% Rule · FIRE Number · กี่ปีถึงเกษียณ</div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="form-card">
@@ -94,12 +95,12 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">จำลองการเติบโตของพอร์ต</div>
+  <h2 class="sec-title">จำลองการเติบโตของพอร์ต</h2>
   <div class="card" id="fireProjection" style="display:none"></div>
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">FIRE Number ตามค่าใช้จ่ายต่อเดือน</div>
+  <h2 class="sec-title">FIRE Number ตามค่าใช้จ่ายต่อเดือน</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>ค่าใช้จ่าย/เดือน</th><th style="text-align:right">FIRE Number (4%)</th><th style="text-align:right">FIRE Number (3%)</th></tr></thead>
@@ -124,9 +125,9 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec"><div class="sec-title">วิธีใช้เครื่องคำนวณ FIRE</div><div class="card"><div class="c-row"><div><div class="c-label">ค่าใช้จ่ายต่อปีหลังเกษียณ</div><div class="c-sub">ประมาณค่าครองชีพที่ต้องการหลังหยุดทำงาน รวมค่ารักษาพยาบาล ท่องเที่ยว</div></div></div><div class="c-row"><div><div class="c-label">พอร์ตปัจจุบัน + ออม/ปี</div><div class="c-sub">รวมทุกสินทรัพย์ลงทุน: หุ้น กองทุน ทอง คริปโต — ไม่รวมบ้านที่อยู่อาศัย</div></div></div><div class="c-row"><div><div class="c-label">ผลตอบแทน vs เงินเฟ้อ</div><div class="c-sub">Real Return = (1+return)/(1+inflation) - 1 · SET index ~8% เงินเฟ้อ ~3% = ~5% real</div></div></div><div class="c-row"><div><div class="c-label">เลือก SWR</div><div class="c-sub">ยิ่งอายุน้อยตอนเกษียณ ยิ่งใช้ SWR ต่ำ เพราะพอร์ตต้องอยู่นาน 50-60 ปี</div></div></div></div></div>
+<div class="sec"><h2 class="sec-title">วิธีใช้เครื่องคำนวณ FIRE</h2><div class="card"><div class="c-row"><div><div class="c-label">ค่าใช้จ่ายต่อปีหลังเกษียณ</div><div class="c-sub">ประมาณค่าครองชีพที่ต้องการหลังหยุดทำงาน รวมค่ารักษาพยาบาล ท่องเที่ยว</div></div></div><div class="c-row"><div><div class="c-label">พอร์ตปัจจุบัน + ออม/ปี</div><div class="c-sub">รวมทุกสินทรัพย์ลงทุน: หุ้น กองทุน ทอง คริปโต — ไม่รวมบ้านที่อยู่อาศัย</div></div></div><div class="c-row"><div><div class="c-label">ผลตอบแทน vs เงินเฟ้อ</div><div class="c-sub">Real Return = (1+return)/(1+inflation) - 1 · SET index ~8% เงินเฟ้อ ~3% = ~5% real</div></div></div><div class="c-row"><div><div class="c-label">เลือก SWR</div><div class="c-sub">ยิ่งอายุน้อยตอนเกษียณ ยิ่งใช้ SWR ต่ำ เพราะพอร์ตต้องอยู่นาน 50-60 ปี</div></div></div></div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec" style="padding-top:0"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">FIRE คืออะไร?</summary><div class="faq-a">FIRE (Financial Independence, Retire Early) คือแนวคิดออมและลงทุนอย่างเข้มข้น เพื่อบรรลุอิสรภาพทางการเงินและหยุดทำงานได้ก่อนอายุเกษียณปกติ หัวใจคือสะสมพอร์ตให้ใหญ่พอที่ผลตอบแทนจากการลงทุน (4% ต่อปี) เพียงพอสำหรับค่าครองชีพทั้งปี โดยไม่ต้องใช้เงินต้น</div></details>
 <details class="faq-item"><summary class="faq-q">4% Rule มาจากไหน?</summary><div class="faq-a">4% Rule มาจาก Trinity Study (1998) ที่ศึกษาข้อมูลตลาดหุ้นสหรัฐย้อนหลัง 50 ปี พบว่าพอร์ต 60% หุ้น + 40% ตราสารหนี้ ที่ถอนปีละ 4% ยังมีเงินเหลือหลังผ่านไป 30 ปีใน 95%+ ของกรณี สำหรับคนเกษียณอายุน้อย (30-40 ปี) แนะนำ 3-3.5% เพื่อความปลอดภัยมากขึ้น</div></details>
 <details class="faq-item"><summary class="faq-q">ลงทุนอะไรเพื่อ FIRE ในไทย?</summary><div class="faq-a">ตัวเลือกยอดนิยม: 1) กองทุนรวม Index เช่น TMBAM ETF, SCBSET, LH SET50 — ผลตอบแทนระยะยาว ~8-10%/ปี 2) หุ้นรายตัว — ต้องใช้เวลาวิเคราะห์ 3) RMF/SSF — ลดภาษีได้ 4) REIT อสังหาริมทรัพย์ — ปันผลสม่ำเสมอ 5) ทอง — ป้องกันเงินเฟ้อ แต่ไม่ให้ผลตอบแทนสม่ำเสมอ</div></details>
@@ -137,10 +138,10 @@
 <details class="faq-item"><summary class="faq-q">Coast FIRE คืออะไร?</summary><div class="faq-a">Coast FIRE คือสะสมเงินลงทุนถึงจุดหนึ่ง แล้วหยุดออมเพิ่ม ปล่อยให้ดอกทบต้นเติบโตเองจนถึง FIRE Number ตอนเกษียณ ระหว่างนั้นทำงานแค่เพียงพอค่าใช้จ่ายปัจจุบัน ไม่ต้องออม Coast FIRE คำนวณย้อนกลับจาก FIRE Number ลบด้วยปีที่เหลือก่อนเกษียณ</div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">เข้าใจ FIRE และ 4% Rule</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">หัวใจของ FIRE คือ <b>FIRE Number = ค่าใช้จ่าย/ปี × 25</b> (ที่ SWR = 4%) หรือ × 33 สำหรับ 3% Rule ซึ่งหมายความว่าถ้าใช้จ่ายปีละ 480,000 บาท ต้องมีพอร์ต 12,000,000 บาท แล้วถอนปีละ 4% (480,000 บาท) โดยไม่ต้องทำงานอีก งานวิจัย Trinity Study แสดงว่าพอร์ตแบบนี้ "รอด" ผ่าน 30 ปีมากกว่า 95% ของกรณีในประวัติศาสตร์</p><p style="margin-bottom:14px;line-height:1.7"><b>ประเภท FIRE ยอดนิยม:</b> <b>Fat FIRE</b> — ใช้จ่ายสูง 100,000+ บาท/เดือน พอร์ต 30M+ / <b>Lean FIRE</b> — ใช้จ่ายประหยัด 15,000-20,000 บาท/เดือน พอร์ต 5-7M / <b>Barista FIRE</b> — เกษียณหลักแต่ยังมีงานพาร์ทไทม์ที่ชอบ / <b>Coast FIRE</b> — ออมถึงจุดแล้วหยุดออมเพิ่ม ปล่อยดอกทบต้น / <b>Semi-FIRE</b> — ลดชั่วโมงทำงานลง</p><p style="line-height:1.7"><b>สิ่งสำคัญในไทย:</b> บำนาญประกันสังคม (ม.33 ส่งครบ 15 ปี) ช่วย "เพิ่ม" รายได้หลังเกษียณ ลด FIRE Number ที่ต้องสะสมเอง ประกันสุขภาพถาวรก่อนเกษียณสำคัญมาก เพราะค่ารักษาพยาบาลสูงขึ้นเมื่ออายุมาก และอาจซื้อไม่ได้หลังอายุ 70+ ปี RMF + กองทุน PVD ช่วยลดภาษีและสะสมพอร์ตเร็วขึ้นมาก</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">เข้าใจ FIRE และ 4% Rule</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">หัวใจของ FIRE คือ <b>FIRE Number = ค่าใช้จ่าย/ปี × 25</b> (ที่ SWR = 4%) หรือ × 33 สำหรับ 3% Rule ซึ่งหมายความว่าถ้าใช้จ่ายปีละ 480,000 บาท ต้องมีพอร์ต 12,000,000 บาท แล้วถอนปีละ 4% (480,000 บาท) โดยไม่ต้องทำงานอีก งานวิจัย Trinity Study แสดงว่าพอร์ตแบบนี้ "รอด" ผ่าน 30 ปีมากกว่า 95% ของกรณีในประวัติศาสตร์</p><p style="margin-bottom:14px;line-height:1.7"><b>ประเภท FIRE ยอดนิยม:</b> <b>Fat FIRE</b> — ใช้จ่ายสูง 100,000+ บาท/เดือน พอร์ต 30M+ / <b>Lean FIRE</b> — ใช้จ่ายประหยัด 15,000-20,000 บาท/เดือน พอร์ต 5-7M / <b>Barista FIRE</b> — เกษียณหลักแต่ยังมีงานพาร์ทไทม์ที่ชอบ / <b>Coast FIRE</b> — ออมถึงจุดแล้วหยุดออมเพิ่ม ปล่อยดอกทบต้น / <b>Semi-FIRE</b> — ลดชั่วโมงทำงานลง</p><p style="line-height:1.7"><b>สิ่งสำคัญในไทย:</b> บำนาญประกันสังคม (ม.33 ส่งครบ 15 ปี) ช่วย "เพิ่ม" รายได้หลังเกษียณ ลด FIRE Number ที่ต้องสะสมเอง ประกันสุขภาพถาวรก่อนเกษียณสำคัญมาก เพราะค่ารักษาพยาบาลสูงขึ้นเมื่ออายุมาก และอาจซื้อไม่ได้หลังอายุ 70+ ปี RMF + กองทุน PVD ช่วยลดภาษีและสะสมพอร์ตเร็วขึ้นมาก</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/retirement.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">👴 วางแผนเกษียณ</div><div class="c-sub">คำนวณเงินเกษียณแบบดั้งเดิม</div></div>
@@ -161,6 +162,7 @@
   </div>
 </div>
 
+</main>
 <footer>คำนวณตามหลัก Trinity Study และ 4% Rule ซึ่งอ้างอิงข้อมูลตลาดสหรัฐ<br>ผลตอบแทนในอดีตไม่ได้รับประกันผลตอบแทนในอนาคต ปรึกษานักวางแผนการเงินก่อนตัดสินใจ</footer>
 
 <script>

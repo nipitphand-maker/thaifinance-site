@@ -33,12 +33,13 @@
 <script src="js/utils.js"></script>
 <script>injectNav('water.html'); loadURLState(['unit','provider','userType']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="page-hd-inner">
     <h1 class="page-title">คำนวณค่าน้ำประปา</h1>
     <p class="page-sub">MEA กทม. · การประปาภูมิภาค · อัตรา 2568</p>
   </div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="card">
@@ -74,7 +75,7 @@
 <div class="card" id="waterBreakdown" style="display:none;margin:0 16px 16px"></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">อัตราค่าน้ำ MEA (บ้านพักอาศัย) 2568</div>
+  <h2 class="sec-title">อัตราค่าน้ำ MEA (บ้านพักอาศัย) 2568</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>ปริมาณ (หน่วย/เดือน)</th><th style="text-align:right">ราคาต่อหน่วย (บาท)</th></tr></thead>
@@ -91,7 +92,7 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ค่าน้ำตามจำนวนคนในบ้าน (ประมาณการ MEA)</div>
+  <h2 class="sec-title">ค่าน้ำตามจำนวนคนในบ้าน (ประมาณการ MEA)</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>จำนวนคน</th><th style="text-align:right">ปริมาณโดยประมาณ</th><th style="text-align:right">ค่าน้ำ/เดือน (รวม VAT)</th></tr></thead>
@@ -117,9 +118,9 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">วิธีใช้เครื่องคำนวณค่าน้ำ</div><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>เลือก <b>การประปา</b> ที่ใช้บริการ (MEA = กทม.และปริมณฑล, PWA = ต่างจังหวัด)</li><li>เลือก <b>ประเภทผู้ใช้</b> — บ้านพักอาศัย หรือ พาณิชยกรรม</li><li>กรอก <b>ปริมาณน้ำที่ใช้</b> ดูได้จากมิเตอร์น้ำที่บ้าน หรือจากใบแจ้งค่าน้ำเดือนก่อน</li><li>ระบบคำนวณ <b>ค่าน้ำรายเดือน</b> รวม VAT 7% และค่าบริการคงที่</li></ol></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">วิธีใช้เครื่องคำนวณค่าน้ำ</h2><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>เลือก <b>การประปา</b> ที่ใช้บริการ (MEA = กทม.และปริมณฑล, PWA = ต่างจังหวัด)</li><li>เลือก <b>ประเภทผู้ใช้</b> — บ้านพักอาศัย หรือ พาณิชยกรรม</li><li>กรอก <b>ปริมาณน้ำที่ใช้</b> ดูได้จากมิเตอร์น้ำที่บ้าน หรือจากใบแจ้งค่าน้ำเดือนก่อน</li><li>ระบบคำนวณ <b>ค่าน้ำรายเดือน</b> รวม VAT 7% และค่าบริการคงที่</li></ol></div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec" style="padding-top:0"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">ค่าน้ำ MEA คิดอย่างไร?</summary><div class="faq-a">การประปานครหลวง (MEA) ใช้อัตราก้าวหน้าแบ่งเป็น 5 ขั้น: ขั้นที่ 1 (0-10 หน่วย) 8.50 บาท/หน่วย, ขั้นที่ 2 (11-20 หน่วย) 11.00 บาท/หน่วย, ขั้นที่ 3 (21-30 หน่วย) 13.50 บาท/หน่วย, ขั้นที่ 4 (31-40 หน่วย) 17.00 บาท/หน่วย, ขั้นที่ 5 (มากกว่า 40 หน่วย) 21.00 บาท/หน่วย บวกค่าบริการรายเดือน 40 บาท และ VAT 7%</div></details>
 <details class="faq-item"><summary class="faq-q">MEA กับ MWA ต่างกันอย่างไร?</summary><div class="faq-a">MEA (Metropolitan Waterworks Authority หรือ การประปานครหลวง) และ MWA ในภาษาไทยคือการประปานครหลวง เป็นหน่วยงานเดียวกัน ให้บริการในกรุงเทพมหานคร นนทบุรี และสมุทรปราการ ส่วน PWA (Provincial Waterworks Authority หรือ การประปาภูมิภาค) ให้บริการในจังหวัดอื่นทั่วประเทศ</div></details>
 <details class="faq-item"><summary class="faq-q">ค่าน้ำเฉลี่ยต่อเดือนของคนไทยเท่าไหร่?</summary><div class="faq-a">คนเดียว: ใช้ประมาณ 4-8 หน่วย/เดือน ค่าน้ำประมาณ 74-108 บาท | ครอบครัว 4 คน: ใช้ประมาณ 20-30 หน่วย/เดือน ค่าน้ำ 262-445 บาท | บ้านที่มีสวนหรือสระว่ายน้ำ: ใช้ 50+ หน่วย ค่าน้ำ 1,100+ บาท | 1 หน่วย = 1 ลูกบาศก์เมตร = 1,000 ลิตร คนไทยใช้เฉลี่ยประมาณ 100 ลิตร/คน/วัน</div></details>
@@ -130,10 +131,10 @@
 <details class="faq-item"><summary class="faq-q">ค่าน้ำแตกต่างจากค่าไฟอย่างไรในเรื่องการคำนวณ?</summary><div class="faq-a">ทั้งค่าน้ำและค่าไฟใช้ระบบอัตราก้าวหน้า (ยิ่งใช้มากยิ่งแพงต่อหน่วย) แต่ค่าไฟมีโครงสร้างซับซ้อนกว่าเพราะมีค่า Ft (ค่าไฟฟ้าผันแปร) ที่ปรับทุก 4 เดือน ส่วนค่าน้ำมีเพียงค่าบริการคงที่รายเดือนและค่าน้ำตามปริมาณ + VAT</div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">ประหยัดค่าน้ำอย่างมีระบบ</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>เข้าใจระบบอัตราก้าวหน้า:</b> ค่าน้ำใน MEA ยิ่งใช้มากยิ่งแพงขึ้นต่อหน่วย ถ้าใช้อยู่ที่ 35 หน่วย/เดือน ลองลดสัก 5 หน่วยจะช่วยหลีกเลี่ยงอัตราขั้น 4 (17 บาท/หน่วย) ลงมาอยู่ที่ขั้น 3 (13.50 บาท/หน่วย) ประหยัดได้ชัดเจน การลดการใช้น้ำ <b>ที่ขั้นสูง</b> ประหยัดได้มากกว่าที่ขั้นต่ำ</p><p style="margin-bottom:14px;line-height:1.7"><b>ตรวจมิเตอร์น้ำเดือนละครั้ง:</b> จดตัวเลขมิเตอร์ต้นเดือนและสิ้นเดือน ผลต่างคือหน่วยที่ใช้ ถ้าเดือนไหนพุ่งขึ้นโดยไม่มีสาเหตุ อาจมีท่อรั่ว การตรวจสอบเร็วช่วยป้องกันค่าน้ำบิลถัดไปที่จะแพงมาก</p><p style="line-height:1.7"><b>เปรียบเทียบกับค่าไฟ:</b> คนไทยเฉลี่ยจ่ายค่าน้ำแค่ 5-15% ของค่าไฟ ค่าไฟประหยัดได้มากกว่า แต่ถ้าใช้น้ำมาก (มีสวน สระว่ายน้ำ) ค่าน้ำอาจสูงถึง 1,000-5,000 บาท/เดือน คุ้มมากที่จะลงทุนระบบรีไซเคิลน้ำหรือเก็บน้ำฝน</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">ประหยัดค่าน้ำอย่างมีระบบ</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>เข้าใจระบบอัตราก้าวหน้า:</b> ค่าน้ำใน MEA ยิ่งใช้มากยิ่งแพงขึ้นต่อหน่วย ถ้าใช้อยู่ที่ 35 หน่วย/เดือน ลองลดสัก 5 หน่วยจะช่วยหลีกเลี่ยงอัตราขั้น 4 (17 บาท/หน่วย) ลงมาอยู่ที่ขั้น 3 (13.50 บาท/หน่วย) ประหยัดได้ชัดเจน การลดการใช้น้ำ <b>ที่ขั้นสูง</b> ประหยัดได้มากกว่าที่ขั้นต่ำ</p><p style="margin-bottom:14px;line-height:1.7"><b>ตรวจมิเตอร์น้ำเดือนละครั้ง:</b> จดตัวเลขมิเตอร์ต้นเดือนและสิ้นเดือน ผลต่างคือหน่วยที่ใช้ ถ้าเดือนไหนพุ่งขึ้นโดยไม่มีสาเหตุ อาจมีท่อรั่ว การตรวจสอบเร็วช่วยป้องกันค่าน้ำบิลถัดไปที่จะแพงมาก</p><p style="line-height:1.7"><b>เปรียบเทียบกับค่าไฟ:</b> คนไทยเฉลี่ยจ่ายค่าน้ำแค่ 5-15% ของค่าไฟ ค่าไฟประหยัดได้มากกว่า แต่ถ้าใช้น้ำมาก (มีสวน สระว่ายน้ำ) ค่าน้ำอาจสูงถึง 1,000-5,000 บาท/เดือน คุ้มมากที่จะลงทุนระบบรีไซเคิลน้ำหรือเก็บน้ำฝน</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/electricity.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">⚡ คำนวณค่าไฟ</div><div class="c-sub">อัตรา MEA/PEA · Ft · ประหยัดได้เท่าไหร่</div></div>
@@ -154,6 +155,7 @@
   </div>
 </div>
 
+</main>
 <footer>อัตราค่าน้ำอ้างอิงจากการประปานครหลวง (MEA) และการประปาภูมิภาค (PWA) ปี 2568<br>ข้อมูลเพื่อการศึกษาเท่านั้น ตรวจสอบอัตราปัจจุบันได้ที่ mwa.co.th หรือ pwa.co.th</footer>
 
 <script>

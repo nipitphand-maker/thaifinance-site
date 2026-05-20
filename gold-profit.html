@@ -33,12 +33,13 @@
 <script src="js/utils.js"></script>
 <script>injectNav('gold-profit.html'); loadURLState(['goldType','weight','buyPrice','sellPrice','makingFee','makingSell']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="page-hd-inner">
     <h1 class="page-title">กำไร/ขาดทุนทองคำ</h1>
     <p class="page-sub">ทองแท่ง · ทองรูปพรรณ · หักค่ากำเหน็จครบ</p>
   </div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="card">
@@ -87,7 +88,7 @@
 <div class="card" id="goldBreakdown" style="display:none;margin:0 16px 16px"></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ราคาทองคำปัจจุบัน</div>
+  <h2 class="sec-title">ราคาทองคำปัจจุบัน</h2>
   <div class="card">
     <div class="c-row">
       <div><div class="c-label">ทองแท่ง 96.5%</div><div class="c-sub">ราคารับซื้อ / ขายออก</div></div>
@@ -108,7 +109,7 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ความรู้เรื่องทองคำไทย</div>
+  <h2 class="sec-title">ความรู้เรื่องทองคำไทย</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>รายการ</th><th style="text-align:right">ค่า</th></tr></thead>
@@ -134,9 +135,9 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">วิธีใช้เครื่องคำนวณกำไรทอง</div><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>เลือก <b>ประเภททอง</b> — ทองแท่งไม่มีค่ากำเหน็จ, ทองรูปพรรณมีค่ากำเหน็จตอนซื้อ</li><li>กรอก <b>น้ำหนัก</b> เป็นบาทน้ำหนัก (1 บาท = 15.244 กรัม)</li><li>กรอก <b>ราคาที่ซื้อมา</b> (ดูจากใบเสร็จร้านทอง)</li><li>กรอก <b>ราคาขายปัจจุบัน</b> (ราคารับซื้อจากร้านทอง ณ วันนี้)</li><li>กรอก <b>ค่ากำเหน็จ</b> สำหรับทองรูปพรรณ และ <b>หักค่าเศษทอง</b> ถ้ามี</li></ol></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">วิธีใช้เครื่องคำนวณกำไรทอง</h2><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>เลือก <b>ประเภททอง</b> — ทองแท่งไม่มีค่ากำเหน็จ, ทองรูปพรรณมีค่ากำเหน็จตอนซื้อ</li><li>กรอก <b>น้ำหนัก</b> เป็นบาทน้ำหนัก (1 บาท = 15.244 กรัม)</li><li>กรอก <b>ราคาที่ซื้อมา</b> (ดูจากใบเสร็จร้านทอง)</li><li>กรอก <b>ราคาขายปัจจุบัน</b> (ราคารับซื้อจากร้านทอง ณ วันนี้)</li><li>กรอก <b>ค่ากำเหน็จ</b> สำหรับทองรูปพรรณ และ <b>หักค่าเศษทอง</b> ถ้ามี</li></ol></div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec" style="padding-top:0"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">ทองแท่ง 1 บาทหนักกี่กรัม?</summary><div class="faq-a">ทองคำไทย 1 บาท = 15.244 กรัม เป็นหน่วยน้ำหนักเฉพาะของไทย ไม่เท่ากับ 1 บาท (เงิน) ทองแท่ง 96.5% หมายถึงทองบริสุทธิ์ 96.5% ส่วนที่เหลือเป็นแร่อื่น เช่น เงินและทองแดง ซึ่งเป็นมาตรฐานของทองคำไทย ทองสากล (LBMA) ที่เป็น 99.99% บริสุทธิ์มีราคาสูงกว่าเล็กน้อย</div></details>
 <details class="faq-item"><summary class="faq-q">ค่ากำเหน็จทองรูปพรรณเท่าไหร่?</summary><div class="faq-a">ค่ากำเหน็จทองรูปพรรณขึ้นอยู่กับรูปแบบและร้าน โดยทั่วไปอยู่ที่ 200-800 บาท/บาทน้ำหนัก แหวนทองเรียบ ~200-300 บาท สร้อยคอแบบธรรมดา ~300-500 บาท กำไลหรือเครื่องประดับซับซ้อน 500-800+ บาท เมื่อขายคืน ร้านจะรับซื้อในราคาทองแท่งหักค่าเศษทอง โดยไม่คืนค่ากำเหน็จ นี่คือเหตุผลที่ทองรูปพรรณ "ขาดทุน" ในระยะสั้นเสมอ</div></details>
 <details class="faq-item"><summary class="faq-q">ซื้อทองแล้วขายทันทีขาดทุนไหม?</summary><div class="faq-a">ขาดทุนแน่นอน เพราะส่วนต่างราคาซื้อ-ขาย (Spread) ทองแท่งอยู่ที่ ~200-400 บาท/บาทน้ำหนัก ทองรูปพรรณขาดทุนมากกว่านั้นเพราะเสียค่ากำเหน็จตอนซื้อด้วย เช่น ซื้อทองรูปพรรณ 1 บาทราคา 48,500 (รวมกำเหน็จ 500) ขายทันทีได้แค่ ~48,100 ขาดทุนเลย 400 บาท (ส่วนต่าง spread) + 500 บาท (กำเหน็จ) = ขาดทุน 900 บาท</div></details>
@@ -147,10 +148,10 @@
 <details class="faq-item"><summary class="faq-q">ทองสะสมออมทองกับซื้อทองแท่งต่างกันไหม?</summary><div class="faq-a">ทองสะสม (Digital Gold / ออมทอง) เช่น ของ OR, YLG, Hua Seng: ซื้อออนไลน์ ไม่มีตัวจริง ค่า spread ต่ำกว่าซื้อแท่ง แต่มีค่าเก็บรักษา ทองแท่งจริง: ถือครองได้จริง ค่า spread สูงกว่า แต่ไม่มีค่าเก็บรักษา ถ้าต้องการลงทุนจำนวนน้อยสม่ำเสมอ ทองสะสมดิจิทัลสะดวกกว่า ถ้าต้องการสินทรัพย์จริงในมือ ทองแท่งเหมาะกว่า</div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">กลยุทธ์ลงทุนทองสำหรับคนไทย</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>ทองเป็น hedge ไม่ใช่แหล่งผลตอบแทนหลัก:</b> ทองคำในพอร์ตช่วย "ปกป้อง" ความมั่งคั่งในช่วงวิกฤต เงินเฟ้อ หรือสงคราม แต่ในช่วงเศรษฐกิจขยายตัว หุ้นให้ผลตอบแทนดีกว่ามาก สูตรที่นักลงทุนมืออาชีพนิยม: ถือทอง 5-15% ของพอร์ต ส่วนที่เหลือเป็นหุ้น/กองทุน</p><p style="margin-bottom:14px;line-height:1.7"><b>DCA ทอง (ทองสะสม):</b> ซื้อทองสม่ำเสมอทุกเดือนช่วยลด timing risk ไม่ต้องทายว่าราคาจะขึ้นหรือลง ซื้อทองดิจิทัล (ออมทอง) ทุกเดือน 1,000-5,000 บาท สะดวกที่สุดสำหรับมนุษย์เงินเดือน</p><p style="line-height:1.7"><b>เฝ้าระวังค่าเงินบาท:</b> ทองเป็น hedge ค่าบาทอ่อนที่ดีมาก เมื่อ USD/THB สูงขึ้น (บาทอ่อน) ราคาทองไทยขึ้นเป็นอัตโนมัติ ถ้ากังวลว่าเงินเฟ้อไทยจะสูงหรือเงินบาทจะอ่อนในระยะยาว การถือทองช่วยปกป้องกำลังซื้อได้</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">กลยุทธ์ลงทุนทองสำหรับคนไทย</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>ทองเป็น hedge ไม่ใช่แหล่งผลตอบแทนหลัก:</b> ทองคำในพอร์ตช่วย "ปกป้อง" ความมั่งคั่งในช่วงวิกฤต เงินเฟ้อ หรือสงคราม แต่ในช่วงเศรษฐกิจขยายตัว หุ้นให้ผลตอบแทนดีกว่ามาก สูตรที่นักลงทุนมืออาชีพนิยม: ถือทอง 5-15% ของพอร์ต ส่วนที่เหลือเป็นหุ้น/กองทุน</p><p style="margin-bottom:14px;line-height:1.7"><b>DCA ทอง (ทองสะสม):</b> ซื้อทองสม่ำเสมอทุกเดือนช่วยลด timing risk ไม่ต้องทายว่าราคาจะขึ้นหรือลง ซื้อทองดิจิทัล (ออมทอง) ทุกเดือน 1,000-5,000 บาท สะดวกที่สุดสำหรับมนุษย์เงินเดือน</p><p style="line-height:1.7"><b>เฝ้าระวังค่าเงินบาท:</b> ทองเป็น hedge ค่าบาทอ่อนที่ดีมาก เมื่อ USD/THB สูงขึ้น (บาทอ่อน) ราคาทองไทยขึ้นเป็นอัตโนมัติ ถ้ากังวลว่าเงินเฟ้อไทยจะสูงหรือเงินบาทจะอ่อนในระยะยาว การถือทองช่วยปกป้องกำลังซื้อได้</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/gold.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">💛 ราคาทองวันนี้</div><div class="c-sub">ราคาทองแท่ง-รูปพรรณ · กราฟย้อนหลัง</div></div>
@@ -171,6 +172,7 @@
   </div>
 </div>
 
+</main>
 <footer>ราคาทองอ้างอิงจากสมาคมค้าทองคำและแหล่งข้อมูลสาธารณะ<br>ข้อมูลเพื่อการศึกษาเท่านั้น ราคาทองเปลี่ยนแปลงตลอดเวลา ตรวจสอบราคาจริงก่อนซื้อขาย</footer>
 
 <script>

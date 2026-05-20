@@ -32,11 +32,12 @@
 <script src="js/utils.js"></script>
 <script>injectNav('tdee.html'); loadURLState(['gender','age','weight','height','activity','goal']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="eyebrow">TDEE Calculator</div>
-  <div class="page-title">คำนวณ<br>TDEE</div>
+  <h1 class="page-title">คำนวณ<br>TDEE</h1>
   <div class="page-sub">BMR · แคลอรี่ต่อวัน · แผนลด/เพิ่มน้ำหนัก</div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="form-card">
@@ -97,12 +98,12 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">สัดส่วนสารอาหาร (Macros)</div>
+  <h2 class="sec-title">สัดส่วนสารอาหาร (Macros)</h2>
   <div class="card" id="tdeeMarcos" style="display:none"></div>
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ระดับกิจกรรม — อธิบาย</div>
+  <h2 class="sec-title">ระดับกิจกรรม — อธิบาย</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>ระดับ</th><th>ตัวอย่าง</th><th style="text-align:right">ตัวคูณ</th></tr></thead>
@@ -127,9 +128,9 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec"><div class="sec-title">วิธีใช้เครื่องคำนวณ TDEE</div><div class="card"><div class="c-row"><div><div class="c-label">ใส่ข้อมูลร่างกาย</div><div class="c-sub">น้ำหนัก ส่วนสูง อายุ เพศ — ยิ่งแม่นยำยิ่งดี</div></div></div><div class="c-row"><div><div class="c-label">เลือกระดับกิจกรรม</div><div class="c-sub">คนส่วนใหญ่มักเลือกระดับที่สูงกว่าจริง — ซื่อสัตย์กับตัวเอง</div></div></div><div class="c-row"><div><div class="c-label">เลือกเป้าหมาย</div><div class="c-sub">ลดน้ำหนัก: กิน TDEE−500 · รักษา: กิน TDEE · เพิ่มกล้าม: กิน TDEE+300</div></div></div><div class="c-row"><div><div class="c-label">แบ่ง Macros</div><div class="c-sub">โปรตีน 2g/กก. · ไขมัน 25% · ส่วนที่เหลือ = คาร์โบไฮเดรต</div></div></div><div class="c-row"><div><div class="c-label">ปรับทุก 2-4 สัปดาห์</div><div class="c-sub">เมื่อน้ำหนักเปลี่ยน ให้คำนวณ TDEE ใหม่เพราะร่างกายปรับตัว</div></div></div></div></div>
+<div class="sec"><h2 class="sec-title">วิธีใช้เครื่องคำนวณ TDEE</h2><div class="card"><div class="c-row"><div><div class="c-label">ใส่ข้อมูลร่างกาย</div><div class="c-sub">น้ำหนัก ส่วนสูง อายุ เพศ — ยิ่งแม่นยำยิ่งดี</div></div></div><div class="c-row"><div><div class="c-label">เลือกระดับกิจกรรม</div><div class="c-sub">คนส่วนใหญ่มักเลือกระดับที่สูงกว่าจริง — ซื่อสัตย์กับตัวเอง</div></div></div><div class="c-row"><div><div class="c-label">เลือกเป้าหมาย</div><div class="c-sub">ลดน้ำหนัก: กิน TDEE−500 · รักษา: กิน TDEE · เพิ่มกล้าม: กิน TDEE+300</div></div></div><div class="c-row"><div><div class="c-label">แบ่ง Macros</div><div class="c-sub">โปรตีน 2g/กก. · ไขมัน 25% · ส่วนที่เหลือ = คาร์โบไฮเดรต</div></div></div><div class="c-row"><div><div class="c-label">ปรับทุก 2-4 สัปดาห์</div><div class="c-sub">เมื่อน้ำหนักเปลี่ยน ให้คำนวณ TDEE ใหม่เพราะร่างกายปรับตัว</div></div></div></div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec" style="padding-top:0"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">TDEE คืออะไร?</summary><div class="faq-a">TDEE (Total Daily Energy Expenditure) คือพลังงานทั้งหมดที่ร่างกายเผาผลาญใน 1 วัน รวมทั้ง BMR (พลังงานฐานที่อวัยวะใช้ขณะพัก) + พลังงานที่ใช้ในการเคลื่อนไหวทุกอย่าง ถ้ากินน้อยกว่า TDEE จะลดน้ำหนัก ถ้ากินมากกว่าจะน้ำหนักขึ้น</div></details>
 <details class="faq-item"><summary class="faq-q">BMR กับ TDEE ต่างกันยังไง?</summary><div class="faq-a">BMR (Basal Metabolic Rate) คือพลังงานที่ร่างกายต้องการขั้นต่ำขณะพักนิ่งสนิท (หัวใจเต้น หายใจ สมองทำงาน) ส่วน TDEE คือ BMR คูณด้วยตัวคูณกิจกรรม ดังนั้น TDEE สูงกว่า BMR เสมอ คนทั่วไป TDEE มักอยู่ที่ BMR × 1.5-1.7</div></details>
 <details class="faq-item"><summary class="faq-q">ลดน้ำหนัก 1 กก. ต้องลดกี่แคล?</summary><div class="faq-a">ไขมัน 1 กก. มีพลังงานประมาณ 7,700 kcal ดังนั้น ถ้า deficit 500 kcal/วัน จะลดได้ ~0.5 กก./สัปดาห์ ถ้า deficit 1,000 kcal/วัน จะลดได้ ~1 กก./สัปดาห์ อย่าง deficit เกิน 500-750 kcal/วัน เพราะจะสูญเสียกล้ามเนื้อด้วย</div></details>
@@ -140,10 +141,10 @@
 <details class="faq-item"><summary class="faq-q">คำนวณแล้วต้องกินตรงๆ เลยไหม?</summary><div class="faq-a">TDEE เป็นจุดเริ่มต้น ไม่ใช่ตัวเลขศักดิ์สิทธิ์ แต่ละคนมีเมตาบอลิซึมต่างกัน ลองกินตาม TDEE 2-3 สัปดาห์แล้วดูผล ถ้าน้ำหนักไม่เปลี่ยนตามเป้า ปรับขึ้นหรือลง 100-150 kcal แล้วสังเกตอีก 2 สัปดาห์</div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">เข้าใจ TDEE และการควบคุมน้ำหนัก</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">TDEE คำนวณจาก <b>สูตร Mifflin-St Jeor</b> ที่ได้รับการยืนยันว่าแม่นยำที่สุดในปัจจุบัน: BMR (ชาย) = 10×น้ำหนัก + 6.25×ส่วนสูง − 5×อายุ + 5 / BMR (หญิง) = 10×น้ำหนัก + 6.25×ส่วนสูง − 5×อายุ − 161 แล้วคูณตัวคูณกิจกรรม (Activity Multiplier) เพื่อได้ TDEE ที่รวมพลังงานที่ใช้ในการเคลื่อนไหวทั้งหมด</p><p style="margin-bottom:14px;line-height:1.7"><b>หลักการ Energy Balance:</b> น้ำหนักขึ้น/ลง ขึ้นอยู่กับ <b>แคลอรี่เข้า vs แคลอรี่ออก</b> เป็นหลัก การกินต่ำกว่า TDEE 500 kcal/วัน จะลดน้ำหนักได้ ~0.5 กก./สัปดาห์ โดยไม่ต้องออกกำลังกายเพิ่ม แต่การออกกำลังกายเพิ่ม TDEE ทำให้กินได้มากขึ้นและรักษากล้ามเนื้อได้ดีกว่า</p><p style="line-height:1.7"><b>Macronutrients สำคัญ:</b> โปรตีน 4 kcal/g รักษากล้ามเนื้อ อิ่มนาน ให้ความสำคัญ 1.6-2g/กก. ไขมัน 9 kcal/g จำเป็นสำหรับฮอร์โมนและสมอง ไม่ควรต่ำกว่า 0.5g/กก. คาร์โบไฮเดรต 4 kcal/g เป็นพลังงานหลักสำหรับสมองและกล้ามเนื้อระหว่างออกกำลังกาย ปรับตามความชอบและไลฟ์สไตล์</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">เข้าใจ TDEE และการควบคุมน้ำหนัก</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">TDEE คำนวณจาก <b>สูตร Mifflin-St Jeor</b> ที่ได้รับการยืนยันว่าแม่นยำที่สุดในปัจจุบัน: BMR (ชาย) = 10×น้ำหนัก + 6.25×ส่วนสูง − 5×อายุ + 5 / BMR (หญิง) = 10×น้ำหนัก + 6.25×ส่วนสูง − 5×อายุ − 161 แล้วคูณตัวคูณกิจกรรม (Activity Multiplier) เพื่อได้ TDEE ที่รวมพลังงานที่ใช้ในการเคลื่อนไหวทั้งหมด</p><p style="margin-bottom:14px;line-height:1.7"><b>หลักการ Energy Balance:</b> น้ำหนักขึ้น/ลง ขึ้นอยู่กับ <b>แคลอรี่เข้า vs แคลอรี่ออก</b> เป็นหลัก การกินต่ำกว่า TDEE 500 kcal/วัน จะลดน้ำหนักได้ ~0.5 กก./สัปดาห์ โดยไม่ต้องออกกำลังกายเพิ่ม แต่การออกกำลังกายเพิ่ม TDEE ทำให้กินได้มากขึ้นและรักษากล้ามเนื้อได้ดีกว่า</p><p style="line-height:1.7"><b>Macronutrients สำคัญ:</b> โปรตีน 4 kcal/g รักษากล้ามเนื้อ อิ่มนาน ให้ความสำคัญ 1.6-2g/กก. ไขมัน 9 kcal/g จำเป็นสำหรับฮอร์โมนและสมอง ไม่ควรต่ำกว่า 0.5g/กก. คาร์โบไฮเดรต 4 kcal/g เป็นพลังงานหลักสำหรับสมองและกล้ามเนื้อระหว่างออกกำลังกาย ปรับตามความชอบและไลฟ์สไตล์</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/bmi.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">⚖️ คำนวณ BMI</div><div class="c-sub">ดัชนีมวลกาย · น้ำหนักเหมาะสม</div></div>
@@ -164,6 +165,7 @@
   </div>
 </div>
 
+</main>
 <footer>คำนวณจากสูตร Mifflin-St Jeor ที่แม่นยำที่สุดสำหรับประชากรทั่วไป<br>ปรึกษานักโภชนาการหรือแพทย์สำหรับแผนที่เหมาะกับสุขภาพของคุณ</footer>
 
 <script>

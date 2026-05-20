@@ -33,12 +33,13 @@
 <script src="js/utils.js"></script>
 <script>injectNav('hourly.html'); loadURLState(['salary','workDays','workHours','otWday','otWeekend','otHoliday']);</script>
 
-<div class="page-hd">
+<header class="page-hd">
   <div class="page-hd-inner">
     <h1 class="page-title">ค่าแรงรายชั่วโมง & OT</h1>
     <p class="page-sub">แปลงเงินเดือน · OT × 1.5 · วันหยุด × 2 · พาร์ทไทม์</p>
   </div>
-</div>
+</header>
+<main>
 
 <div class="sec">
   <div class="card">
@@ -68,7 +69,7 @@
 <div class="card" id="hourlyBreakdown" style="display:none;margin:0 16px 16px"></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">คำนวณค่า OT และวันหยุด</div>
+  <h2 class="sec-title">คำนวณค่า OT และวันหยุด</h2>
   <div class="card">
     <div class="field-row">
       <div class="field">
@@ -93,7 +94,7 @@
 <div class="card" id="otBreakdown" style="display:none;margin:0 16px 16px"></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">ค่าแรงขั้นต่ำ 2568 ตามจังหวัด</div>
+  <h2 class="sec-title">ค่าแรงขั้นต่ำ 2568 ตามจังหวัด</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>จังหวัด/กลุ่ม</th><th style="text-align:right">บาท/วัน</th><th style="text-align:right">บาท/ชั่วโมง (8 ชม.)</th></tr></thead>
@@ -110,7 +111,7 @@
 </div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">อัตราค่า OT ตามกฎหมายแรงงาน</div>
+  <h2 class="sec-title">อัตราค่า OT ตามกฎหมายแรงงาน</h2>
   <div class="card">
     <table class="data-tbl" style="padding:0 16px">
       <thead><tr><th>ประเภทการทำงาน</th><th style="text-align:right">อัตราคูณ</th><th>ที่มา</th></tr></thead>
@@ -137,9 +138,9 @@
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">วิธีใช้เครื่องคำนวณค่าแรงรายชั่วโมง</div><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>กรอก <b>เงินเดือน</b> ต่อเดือน (หรือค่าจ้างรายเดือนสำหรับพาร์ทไทม์)</li><li>กรอก <b>วันทำงาน</b> ต่อเดือน — ปกติ 26 วัน (5 วัน/สัปดาห์) หรือ 22 วัน (หักวันหยุดนักขัตฤกษ์)</li><li>กรอก <b>ชั่วโมงทำงาน</b> ต่อวัน — ปกติ 8 ชั่วโมง</li><li>กรอก <b>ชั่วโมง OT</b> แต่ละประเภท เพื่อคำนวณรายได้รวม</li></ol></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">วิธีใช้เครื่องคำนวณค่าแรงรายชั่วโมง</h2><div class="card" style="padding:18px 16px"><ol style="padding-left:18px;line-height:2;color:var(--ink2)"><li>กรอก <b>เงินเดือน</b> ต่อเดือน (หรือค่าจ้างรายเดือนสำหรับพาร์ทไทม์)</li><li>กรอก <b>วันทำงาน</b> ต่อเดือน — ปกติ 26 วัน (5 วัน/สัปดาห์) หรือ 22 วัน (หักวันหยุดนักขัตฤกษ์)</li><li>กรอก <b>ชั่วโมงทำงาน</b> ต่อวัน — ปกติ 8 ชั่วโมง</li><li>กรอก <b>ชั่วโมง OT</b> แต่ละประเภท เพื่อคำนวณรายได้รวม</li></ol></div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<div class="sec" style="padding-top:0"><h2 class="sec-title">คำถามที่พบบ่อย</h2><div class="faq-list">
 <details class="faq-item"><summary class="faq-q">ค่า OT คำนวณอย่างไรตามกฎหมายแรงงาน?</summary><div class="faq-a">ตามพ.ร.บ.คุ้มครองแรงงาน: OT วันธรรมดา (เกิน 8 ชั่วโมง) = ค่าแรงชั่วโมงปกติ × 1.5 | ทำงานในวันหยุดประจำสัปดาห์หรือนักขัตฤกษ์ = ค่าแรงชั่วโมงปกติ × 2 | OT ในวันหยุด (เกิน 8 ชั่วโมง) = ค่าแรงชั่วโมงปกติ × 3 นายจ้างต้องจ่ายค่า OT ให้กับลูกจ้างรายเดือนทุกคน ยกเว้น ผู้บริหาร/ผู้มีอำนาจจ้างหรือเลิกจ้าง</div></details>
 <details class="faq-item"><summary class="faq-q">ค่าแรงรายชั่วโมงจากเงินเดือนคำนวณอย่างไร?</summary><div class="faq-a">วิธีมาตรฐาน: ค่าแรง/ชั่วโมง = เงินเดือน ÷ (วันทำงาน/เดือน × ชั่วโมง/วัน) เช่น เงินเดือน 30,000 บาท ทำงาน 26 วัน/เดือน 8 ชั่วโมง/วัน: 30,000 ÷ (26 × 8) = 30,000 ÷ 208 = 144.23 บาท/ชั่วโมง หรือใช้ 30 วัน/เดือน ตามบางบริษัท: 30,000 ÷ 240 = 125 บาท/ชั่วโมง ควรตรวจสอบสัญญาจ้างว่าบริษัทใช้ฐาน 26 หรือ 30 วัน</div></details>
 <details class="faq-item"><summary class="faq-q">ค่าแรงขั้นต่ำปี 2568 เท่าไหร่?</summary><div class="faq-a">ค่าแรงขั้นต่ำปี 2568 ประกาศตามประกาศคณะกรรมการค่าจ้าง อยู่ที่ 363-400 บาท/วัน ขึ้นอยู่กับจังหวัด กรุงเทพฯ และพื้นที่เศรษฐกิจสำคัญ เช่น ชลบุรี ระยอง ภูเก็ต อยู่ที่ 400 บาท/วัน (≈ 50 บาท/ชั่วโมงสำหรับงาน 8 ชั่วโมง) จังหวัดในต่างจังหวัดส่วนใหญ่อยู่ที่ 363-380 บาท/วัน</div></details>
@@ -150,10 +151,10 @@
 <details class="faq-item"><summary class="faq-q">ถ้านายจ้างไม่จ่าย OT ทำอย่างไร?</summary><div class="faq-a">1) เก็บหลักฐาน: บันทึกเวลา OT, ใบเสร็จ payslip, Line chat ที่สั่งทำ OT 2) คุยกับ HR/ฝ่ายบุคคลก่อน อาจเป็นความเข้าใจผิด 3) ร้องเรียนที่ กรมสวัสดิการและคุ้มครองแรงงาน (กสร.) ทางออนไลน์หรือที่สำนักงานจังหวัด โทร 1506 กด 3 4) ถ้าถูกเลิกจ้าง มีสิทธิ์เรียกค่าชดเชยพร้อมค่า OT ค้างจ่ายผ่านศาลแรงงาน</div></details>
 </div></div>
 
-<div class="sec" style="padding-top:0"><div class="sec-title">รู้จักสิทธิ์แรงงานของคุณ</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>สิทธิ์พื้นฐานที่ลูกจ้างทุกคนต้องรู้:</b> ทำงานไม่เกิน 8 ชั่วโมง/วัน และ 48 ชั่วโมง/สัปดาห์ (บางอุตสาหกรรมไม่เกิน 42 ชั่วโมง) OT สูงสุดได้ไม่เกิน 36 ชั่วโมง/สัปดาห์ วันหยุดพักผ่อนประจำปีไม่น้อยกว่า 6 วัน/ปี วันหยุดนักขัตฤกษ์ไม่น้อยกว่า 13 วัน/ปี</p><p style="margin-bottom:14px;line-height:1.7"><b>ค่าแรงขั้นต่ำ vs เงินเดือนที่ควรได้:</b> ค่าแรงขั้นต่ำ 400 บาท/วัน (กทม.) = เดือนละ ~10,400 บาท (26 วัน) เป็นค่าแรงขั้นต่ำที่กฎหมายบังคับ ไม่ใช่ค่าแรง "ที่ดี" มีการศึกษาชี้ว่าค่าครองชีพที่เพียงพอในกทม. ควรอยู่ที่ 20,000-25,000 บาท/เดือน ขึ้นไป</p><p style="line-height:1.7"><b>โบนัสและเงินอื่นๆ:</b> โบนัส: กฎหมายไม่บังคับ แต่ถ้าสัญญาระบุชัดถือเป็นสิทธิ์ตามสัญญา | ค่าคอมมิชชั่น: ต้องจ่ายตามที่ตกลง | ค่ากะ/ค่าอาหาร: เป็นค่าจ้างถ้าจ่ายเป็นประจำ ต้องนำมารวมคำนวณค่า OT ด้วย</p></div></div>
+<div class="sec" style="padding-top:0"><h2 class="sec-title">รู้จักสิทธิ์แรงงานของคุณ</h2><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7"><b>สิทธิ์พื้นฐานที่ลูกจ้างทุกคนต้องรู้:</b> ทำงานไม่เกิน 8 ชั่วโมง/วัน และ 48 ชั่วโมง/สัปดาห์ (บางอุตสาหกรรมไม่เกิน 42 ชั่วโมง) OT สูงสุดได้ไม่เกิน 36 ชั่วโมง/สัปดาห์ วันหยุดพักผ่อนประจำปีไม่น้อยกว่า 6 วัน/ปี วันหยุดนักขัตฤกษ์ไม่น้อยกว่า 13 วัน/ปี</p><p style="margin-bottom:14px;line-height:1.7"><b>ค่าแรงขั้นต่ำ vs เงินเดือนที่ควรได้:</b> ค่าแรงขั้นต่ำ 400 บาท/วัน (กทม.) = เดือนละ ~10,400 บาท (26 วัน) เป็นค่าแรงขั้นต่ำที่กฎหมายบังคับ ไม่ใช่ค่าแรง "ที่ดี" มีการศึกษาชี้ว่าค่าครองชีพที่เพียงพอในกทม. ควรอยู่ที่ 20,000-25,000 บาท/เดือน ขึ้นไป</p><p style="line-height:1.7"><b>โบนัสและเงินอื่นๆ:</b> โบนัส: กฎหมายไม่บังคับ แต่ถ้าสัญญาระบุชัดถือเป็นสิทธิ์ตามสัญญา | ค่าคอมมิชชั่น: ต้องจ่ายตามที่ตกลง | ค่ากะ/ค่าอาหาร: เป็นค่าจ้างถ้าจ่ายเป็นประจำ ต้องนำมารวมคำนวณค่า OT ด้วย</p></div></div>
 
 <div class="sec" style="padding-top:0">
-  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <h2 class="sec-title">เครื่องมือที่เกี่ยวข้อง</h2>
   <div class="card">
     <a class="c-row" href="/salary.html" style="text-decoration:none;color:inherit">
       <div><div class="c-label">💼 เงินเดือนสุทธิ</div><div class="c-sub">Gross to Net · หักภาษี SSO</div></div>
@@ -174,6 +175,7 @@
   </div>
 </div>
 
+</main>
 <footer>อัตราค่าแรงขั้นต่ำอ้างอิงจากประกาศคณะกรรมการค่าจ้าง ปี 2568<br>กฎหมายแรงงานอ้างอิงจากพ.ร.บ.คุ้มครองแรงงาน พ.ศ. 2541 และที่แก้ไขเพิ่มเติม<br>ข้อมูลเพื่อการศึกษาเท่านั้น ปรึกษาที่ปรึกษากฎหมายแรงงานสำหรับกรณีเฉพาะ</footer>
 
 <script>
