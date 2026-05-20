@@ -248,4 +248,13 @@
       <image:loc>https://thaifinance-site.pages.dev/img/og-sso.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/ev.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-ev.png</image:loc>
+    </image:image>
+  </url>
 </urlset>

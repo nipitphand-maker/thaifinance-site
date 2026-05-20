@@ -136,6 +136,7 @@ function injectNav(active) {
     ['tdee.html', '🔥 TDEE'],
     ['severance.html', '⚖️ ค่าชดเชย'],
     ['sso.html', '🛡️ ประกันสังคม'],
+    ['ev.html', '⚡ EV vs น้ำมัน'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';
