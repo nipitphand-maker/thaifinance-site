@@ -56,15 +56,15 @@
   <div class="form-card">
     <div class="field">
       <label class="f-label">วงเงินกู้ (บาท)</label>
-      <input type="number" class="f-input" id="principal" placeholder="เช่น 3,000,000">
+      <input type="number" class="f-input" id="principal" placeholder="เช่น 3,000,000" oninput="calcMort()">
     </div>
     <div class="field">
       <label class="f-label">อัตราดอกเบี้ยต่อปี (%)</label>
-      <input type="number" class="f-input" id="rate" value="6.5" step="0.1">
+      <input type="number" class="f-input" id="rate" value="6.5" step="0.1" oninput="calcMort()">
     </div>
     <div class="field">
       <label class="f-label">ระยะเวลาผ่อน</label>
-      <select class="f-input" id="years">
+      <select class="f-input" id="years" onchange="calcMort()">
         <option value="10">10 ปี</option>
         <option value="15">15 ปี</option>
         <option value="20" selected>20 ปี</option>
@@ -134,7 +134,7 @@ function calcMort(){
   const P=parseFloat(document.getElementById('principal').value)||0;
   const ar=parseFloat(document.getElementById('rate').value)||6.5;
   const yrs=parseInt(document.getElementById('years').value);
-  if(!P){alert('กรุณาใส่วงเงินกู้');return;}
+  if(!P){return;}
   pushURLState({principal:P, rate:ar, years:yrs});
   const r=ar/100/12, n=yrs*12;
   const monthly=P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);

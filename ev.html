@@ -44,7 +44,7 @@
     <div class="field-row">
       <div class="field">
         <label class="f-label">ราคารถ EV (บาท)</label>
-        <input type="number" class="f-input" id="evPrice" value="1200000">
+        <input type="number" class="f-input" id="evPrice" value="1200000" oninput="calcEV()">
       </div>
       <div class="field">
         <label class="f-label">อัตราสิ้นเปลือง (กม./kWh)</label>
@@ -55,7 +55,7 @@
     <div class="field-row">
       <div class="field">
         <label class="f-label">ค่าไฟฟ้า (บาท/หน่วย)</label>
-        <input type="number" class="f-input" id="elecRate" value="4.5" step="0.1">
+        <input type="number" class="f-input" id="elecRate" value="4.5" step="0.1" oninput="calcEV()">
         <div class="f-hint">บ้าน ~4-5 บ. · ที่ชาร์จสาธารณะ ~6-8 บ.</div>
       </div>
       <div class="field">
@@ -69,7 +69,7 @@
     <div class="field-row">
       <div class="field">
         <label class="f-label">ราคารถน้ำมัน (บาท)</label>
-        <input type="number" class="f-input" id="gasPrice" value="900000">
+        <input type="number" class="f-input" id="gasPrice" value="900000" oninput="calcEV()">
       </div>
       <div class="field">
         <label class="f-label">อัตราสิ้นเปลือง (กม./ลิตร)</label>
@@ -80,7 +80,7 @@
     <div class="field-row">
       <div class="field">
         <label class="f-label">ราคาน้ำมัน (บาท/ลิตร)</label>
-        <input type="number" class="f-input" id="fuelPrice" value="40" step="0.5">
+        <input type="number" class="f-input" id="fuelPrice" value="40" step="0.5" oninput="calcEV()">
         <div class="f-hint">เบนซิน 95 / E20 / ดีเซล B7</div>
       </div>
       <div class="field">
@@ -94,11 +94,11 @@
     <div class="field-row">
       <div class="field">
         <label class="f-label">ระยะทางต่อปี (กม.)</label>
-        <input type="number" class="f-input" id="kmYear" value="20000">
+        <input type="number" class="f-input" id="kmYear" value="20000" oninput="calcEV()">
       </div>
       <div class="field">
         <label class="f-label">ระยะเวลาถือครอง (ปี)</label>
-        <input type="number" class="f-input" id="yearsOwn" value="7" min="1" max="20">
+        <input type="number" class="f-input" id="yearsOwn" value="7" min="1" max="20" oninput="calcEV()">
       </div>
     </div>
     <button class="btn btn-dark" onclick="calcEV()">เปรียบเทียบ</button>
@@ -189,7 +189,7 @@ function calcEV() {
   const evMaint   = parseFloat(document.getElementById('evMaint').value)   || 8000;
   const gasMaint  = parseFloat(document.getElementById('gasMaint').value)  || 18000;
   const yearsOwn  = parseInt(document.getElementById('yearsOwn').value)    || 7;
-  if (!evPrice || !gasPrice) { alert('กรุณาใส่ราคารถทั้งสองคัน'); return; }
+  if (!evPrice || !gasPrice) { return; }
   pushURLState({evPrice, gasPrice, kmYear, gasKm, evKwh, elecRate, yearsOwn});
 
   // Annual fuel costs

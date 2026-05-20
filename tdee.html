@@ -43,29 +43,29 @@
     <div class="field-row">
       <div class="field">
         <label class="f-label">เพศ</label>
-        <select class="f-input" id="gender">
+        <select class="f-input" id="gender" onchange="calcTDEE()">
           <option value="male">ชาย</option>
           <option value="female">หญิง</option>
         </select>
       </div>
       <div class="field">
         <label class="f-label">อายุ (ปี)</label>
-        <input type="number" class="f-input" id="age" value="28" min="10" max="99">
+        <input type="number" class="f-input" id="age" value="28" min="10" max="99" oninput="calcTDEE()">
       </div>
     </div>
     <div class="field-row">
       <div class="field">
         <label class="f-label">น้ำหนัก (กก.)</label>
-        <input type="number" class="f-input" id="weight" value="65" step="0.1">
+        <input type="number" class="f-input" id="weight" value="65" step="0.1" oninput="calcTDEE()">
       </div>
       <div class="field">
         <label class="f-label">ส่วนสูง (ซม.)</label>
-        <input type="number" class="f-input" id="height" value="170">
+        <input type="number" class="f-input" id="height" value="170" oninput="calcTDEE()">
       </div>
     </div>
     <div class="field">
       <label class="f-label">ระดับกิจกรรม</label>
-      <select class="f-input" id="activity">
+      <select class="f-input" id="activity" onchange="calcTDEE()">
         <option value="1.2">นั่งทำงาน ไม่ออกกำลังกาย (Sedentary)</option>
         <option value="1.375">ออกกำลังกายเบา 1-3 วัน/สัปดาห์ (Light)</option>
         <option value="1.55" selected>ออกกำลังกายปานกลาง 3-5 วัน/สัปดาห์ (Moderate)</option>
@@ -75,7 +75,7 @@
     </div>
     <div class="field">
       <label class="f-label">เป้าหมาย</label>
-      <select class="f-input" id="goal">
+      <select class="f-input" id="goal" onchange="calcTDEE()">
         <option value="-500">ลดน้ำหนัก ~0.5 กก./สัปดาห์ (−500 kcal)</option>
         <option value="-750">ลดน้ำหนักเร็ว ~0.75 กก./สัปดาห์ (−750 kcal)</option>
         <option value="0" selected>รักษาน้ำหนักเดิม</option>

@@ -54,30 +54,30 @@
   <div class="form-card">
     <div class="field">
       <label class="f-label">เงินเดือน Gross (บาท/เดือน)</label>
-      <input type="number" class="f-input" id="salary" placeholder="เช่น 30,000" value="30000">
+      <input type="number" class="f-input" id="salary" placeholder="เช่น 30,000" value="30000" oninput="calcSalary()">
     </div>
     <div class="field">
       <label class="f-label">โบนัส/รายได้พิเศษต่อปี (บาท)</label>
-      <input type="number" class="f-input" id="bonus" value="0">
+      <input type="number" class="f-input" id="bonus" value="0" oninput="calcSalary()">
     </div>
 
     <span class="f-group-title">ค่าลดหย่อนภาษี</span>
 
     <div class="field">
       <label class="f-label">ประกันชีวิต (บาท)</label>
-      <input type="number" class="f-input" id="ins" value="0">
+      <input type="number" class="f-input" id="ins" value="0" oninput="calcSalary()">
     </div>
     <div class="field">
       <label class="f-label">RMF / SSF (บาท)</label>
-      <input type="number" class="f-input" id="rmf" value="0">
+      <input type="number" class="f-input" id="rmf" value="0" oninput="calcSalary()">
     </div>
     <div class="field">
       <label class="f-label">จำนวนบุตร</label>
-      <input type="number" class="f-input" id="kids" value="0" min="0">
+      <input type="number" class="f-input" id="kids" value="0" min="0" oninput="calcSalary()">
     </div>
     <div class="field">
       <label class="f-label">คู่สมรส (ไม่มีรายได้)</label>
-      <select class="f-input" id="spouse">
+      <select class="f-input" id="spouse" onchange="calcSalary()">
         <option value="0">ไม่มี</option>
         <option value="60000">มี — ลดหย่อน 60,000</option>
       </select>
@@ -139,7 +139,7 @@ function calcSalary() {
   const rmf = parseFloat(document.getElementById('rmf').value) || 0;
   const kids = (parseInt(document.getElementById('kids').value) || 0) * 30000;
   const spouse = parseInt(document.getElementById('spouse').value) || 0;
-  if (!monthly) { alert('กรุณาใส่เงินเดือน'); return; }
+  if (!monthly) { return; }
   pushURLState({salary:monthly, bonus, ins:document.getElementById('ins').value, rmf, kids:document.getElementById('kids').value, spouse});
 
   // ประกันสังคม 5% สูงสุด 750/เดือน → 9,000/ปี
