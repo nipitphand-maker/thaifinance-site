@@ -139,6 +139,8 @@ function injectNav(active) {
     ['ev.html', '⚡ EV vs น้ำมัน'],
     ['fire.html', '🔥 FIRE'],
     ['rmf-ssf.html', '📈 SSF/RMF'],
+    ['water.html', '💧 ค่าน้ำ'],
+    ['gold-profit.html', '💰 กำไรทอง'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';
