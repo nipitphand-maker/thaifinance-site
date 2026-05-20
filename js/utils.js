@@ -142,6 +142,7 @@ function injectNav(active) {
     ['water.html', '💧 ค่าน้ำ'],
     ['gold-profit.html', '💰 กำไรทอง'],
     ['hourly.html', '⏰ OT/ชั่วโมง'],
+    ['credit-card.html', '💳 ดอกเบี้ยบัตร'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

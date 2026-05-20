@@ -317,4 +317,14 @@
       <image:title>คำนวณค่าแรงรายชั่วโมง OT 2568</image:title>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/credit-card.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-credit-card.png</image:loc>
+      <image:title>คำนวณดอกเบี้ยบัตรเครดิต 2568</image:title>
+    </image:image>
+  </url>
 </urlset>
