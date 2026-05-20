@@ -257,4 +257,14 @@
       <image:loc>https://thaifinance-site.pages.dev/img/og-ev.png</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/fire.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-fire.png</image:loc>
+      <image:title>FIRE Calculator — อิสรภาพทางการเงิน</image:title>
+    </image:image>
+  </url>
 </urlset>

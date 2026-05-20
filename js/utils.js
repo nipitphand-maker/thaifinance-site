@@ -137,6 +137,7 @@ function injectNav(active) {
     ['severance.html', '⚖️ ค่าชดเชย'],
     ['sso.html', '🛡️ ประกันสังคม'],
     ['ev.html', '⚡ EV vs น้ำมัน'],
+    ['fire.html', '🔥 FIRE'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

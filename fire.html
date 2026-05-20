@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>คำนวณ FIRE เกษียณเร็ว ต้องมีเงินเท่าไหร่ 2568 | ThaiFinance</title>
+<meta name="description" content="คำนวณ FIRE (Financial Independence Retire Early) ต้องเก็บเงินเท่าไหร่ถึงเกษียณได้ กี่ปีถึงถึง FIRE number ตาม 4% Rule พร้อมจำลองพอร์ตลงทุน">
+<meta name="keywords" content="FIRE เกษียณเร็ว, คำนวณ FIRE, 4% rule, Financial Independence, เกษียณก่อนวัย, FIRE number">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/fire.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="คำนวณ FIRE — เกษียณเร็วต้องเก็บเงินเท่าไหร่ | ThaiFinance">
+<meta property="og:description" content="4% Rule · FIRE Number · กี่ปีถึงเกษียณได้ · จำลองพอร์ตลงทุน">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/fire.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-fire.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"คำนวณ FIRE เกษียณเร็ว","url":"https://thaifinance-site.pages.dev/fire.html","description":"คำนวณ FIRE Number และระยะเวลาถึงเกษียณเร็วตาม 4% Rule","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"FIRE คืออะไร?","acceptedAnswer":{"@type":"Answer","text":"FIRE (Financial Independence, Retire Early) คือแนวคิดออมและลงทุนอย่างเข้มข้น เพื่อบรรลุอิสรภาพทางการเงินและหยุดทำงานได้ก่อนอายุเกษียณปกติ หัวใจคือสะสมพอร์ตให้ใหญ่พอที่ผลตอบแทนจากการลงทุน (4% ต่อปี) เพียงพอสำหรับค่าครองชีพทั้งปี โดยไม่ต้องใช้เงินต้น"}},{"@type":"Question","name":"4% Rule มาจากไหน?","acceptedAnswer":{"@type":"Answer","text":"4% Rule มาจาก Trinity Study (1998) ที่ศึกษาข้อมูลตลาดหุ้นสหรัฐย้อนหลัง 50 ปี พบว่าพอร์ต 60% หุ้น + 40% ตราสารหนี้ ที่ถอนปีละ 4% ยังมีเงินเหลือหลังผ่านไป 30 ปีใน 95%+ ของกรณี"}},{"@type":"Question","name":"ต้องออมกี่เปอร์เซ็นต์ของรายได้ถึง FIRE ได้?","acceptedAnswer":{"@type":"Answer","text":"Saving Rate ส่งผลมากต่อระยะเวลาถึง FIRE: ออม 10% → ~46 ปี, ออม 25% → ~32 ปี, ออม 50% → ~17 ปี, ออม 70% → ~9 ปี, ออม 90% → ~3 ปี (ผลตอบแทน 5% real)"}},{"@type":"Question","name":"FIRE เหมาะกับคนไทยไหม?","acceptedAnswer":{"@type":"Answer","text":"เหมาะ แต่ต้องปรับให้เข้ากับบริบทไทย: ค่ารักษาพยาบาลที่เพิ่มขึ้นเมื่ออายุมาก, เงินเฟ้อไทยผันผวน, บำนาญจากประกันสังคม (ม.33) ช่วยลด FIRE Number ได้ถ้ายังส่งครบ 15 ปี"}},{"@type":"Question","name":"Sequence of Returns Risk คืออะไร?","acceptedAnswer":{"@type":"Answer","text":"ความเสี่ยงที่ตลาดตกหนักในช่วงปีแรกๆ ของการเกษียณ ทำให้พอร์ตหมดเร็วกว่าที่คาด วิธีป้องกัน: มีเงินสดสำรอง 2-3 ปี เพื่อไม่ต้องขายหุ้นตอนตลาดตก"}},{"@type":"Question","name":"Coast FIRE คืออะไร?","acceptedAnswer":{"@type":"Answer","text":"Coast FIRE คือสะสมเงินลงทุนถึงจุดหนึ่ง แล้วหยุดออมเพิ่ม ปล่อยให้ดอกทบต้นเติบโตเองจนถึง FIRE Number ตอนเกษียณ ระหว่างนั้นทำงานแค่เพียงพอค่าใช้จ่ายปัจจุบัน ไม่ต้องออม"}}]}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('fire.html'); loadURLState(['expense','savings','portfolio','returnRate','inflation','safeRate']);</script>
+
+<div class="page-hd">
+  <div class="eyebrow">Financial Independence</div>
+  <div class="page-title">FIRE<br>เกษียณเร็ว</div>
+  <div class="page-sub">4% Rule · FIRE Number · กี่ปีถึงเกษียณ</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">ค่าใช้จ่ายต่อปีหลังเกษียณ (บาท)</label>
+      <input type="number" class="f-input" id="expense" value="480000" oninput="calcFIRE()">
+      <div class="f-hint">เช่น ค่าใช้จ่าย 40,000 บาท/เดือน × 12 = 480,000 บาท/ปี</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="f-label">พอร์ตลงทุนปัจจุบัน (บาท)</label>
+        <input type="number" class="f-input" id="portfolio" value="0" oninput="calcFIRE()">
+      </div>
+      <div class="field">
+        <label class="f-label">ออม/ลงทุนต่อปี (บาท)</label>
+        <input type="number" class="f-input" id="savings" value="240000" oninput="calcFIRE()">
+        <div class="f-hint">เช่น ออม 20,000 บาท/เดือน</div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label class="f-label">ผลตอบแทนลงทุนต่อปี (%)</label>
+        <input type="number" class="f-input" id="returnRate" value="8" step="0.5" oninput="calcFIRE()">
+        <div class="f-hint">SET index ระยะยาว ~7-10% · Global ~8-10%</div>
+      </div>
+      <div class="field">
+        <label class="f-label">เงินเฟ้อต่อปี (%)</label>
+        <input type="number" class="f-input" id="inflation" value="3" step="0.5" oninput="calcFIRE()">
+        <div class="f-hint">ไทยเฉลี่ยระยะยาว ~2-4%</div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="f-label">Safe Withdrawal Rate (%)</label>
+      <select class="f-input" id="safeRate" onchange="calcFIRE()">
+        <option value="3">3% — อนุรักษ์นิยมมาก (เกษียณอายุน้อย 30-40 ปี)</option>
+        <option value="3.5">3.5% — อนุรักษ์นิยม</option>
+        <option value="4" selected>4% — มาตรฐาน (Trinity Study)</option>
+        <option value="4.5">4.5% — ยืดหยุ่น (มีรายได้เสริม)</option>
+        <option value="5">5% — ก้าวหน้า (ยังทำงานพาร์ทไทม์)</option>
+      </select>
+      <div class="f-hint">FIRE Number = ค่าใช้จ่าย/ปี ÷ SWR · ที่ 4% → คูณ 25 เท่า</div>
+    </div>
+    <button class="btn btn-dark" onclick="calcFIRE()">คำนวณ FIRE</button>
+    <div class="result" id="fireResult">
+      <div class="r-label">FIRE Number (เงินที่ต้องมี)</div>
+      <div class="r-val" id="fireNumber">—</div>
+      <div class="r-detail" id="fireDetail">—</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="card" id="fireBreakdown" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">จำลองการเติบโตของพอร์ต</div>
+  <div class="card" id="fireProjection" style="display:none"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">FIRE Number ตามค่าใช้จ่ายต่อเดือน</div>
+  <div class="card">
+    <table class="data-tbl" style="padding:0 16px">
+      <thead><tr><th>ค่าใช้จ่าย/เดือน</th><th style="text-align:right">FIRE Number (4%)</th><th style="text-align:right">FIRE Number (3%)</th></tr></thead>
+      <tbody>
+        <tr><td>20,000 บาท</td><td style="text-align:right">6,000,000</td><td style="text-align:right">8,000,000</td></tr>
+        <tr><td>30,000 บาท</td><td style="text-align:right">9,000,000</td><td style="text-align:right">12,000,000</td></tr>
+        <tr><td>40,000 บาท</td><td style="text-align:right">12,000,000</td><td style="text-align:right">16,000,000</td></tr>
+        <tr><td>50,000 บาท</td><td style="text-align:right">15,000,000</td><td style="text-align:right">20,000,000</td></tr>
+        <tr><td>80,000 บาท</td><td style="text-align:right">24,000,000</td><td style="text-align:right">32,000,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="sec"><div class="sec-title">วิธีใช้เครื่องคำนวณ FIRE</div><div class="card"><div class="c-row"><div><div class="c-label">ค่าใช้จ่ายต่อปีหลังเกษียณ</div><div class="c-sub">ประมาณค่าครองชีพที่ต้องการหลังหยุดทำงาน รวมค่ารักษาพยาบาล ท่องเที่ยว</div></div></div><div class="c-row"><div><div class="c-label">พอร์ตปัจจุบัน + ออม/ปี</div><div class="c-sub">รวมทุกสินทรัพย์ลงทุน: หุ้น กองทุน ทอง คริปโต — ไม่รวมบ้านที่อยู่อาศัย</div></div></div><div class="c-row"><div><div class="c-label">ผลตอบแทน vs เงินเฟ้อ</div><div class="c-sub">Real Return = (1+return)/(1+inflation) - 1 · SET index ~8% เงินเฟ้อ ~3% = ~5% real</div></div></div><div class="c-row"><div><div class="c-label">เลือก SWR</div><div class="c-sub">ยิ่งอายุน้อยตอนเกษียณ ยิ่งใช้ SWR ต่ำ เพราะพอร์ตต้องอยู่นาน 50-60 ปี</div></div></div></div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<details class="faq-item"><summary class="faq-q">FIRE คืออะไร?</summary><div class="faq-a">FIRE (Financial Independence, Retire Early) คือแนวคิดออมและลงทุนอย่างเข้มข้น เพื่อบรรลุอิสรภาพทางการเงินและหยุดทำงานได้ก่อนอายุเกษียณปกติ หัวใจคือสะสมพอร์ตให้ใหญ่พอที่ผลตอบแทนจากการลงทุน (4% ต่อปี) เพียงพอสำหรับค่าครองชีพทั้งปี โดยไม่ต้องใช้เงินต้น</div></details>
+<details class="faq-item"><summary class="faq-q">4% Rule มาจากไหน?</summary><div class="faq-a">4% Rule มาจาก Trinity Study (1998) ที่ศึกษาข้อมูลตลาดหุ้นสหรัฐย้อนหลัง 50 ปี พบว่าพอร์ต 60% หุ้น + 40% ตราสารหนี้ ที่ถอนปีละ 4% ยังมีเงินเหลือหลังผ่านไป 30 ปีใน 95%+ ของกรณี สำหรับคนเกษียณอายุน้อย (30-40 ปี) แนะนำ 3-3.5% เพื่อความปลอดภัยมากขึ้น</div></details>
+<details class="faq-item"><summary class="faq-q">ลงทุนอะไรเพื่อ FIRE ในไทย?</summary><div class="faq-a">ตัวเลือกยอดนิยม: 1) กองทุนรวม Index เช่น TMBAM ETF, SCBSET, LH SET50 — ผลตอบแทนระยะยาว ~8-10%/ปี 2) หุ้นรายตัว — ต้องใช้เวลาวิเคราะห์ 3) RMF/SSF — ลดภาษีได้ 4) REIT อสังหาริมทรัพย์ — ปันผลสม่ำเสมอ 5) ทอง — ป้องกันเงินเฟ้อ แต่ไม่ให้ผลตอบแทนสม่ำเสมอ</div></details>
+<details class="faq-item"><summary class="faq-q">ต้องออมกี่เปอร์เซ็นต์ของรายได้ถึง FIRE ได้?</summary><div class="faq-a">Saving Rate ส่งผลมากต่อระยะเวลาถึง FIRE: ออม 10% → ~46 ปี, ออม 25% → ~32 ปี, ออม 50% → ~17 ปี, ออม 70% → ~9 ปี, ออม 90% → ~3 ปี (ผลตอบแทน 5% real) ยิ่งออมมากและใช้จ่ายน้อย ยิ่งถึง FIRE เร็ว</div></details>
+<details class="faq-item"><summary class="faq-q">FIRE เหมาะกับคนไทยไหม?</summary><div class="faq-a">เหมาะ แต่ต้องปรับให้เข้ากับบริบทไทย: ค่ารักษาพยาบาลที่เพิ่มขึ้นเมื่ออายุมาก (ประกันสุขภาพสำคัญมาก), เงินเฟ้อไทยผันผวน, ภาษีเงินปันผลและกำไรจากหุ้น, บำนาญจากประกันสังคม (ม.33) ช่วยลด FIRE Number ได้ถ้ายังส่งครบ 15 ปี</div></details>
+<details class="faq-item"><summary class="faq-q">FIRE แล้วจะเบื่อไหม?</summary><div class="faq-a">ปัญหาที่คนมักพบหลัง FIRE: ขาดโครงสร้างชีวิต ขาดสังคม ขาดเป้าหมาย หลายคนจึงเลือก Semi-FIRE (ลดชั่วโมงทำงาน) หรือ Barista FIRE (ทำงานพาร์ทไทม์ที่ชอบ) เพื่อรักษาความหมายในชีวิตไว้ พร้อมลด withdrawal rate ทำให้พอร์ตยืดนานขึ้น</div></details>
+<details class="faq-item"><summary class="faq-q">Sequence of Returns Risk คืออะไร?</summary><div class="faq-a">ความเสี่ยงที่ตลาดตกหนักในช่วงปีแรกๆ ของการเกษียณ ทำให้พอร์ตหมดเร็วกว่าที่คาด แม้ผลตอบแทนเฉลี่ยระยะยาวจะดีก็ตาม วิธีป้องกัน: มีเงินสดสำรอง 2-3 ปีในบัญชีออมทรัพย์ เพื่อไม่ต้องขายหุ้นตอนตลาดตก, ใช้ Dynamic Withdrawal ปรับตามตลาด</div></details>
+<details class="faq-item"><summary class="faq-q">Coast FIRE คืออะไร?</summary><div class="faq-a">Coast FIRE คือสะสมเงินลงทุนถึงจุดหนึ่ง แล้วหยุดออมเพิ่ม ปล่อยให้ดอกทบต้นเติบโตเองจนถึง FIRE Number ตอนเกษียณ ระหว่างนั้นทำงานแค่เพียงพอค่าใช้จ่ายปัจจุบัน ไม่ต้องออม Coast FIRE คำนวณย้อนกลับจาก FIRE Number ลบด้วยปีที่เหลือก่อนเกษียณ</div></details>
+</div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">เข้าใจ FIRE และ 4% Rule</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">หัวใจของ FIRE คือ <b>FIRE Number = ค่าใช้จ่าย/ปี × 25</b> (ที่ SWR = 4%) หรือ × 33 สำหรับ 3% Rule ซึ่งหมายความว่าถ้าใช้จ่ายปีละ 480,000 บาท ต้องมีพอร์ต 12,000,000 บาท แล้วถอนปีละ 4% (480,000 บาท) โดยไม่ต้องทำงานอีก งานวิจัย Trinity Study แสดงว่าพอร์ตแบบนี้ "รอด" ผ่าน 30 ปีมากกว่า 95% ของกรณีในประวัติศาสตร์</p><p style="margin-bottom:14px;line-height:1.7"><b>ประเภท FIRE ยอดนิยม:</b> <b>Fat FIRE</b> — ใช้จ่ายสูง 100,000+ บาท/เดือน พอร์ต 30M+ / <b>Lean FIRE</b> — ใช้จ่ายประหยัด 15,000-20,000 บาท/เดือน พอร์ต 5-7M / <b>Barista FIRE</b> — เกษียณหลักแต่ยังมีงานพาร์ทไทม์ที่ชอบ / <b>Coast FIRE</b> — ออมถึงจุดแล้วหยุดออมเพิ่ม ปล่อยดอกทบต้น / <b>Semi-FIRE</b> — ลดชั่วโมงทำงานลง</p><p style="line-height:1.7"><b>สิ่งสำคัญในไทย:</b> บำนาญประกันสังคม (ม.33 ส่งครบ 15 ปี) ช่วย "เพิ่ม" รายได้หลังเกษียณ ลด FIRE Number ที่ต้องสะสมเอง ประกันสุขภาพถาวรก่อนเกษียณสำคัญมาก เพราะค่ารักษาพยาบาลสูงขึ้นเมื่ออายุมาก และอาจซื้อไม่ได้หลังอายุ 70+ ปี RMF + กองทุน PVD ช่วยลดภาษีและสะสมพอร์ตเร็วขึ้นมาก</p></div></div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <div class="card">
+    <a class="c-row" href="/retirement.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">👴 วางแผนเกษียณ</div><div class="c-sub">คำนวณเงินเกษียณแบบดั้งเดิม</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/compound.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">🌱 ดอกเบี้ยทบต้น</div><div class="c-sub">พลังของเวลา 10-30 ปี</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/dca.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">📊 DCA Calculator</div><div class="c-sub">ออมทุกเดือนได้เท่าไหร่ใน X ปี</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/tax.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">🧾 ภาษีเงินได้</div><div class="c-sub">RMF/SSF ลดภาษีได้เท่าไหร่</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+  </div>
+</div>
+
+<footer>คำนวณตามหลัก Trinity Study และ 4% Rule ซึ่งอ้างอิงข้อมูลตลาดสหรัฐ<br>ผลตอบแทนในอดีตไม่ได้รับประกันผลตอบแทนในอนาคต ปรึกษานักวางแผนการเงินก่อนตัดสินใจ</footer>
+
+<script>
+function calcFIRE() {
+  const expense     = parseFloat(document.getElementById('expense').value)    || 0;
+  const portfolio   = parseFloat(document.getElementById('portfolio').value)  || 0;
+  const savingsYr   = parseFloat(document.getElementById('savings').value)    || 0;
+  const returnRate  = parseFloat(document.getElementById('returnRate').value) / 100 || 0.08;
+  const inflation   = parseFloat(document.getElementById('inflation').value)  / 100 || 0.03;
+  const safeRate    = parseFloat(document.getElementById('safeRate').value)   / 100 || 0.04;
+  if (!expense) { return; }
+  pushURLState({expense, savings: savingsYr, portfolio, returnRate: returnRate*100, inflation: inflation*100, safeRate: safeRate*100});
+
+  const fireNumber = expense / safeRate;
+  const realReturn = (1 + returnRate) / (1 + inflation) - 1;
+  const multiplier = Math.round(1 / safeRate);
+
+  // Calculate years to FIRE via simulation
+  let years = 0;
+  let current = portfolio;
+  const maxYears = 80;
+  while (current < fireNumber && years < maxYears) {
+    current = current * (1 + returnRate) + savingsYr;
+    years++;
+  }
+
+  const reached = current >= fireNumber && years < maxYears;
+
+  document.getElementById('fireNumber').textContent = fmt(fireNumber, 0) + ' บาท';
+  document.getElementById('fireDetail').textContent = reached
+    ? `ถึง FIRE ในปีที่ ${years} · ค่าใช้จ่าย/ปี × ${multiplier} = FIRE Number`
+    : `ไม่ถึง FIRE ใน ${maxYears} ปีด้วยตัวเลขนี้ · เพิ่มการออมหรือลดรายจ่าย`;
+  document.getElementById('fireResult').classList.add('show');
+
+  const savingRate = savingsYr / (savingsYr + expense) * 100;
+  const annualWithdrawal = fireNumber * safeRate;
+
+  const bd = document.getElementById('fireBreakdown');
+  bd.style.display = 'block';
+  bd.innerHTML = `
+    <div class="c-row"><div><div class="c-label">FIRE Number</div><div class="c-sub">ค่าใช้จ่าย/ปี ÷ ${safeRate*100}% = × ${multiplier}</div></div><div class="c-price">${fmt(fireNumber,0)} บาท</div></div>
+    <div class="c-row"><div><div class="c-label">พอร์ตปัจจุบัน</div><div class="c-sub">ยังขาดอีก ${fmt(Math.max(0, fireNumber - portfolio),0)} บาท</div></div><div class="c-price">${fmt(portfolio,0)} บาท</div></div>
+    <div class="c-row"><div><div class="c-label">ออม/ลงทุนต่อปี</div></div><div class="c-price">${fmt(savingsYr,0)} บาท</div></div>
+    <div class="c-row"><div><div class="c-label">Real Return (หลังเงินเฟ้อ)</div><div class="c-sub">(1+${returnRate*100}%)/(1+${inflation*100}%)-1</div></div><div class="c-price">${(realReturn*100).toFixed(2)}%</div></div>
+    <div class="c-row"><div><div class="c-label">ถอนใช้จ่ายได้หลัง FIRE</div><div class="c-sub">${safeRate*100}% × FIRE Number</div></div><div class="c-price">${fmt(annualWithdrawal,0)} บาท/ปี</div></div>
+    ${reached
+      ? `<div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--up)">ถึง FIRE ในปีที่ ${years}</div></div><div class="c-price" style="color:var(--up)">${years} ปี</div></div>`
+      : `<div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--down)">ไม่ถึง FIRE ใน ${maxYears} ปี</div><div class="c-sub">ลองเพิ่มออม/ปี หรือลดค่าใช้จ่ายหลังเกษียณ</div></div></div>`
+    }`;
+
+  // Show 10-year projection
+  const proj = document.getElementById('fireProjection');
+  proj.style.display = 'block';
+  let rows = '';
+  let p = portfolio;
+  for (let y = 1; y <= Math.min(reached ? years + 3 : 30, 30); y++) {
+    p = p * (1 + returnRate) + savingsYr;
+    const pct = Math.min(100, Math.round(p / fireNumber * 100));
+    const isFire = p >= fireNumber;
+    rows += `<div class="c-row" ${isFire?'style="background:rgba(15,110,63,0.06)"':''}><div><div class="c-label">ปีที่ ${y} ${isFire?'🎯':''}</div></div><div class="c-price" style="color:${isFire?'var(--up)':'inherit'}">${fmt(p,0)} <span style="font-size:12px;color:var(--ink3)">(${pct}%)</span></div></div>`;
+    if (isFire) break;
+  }
+  proj.innerHTML = rows || '<div class="c-row"><div>ใส่ข้อมูลเพื่อดูการจำลอง</div></div>';
+}
+window.addEventListener('load', calcFIRE);
+</script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 // ThaiFinance Service Worker — offline-first PWA
-const CACHE = 'tf-v1-20260520';
+const CACHE = 'tf-v2-20260520';
 const ASSETS = [
   '/',
   '/index.html',
-  '/css/style.css?v=20260520a',
+  '/css/style.css?v=20260520b',
   '/js/utils.js',
   '/manifest.json',
   '/favicon.ico',
