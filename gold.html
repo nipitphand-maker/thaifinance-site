@@ -122,7 +122,7 @@
 
 <script>
 const WORKER = 'https://gold-price.nipitphand.workers.dev';
-const mock = {b965b:43750,b965s:43850,jewb:43167,jews:44350,change:150,status:'UP'};
+const mock = {b965b:69300,b965s:69400,jewb:68500,jews:70650,change:250,status:'UP'};
 
 async function fetchGold() {
   let d = mock;
@@ -161,8 +161,8 @@ async function fetchGold() {
   setText('jewbuy', Number(d.jewb).toLocaleString('th-TH'));
   setText('jewsell', Number(d.jews).toLocaleString('th-TH'));
   setText('spread', fmt(d.b965s-d.b965b,0));
-  setText('workFee', '1,183');
-  setText('usdoz', '3,283');
+  setText('workFee', fmt(d.jews-d.b965s,0));
+  fetchUsdOz(d.b965b);
 
   const badge = document.getElementById('heroBadge');
   badge.textContent = d.change ? `${sign} ${fmt(d.change,0)} บาท จากเมื่อวาน` : 'ยังไม่มีข้อมูลเปรียบเทียบ';
@@ -170,6 +170,20 @@ async function fetchGold() {
   const b965badge = document.getElementById('badge965');
   b965badge.textContent = d.change ? `${sign}${fmt(d.change,0)}` : '–';
   b965badge.className = `badge ${cls} auto-badge`;
+
+async function fetchUsdOz(barBuyThb) {
+  try {
+    const r = await fetch('https://open.er-api.com/v6/latest/USD');
+    const j = await r.json();
+    if(j && j.rates && j.rates.THB) {
+      const usdThb = j.rates.THB;
+      const usdOz = Math.round(barBuyThb * (31.1035/15.244) / usdThb);
+      setText('usdoz', fmt(usdOz,0));
+    }
+  } catch(e) {
+    // ถ้าไม่ได้ก็ไม่แสดง
+  }
+}
 
   // save history (เฉพาะข้อมูลจริง)
   if(live) {
@@ -199,7 +213,7 @@ function drawGold(range) {
     vals=filtered.map(h=>h.v);
     labs=filtered.map(h=>{const d=new Date(h.t);return`${d.getDate()}/${d.getMonth()+1}`;});
   } else {
-    vals=range==='7d'?[43200,43350,43100,43500,43680,43600,43750]:Array.from({length:30},(_,i)=>42000+i*60);
+    vals=range==='7d'?[68800,69100,68950,69300,69500,69200,69300]:Array.from({length:30},(_,i)=>68000+i*50);
     labs=range==='7d'?['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.']:Array.from({length:30},(_,i)=>String(i+1));
   }
   drawLineChart('goldChart',vals,labs,'#A07830');

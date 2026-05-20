@@ -56,7 +56,7 @@
 <script>injectNav('crypto.html')</script>
 
 <div class="page-hd">
-  <div class="eyebrow"><span class="live-dot"></span> CoinGecko · อัปเดตทุก 60 วิ</div>
+  <div class="eyebrow"><span class="live-dot"></span> CoinGecko · อัปเดตทุก 5 นาที</div>
   <div class="page-title num" id="btcPrice">—</div>
   <div class="page-sub">USD · Bitcoin</div>
   <div class="change-pill flat" id="btcChange">กำลังโหลด...</div>
@@ -105,31 +105,73 @@
 <script>
 const COINS=['bitcoin','ethereum','binancecoin','solana','ripple','dogecoin','cardano','tron','avalanche-2','chainlink'];
 const NAMES={bitcoin:'Bitcoin',ethereum:'Ethereum',binancecoin:'BNB',solana:'Solana',ripple:'XRP',dogecoin:'Dogecoin',cardano:'Cardano',tron:'TRON','avalanche-2':'Avalanche',chainlink:'Chainlink'};
-let cur='usd',lastData=null;
-const THB=34.2;
+const CACHE_TTL = 5*60*1000; // 5 นาที
+let cur='usd',lastData=null,thbRate=34.5;
 
 function setCur(c,btn){cur=c;btn.closest('.tab-row').querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(lastData)render(lastData);}
 
+function loadCache(key) {
+  try {
+    const s = localStorage.getItem(key);
+    if (!s) return null;
+    const o = JSON.parse(s);
+    if (Date.now() - o.ts > CACHE_TTL) return null;
+    return o.data;
+  } catch(e) { return null; }
+}
+function saveCache(key, data) {
+  try { localStorage.setItem(key, JSON.stringify({ts:Date.now(), data})); } catch(e) {}
+}
+
+async function fetchThbRate() {
+  try {
+    const cached = loadCache('fxThb');
+    if (cached) { thbRate = cached; return; }
+    const r = await fetch('https://open.er-api.com/v6/latest/USD');
+    const j = await r.json();
+    if (j && j.rates && j.rates.THB) {
+      thbRate = j.rates.THB;
+      saveCache('fxThb', thbRate);
+    }
+  } catch(e) {}
+}
+
 async function fetchCoins(){
+  const cached = loadCache('cryptoData');
+  if (cached) { lastData = cached; render(cached); updateBtcHero(cached); return; }
   try{
     const r=await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${COINS.join(',')}&order=market_cap_desc&sparkline=false&price_change_percentage=24h`);
-    const d=await r.json();lastData=d;
-    const btc=d.find(c=>c.id==='bitcoin');
-    if(btc){
-      document.getElementById('btcPrice').textContent='$'+Number(btc.current_price).toLocaleString('en-US');
-      const chg=btc.price_change_percentage_24h||0;
-      const pill=document.getElementById('btcChange');
-      pill.textContent=`${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}% (24h)`;
-      pill.className=`change-pill ${chg>=0?'up':'down'}`;
-    }
+    if(!r.ok) throw new Error('rate-limit');
+    const d=await r.json();
+    lastData=d;
+    saveCache('cryptoData', d);
+    updateBtcHero(d);
     render(d);
-  }catch(e){document.getElementById('coinList').innerHTML='<div style="padding:20px;text-align:center;font-size:13px;color:var(--ink3)">โหลดไม่ได้ (CoinGecko rate limit) — ลองใหม่ในอีกสักครู่</div>';}
+  }catch(e){
+    const stale = JSON.parse(localStorage.getItem('cryptoData')||'null');
+    if(stale && stale.data){
+      lastData=stale.data;render(stale.data);updateBtcHero(stale.data);
+      document.getElementById('updatedAt') && (document.getElementById('updatedAt').textContent='ข้อมูลจาก cache — CoinGecko rate limit');
+    } else {
+      document.getElementById('coinList').innerHTML='<div style="padding:20px;text-align:center;font-size:13px;color:var(--ink3)">โหลดไม่ได้ (CoinGecko rate limit) — ลองใหม่ในอีกสักครู่</div>';
+    }
+  }
+}
+
+function updateBtcHero(data) {
+  const btc=data.find(c=>c.id==='bitcoin');
+  if(!btc) return;
+  document.getElementById('btcPrice').textContent='$'+Number(btc.current_price).toLocaleString('en-US');
+  const chg=btc.price_change_percentage_24h||0;
+  const pill=document.getElementById('btcChange');
+  pill.textContent=`${chg>=0?'▲':'▼'} ${Math.abs(chg).toFixed(2)}% (24h)`;
+  pill.className=`change-pill ${chg>=0?'up':'down'}`;
 }
 
 function render(data){
   const list=document.getElementById('coinList');
   list.innerHTML=data.map((c,i)=>{
-    const price=cur==='usd'?c.current_price:c.current_price*THB;
+    const price=cur==='usd'?c.current_price:c.current_price*thbRate;
     const sym=cur==='usd'?'$':'฿';
     const dec=price>1000?0:price>1?2:4;
     const chg=c.price_change_percentage_24h||0;
@@ -144,20 +186,32 @@ function render(data){
 }
 
 async function fetchFG(){
+  const cached = loadCache('fgData');
+  if (cached) { renderFG(cached); return; }
   try{
     const r=await fetch('https://api.alternative.me/fng/');
     const d=await r.json();
-    const v=d.data[0].value,label=d.data[0].value_classification;
-    const c=v<25?'var(--down)':v<55?'#F0A500':'var(--up)';
-    document.getElementById('fgCard').innerHTML=`<div class="c-row">
-      <div style="font-family:var(--fnum);font-size:42px;font-weight:700;color:${c};line-height:1">${v}</div>
-      <div style="text-align:right"><div style="font-size:17px;font-weight:700;color:${c}">${label}</div><div style="font-size:13px;color:var(--ink2);margin-top:4px;font-weight:500">0 = กลัวมาก · 100 = โลภมาก</div></div>
-    </div>`;
+    saveCache('fgData', d.data[0]);
+    renderFG(d.data[0]);
   }catch(e){document.getElementById('fgCard').innerHTML='<div class="c-row" style="color:var(--ink3);font-size:12px">โหลดไม่ได้</div>';}
 }
 
-fetchCoins();fetchFG();
-setInterval(fetchCoins,60000);
+function renderFG(item) {
+  const v=item.value,label=item.value_classification;
+  const c=v<25?'var(--down)':v<55?'#F0A500':'var(--up)';
+  document.getElementById('fgCard').innerHTML=`<div class="c-row">
+    <div style="font-family:var(--fnum);font-size:42px;font-weight:700;color:${c};line-height:1">${v}</div>
+    <div style="text-align:right"><div style="font-size:17px;font-weight:700;color:${c}">${label}</div><div style="font-size:13px;color:var(--ink2);margin-top:4px;font-weight:500">0 = กลัวมาก · 100 = โลภมาก</div></div>
+  </div>`;
+}
+
+async function init() {
+  await fetchThbRate();
+  fetchCoins();
+  fetchFG();
+}
+init();
+setInterval(fetchCoins, CACHE_TTL);
 </script>
 </body>
 </html>

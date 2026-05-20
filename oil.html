@@ -187,7 +187,13 @@ function updateHero(prices) {
   const hero = prices['B7'] || prices['95'] || Object.values(prices)[0];
   if (!hero) return;
   document.getElementById('heroPrice').textContent = fmt(hero.price, 2);
-  heroSeries = [hero.price, hero.price];
+  heroSeries = [hero.price, hero.nextDay != null ? hero.nextDay : hero.price];
+  // เก็บประวัติใน localStorage
+  let hist = JSON.parse(localStorage.getItem('oilHist')||'[]');
+  hist.push({t:Date.now(),v:hero.price});
+  const cut = Date.now()-30*864e5;
+  hist = hist.filter(h=>h.t>cut);
+  localStorage.setItem('oilHist',JSON.stringify(hist));
 }
 
 // รับทั้ง schema เก่า (today/yesterday/tomorrow) และใหม่ (price/nextDay/nextDiff)
@@ -239,20 +245,21 @@ async function fetchOil() {
 
 function drawOil(r) {
   let vals, labs;
-  if (heroSeries && heroSeries.length >= 2) {
-    vals = r === '7d'
-      ? [heroSeries[0], heroSeries[0], heroSeries[0], heroSeries[0], heroSeries[0], heroSeries[1], heroSeries[1]]
-      : Array.from({ length: 30 }, (_, i) => (i < 28 ? heroSeries[0] : heroSeries[1]));
-    labs = r === '7d'
-      ? ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.', 'อา.']
-      : Array.from({ length: 30 }, (_, i) => String(i + 1));
+  const cutMs = r === '7d' ? 7*864e5 : 30*864e5;
+  const hist = JSON.parse(localStorage.getItem('oilHist')||'[]').filter(h=>h.t>Date.now()-cutMs);
+  if (hist.length >= 2) {
+    vals = hist.map(h=>h.v);
+    labs = hist.map(h=>{const d=new Date(h.t);return`${d.getDate()}/${d.getMonth()+1}`;});
+  } else if (heroSeries && heroSeries.length >= 2 && heroSeries[0] !== heroSeries[1]) {
+    // แสดงแค่ราคาวันนี้ vs ราคาถัดไป
+    vals = [heroSeries[0], heroSeries[1]];
+    labs = ['วันนี้', 'ถัดไป'];
+  } else if (heroSeries && heroSeries.length >= 1) {
+    vals = [heroSeries[0]];
+    labs = ['วันนี้'];
   } else {
-    vals = r === '7d'
-      ? [36.44, 36.44, 36.44, 35.94, 35.94, 35.94, 35.94]
-      : Array.from({ length: 30 }, (_, i) => 36.44 - (i > 20 ? 0.5 : 0));
-    labs = r === '7d'
-      ? ['จ.', 'อ.', 'พ.', 'พฤ.', 'ศ.', 'ส.', 'อา.']
-      : Array.from({ length: 30 }, (_, i) => String(i + 1));
+    vals = [36.44, 35.94, 36.44, 36.44, 35.94];
+    labs = ['จ.','พ.','ศ.','อา.','วันนี้'];
   }
   drawLineChart('oilChart', vals, labs, '#2D3FE0');
 }
