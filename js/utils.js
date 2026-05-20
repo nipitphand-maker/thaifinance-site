@@ -135,6 +135,7 @@ function injectNav(active) {
     ['transfer.html', '📋 โอนบ้าน'],
     ['tdee.html', '🔥 TDEE'],
     ['severance.html', '⚖️ ค่าชดเชย'],
+    ['sso.html', '🛡️ ประกันสังคม'],
   ];
   const themeNow = document.documentElement.getAttribute('data-theme');
   const themeIcon = themeNow === 'dark' ? '☀️' : '🌙';

@@ -232,11 +232,20 @@
   </url>
   <url>
     <loc>https://thaifinance-site.pages.dev/severance.html</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.88</priority>
     <image:image>
       <image:loc>https://thaifinance-site.pages.dev/img/og-severance.png</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thaifinance-site.pages.dev/sso.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.88</priority>
+    <image:image>
+      <image:loc>https://thaifinance-site.pages.dev/img/og-sso.png</image:loc>
     </image:image>
   </url>
 </urlset>

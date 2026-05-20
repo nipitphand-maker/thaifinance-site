@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="th-TH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>ประกันสังคม ม.33 ม.39 ม.40 คำนวณสิทธิ์ 2568 | ThaiFinance</title>
+<meta name="description" content="เปรียบเทียบประกันสังคม มาตรา 33 39 40 คำนวณเงินสมทบ สิทธิ์สงเคราะห์ เงินชราภาพ ชดเชยว่างงาน ค่ารักษาพยาบาล">
+<meta name="keywords" content="ประกันสังคม, มาตรา 33, มาตรา 39, มาตรา 40, คำนวณประกันสังคม, เงินชราภาพ, สิทธิประกันสังคม">
+<meta name="author" content="ThaiFinance">
+<meta name="theme-color" content="#2438CC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E0E0E" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://thaifinance-site.pages.dev/sso.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ThaiFinance">
+<meta property="og:title" content="ประกันสังคม ม.33/39/40 เปรียบเทียบสิทธิ์ | ThaiFinance">
+<meta property="og:description" content="เปรียบเทียบประกันสังคมทั้ง 3 มาตรา · สิทธิ์ · เงินสมทบ · เงินชราภาพ">
+<meta property="og:url" content="https://thaifinance-site.pages.dev/sso.html">
+<meta property="og:image" content="https://thaifinance-site.pages.dev/img/og-sso.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="css/style.css?v=20260520b">
+<meta name="google-site-verification" content="YPFBI_qSMc8OWCAuNyRFKw-xe0C4d0xpLsZKSqlNb-s">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7049269744581719" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"เปรียบเทียบประกันสังคม ม.33/39/40","url":"https://thaifinance-site.pages.dev/sso.html","description":"เปรียบเทียบประกันสังคม มาตรา 33 39 40 สิทธิ์และเงินสมทบ","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"th-TH","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"THB"}}</script>
+</head>
+<body>
+<script src="js/utils.js"></script>
+<script>injectNav('sso.html'); loadURLState(['salary','section','years']);</script>
+
+<div class="page-hd">
+  <div class="eyebrow">ประกันสังคม</div>
+  <div class="page-title">ม.33 · ม.39<br>· ม.40</div>
+  <div class="page-sub">เงินสมทบ · สิทธิ์ · เงินชราภาพ</div>
+</div>
+
+<div class="sec">
+  <div class="form-card">
+    <div class="field">
+      <label class="f-label">มาตราที่อยู่ / ต้องการเปรียบเทียบ</label>
+      <select class="f-input" id="section" onchange="updateSection()">
+        <option value="33">มาตรา 33 — ลูกจ้างเอกชน/ข้าราชการที่ไม่ใช่ข้าราชการประจำ</option>
+        <option value="39">มาตรา 39 — ลาออกจากงานแต่ต้องการสิทธิ์ต่อ (ส่งเอง)</option>
+        <option value="40">มาตรา 40 — แรงงานอิสระ / freelance / เจ้าของกิจการ</option>
+        <option value="compare">เปรียบเทียบทั้ง 3 มาตรา</option>
+      </select>
+    </div>
+    <div id="salaryField" class="field">
+      <label class="f-label">เงินเดือน (บาท/เดือน)</label>
+      <input type="number" class="f-input" id="salary" value="25000">
+      <div class="f-hint">ฐานสูงสุดที่คำนวณ: 15,000 บาท (ประกันสังคมคิดสูงสุดที่ 15,000)</div>
+    </div>
+    <div class="field">
+      <label class="f-label">ส่งเงินสมทบแล้ว (ปี)</label>
+      <input type="number" class="f-input" id="years" value="5" min="0" step="0.5">
+      <div class="f-hint">ใช้ประมาณเงินชราภาพสะสม</div>
+    </div>
+    <button class="btn btn-dark" onclick="calcSSO()">คำนวณ / เปรียบเทียบ</button>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div id="ssoResult"></div>
+</div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เปรียบเทียบสิทธิ์ 3 มาตรา (ภาพรวม)</div>
+  <div class="card" style="overflow-x:auto">
+    <table class="data-tbl" style="padding:0 12px;min-width:560px">
+      <thead><tr><th>สิทธิ์</th><th style="text-align:center">ม.33</th><th style="text-align:center">ม.39</th><th style="text-align:center">ม.40 ทางเลือก 1</th><th style="text-align:center">ม.40 ทางเลือก 3</th></tr></thead>
+      <tbody>
+        <tr><td>เงินสมทบ/เดือน</td><td style="text-align:center">5% (max 750)</td><td style="text-align:center">432 บ.</td><td style="text-align:center">70 บ.</td><td style="text-align:center">300 บ.</td></tr>
+        <tr><td>รักษาพยาบาล</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">❌</td><td style="text-align:center">✅</td></tr>
+        <tr><td>คลอดบุตร</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td></tr>
+        <tr><td>ทุพพลภาพ</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td></tr>
+        <tr><td>ชดเชยว่างงาน</td><td style="text-align:center">✅ (50%×6 เดือน)</td><td style="text-align:center">❌</td><td style="text-align:center">❌</td><td style="text-align:center">❌</td></tr>
+        <tr><td>ชราภาพ (บำนาญ/บำเหน็จ)</td><td style="text-align:center">✅</td><td style="text-align:center">✅</td><td style="text-align:center">✅ (บำเหน็จ)</td><td style="text-align:center">✅ (บำนาญ)</td></tr>
+        <tr><td>สงเคราะห์บุตร</td><td style="text-align:center">✅ 800×3คน</td><td style="text-align:center">✅ 800×3คน</td><td style="text-align:center">✅ 200×2คน</td><td style="text-align:center">✅ 200×2คน</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="sec" style="padding-top:0;padding-bottom:8px">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-7049269744581719"
+       data-ad-slot="5181542042"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<div class="sec"><div class="sec-title">วิธีใช้และเลือกมาตรา</div><div class="card"><div class="c-row"><div><div class="c-label">ม.33 — ลูกจ้าง</div><div class="c-sub">สมัครอัตโนมัติ นายจ้างสมทบเท่า สิทธิ์ครบที่สุดรวมชดเชยว่างงาน</div></div></div><div class="c-row"><div><div class="c-label">ม.39 — ลาออกแล้วส่งต่อ</div><div class="c-sub">ส่ง 432 บาท/เดือน ได้สิทธิ์ส่วนใหญ่ยกเว้นว่างงาน ต้องสมัครใน 6 เดือน</div></div></div><div class="c-row"><div><div class="c-label">ม.40 ทางเลือก 1 — ถูกสุด</div><div class="c-sub">70 บาท/เดือน ได้ชราภาพ ทุพพลภาพ ตาย สบาย แต่ไม่ครอบคลุมรักษา</div></div></div><div class="c-row"><div><div class="c-label">ม.40 ทางเลือก 3 — ครอบคลุม</div><div class="c-sub">300 บาท/เดือน ได้บำนาญชราภาพ + รักษาพยาบาล คุ้มสำหรับ freelance</div></div></div></div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">คำถามที่พบบ่อย</div><div class="faq-list">
+<details class="faq-item"><summary class="faq-q">ลาออกจากงานแล้วยังส่งประกันสังคมได้ไหม?</summary><div class="faq-a">ได้ ต้องสมัครเปลี่ยนเป็น ม.39 ภายใน 6 เดือน หลังออกจากงาน ส่งเงินสมทบ 432 บาท/เดือน ด้วยตัวเอง ยังได้สิทธิ์รักษาพยาบาล ทุพพลภาพ คลอดบุตร ชราภาพ แต่ไม่ได้เงินทดแทนว่างงาง</div></details>
+<details class="faq-item"><summary class="faq-q">เงินชราภาพประกันสังคมคำนวณยังไง?</summary><div class="faq-a">ม.33: บำนาญ = 20% × เงินเดือนเฉลี่ย 60 เดือนสุดท้าย (ส่งครบ 15 ปี) แล้วบวก 1.5% ต่อทุกปีที่ส่งเกิน 15 ปี สูงสุดไม่เกิน 2.5 เท่าของเงินสมทบ · บำเหน็จ (ส่งน้อยกว่า 15 ปี) = เงินสมทบ + ผลตอบแทน</div></details>
+<details class="faq-item"><summary class="faq-q">ม.40 ทางเลือกไหนคุ้มที่สุดสำหรับ freelance?</summary><div class="faq-a">ทางเลือก 3 (300 บาท/เดือน) คุ้มที่สุดสำหรับ freelance ที่ไม่มีประกันสุขภาพอื่น เพราะได้ทั้งรักษาพยาบาล คลอดบุตร ทุพพลภาพ และบำนาญชราภาพ รวม 3,600 บาท/ปี ค่าใช้จ่ายน้อยกว่าประกันสุขภาพเอกชนมาก</div></details>
+<details class="faq-item"><summary class="faq-q">เงินทดแทนว่างงานได้กี่บาทและนานแค่ไหน?</summary><div class="faq-a">ถูกเลิกจ้าง: 50% ของเงินเดือน (สูงสุด 15,000 บาท/เดือน) นาน 180 วัน / ลาออกเอง: 30% นาน 90 วัน / ต้องส่งประกันสังคม ม.33 ครบ 6 เดือน ใน 15 เดือนก่อนว่างงาน และยื่นที่สำนักงานประกันสังคมภายใน 30 วัน</div></details>
+<details class="faq-item"><summary class="faq-q">ส่งประกันสังคมกี่ปีถึงได้บำนาญ?</summary><div class="faq-a">ม.33: ต้องส่งสมทบครบ 15 ปี (180 เดือน) จึงได้รับบำนาญ ถ้าน้อยกว่านั้นได้เป็นบำเหน็จ (ก้อนเดียว) ม.40 ทางเลือก 3: ต้องส่ง 180 เดือน (15 ปี) ถึงได้บำนาญ ถ้าน้อยกว่าได้บำเหน็จ</div></details>
+<details class="faq-item"><summary class="faq-q">ประกันสังคมกับประกันสุขภาพต่างกันยังไง?</summary><div class="faq-a">ประกันสังคมเป็นสวัสดิการภาครัฐ ครอบคลุม OPD+IPD ที่โรงพยาบาลที่เลือกไว้ ฟรี ไม่มีเบี้ย (คิดจากเงินสมทบแล้ว) · ประกันสุขภาพเอกชนครอบคลุมกว้างกว่า เลือกโรงพยาบาลได้อิสระ วงเงินสูงกว่า แต่แพงกว่า ทั้งสองทำร่วมกันได้</div></details>
+<details class="faq-item"><summary class="faq-q">ย้ายงานบ่อย เงินประกันสังคมหายไหม?</summary><div class="faq-a">ไม่หาย ประกันสังคมใช้เลขบัตรประชาชนเป็นตัวระบุ ย้ายงานเท่าไหร่สิทธิ์ก็ยังสะสมต่อเนื่อง นายจ้างใหม่แจ้งขึ้นทะเบียนให้โดยอัตโนมัติ เงินสมทบสะสมตลอดอายุงาน</div></details>
+<details class="faq-item"><summary class="faq-q">ทำงานพาร์ทไทม์ต้องส่งประกันสังคมไหม?</summary><div class="faq-a">ถ้าทำงานประจำที่มีนายจ้างและมีสัญญาจ้าง → ต้องส่ง ม.33 ตามกฎหมาย ถ้าเป็นฟรีแลนซ์/รับงานชิ้นไม่มีนายจ้าง → สมัคร ม.40 เองได้สมัครใจ ทั้งสองทำพร้อมกันไม่ได้</div></details>
+</div></div>
+
+<div class="sec" style="padding-top:0"><div class="sec-title">เข้าใจระบบประกันสังคมไทย</div><div class="card" style="padding:18px 16px"><p style="margin-bottom:14px;line-height:1.7">ประกันสังคมไทยบริหารโดย <b>สำนักงานประกันสังคม (สปส.)</b> ภายใต้กระทรวงแรงงาน มี 3 มาตราหลัก: <b>ม.33</b> สำหรับลูกจ้างเอกชน เงินสมทบ 5% ของเงินเดือน (นายจ้าง 5% รัฐ 2.75%) สิทธิ์ครบที่สุด รวมเงินทดแทนว่างงาน · <b>ม.39</b> สำหรับผู้ที่เคยอยู่ ม.33 แล้วออกจากงาน สมัครส่งต่อเอง 432 บาท/เดือน · <b>ม.40</b> สำหรับแรงงานอิสระ มีให้เลือก 3 ทางเลือก ราคา 70-300 บาท/เดือน</p><p style="margin-bottom:14px;line-height:1.7"><b>เงินชราภาพ:</b> ม.33 ส่งครบ 15 ปี ได้บำนาญ 20% ของเงินเดือนเฉลี่ย 60 เดือนสุดท้าย ตัวอย่าง: เงินเดือนเฉลี่ย 25,000 บาท ส่ง 20 ปี → บำนาญ = 20% + (5×1.5%) = 27.5% × 15,000 (ฐานสูงสุด) = 4,125 บาท/เดือน ตลอดชีวิต (เริ่มรับอายุ 55 ปี)</p><p style="line-height:1.7"><b>เคล็ดลับ:</b> ม.33 ที่เงินเดือนเกิน 15,000 บาท/เดือน ฐานเงินสมทบถูกจำกัดที่ 15,000 ดังนั้น เงินสมทบ = 750 บาท/เดือน (5% × 15,000) ไม่ว่าจะเงินเดือนสูงแค่ไหน นี่คือ "ค่าเสียโอกาส" ของ ม.33 สำหรับคนเงินเดือนสูง — ควรเสริมด้วย PVD หรือ RMF</p></div></div>
+
+<div class="sec" style="padding-top:0">
+  <div class="sec-title">เครื่องมือที่เกี่ยวข้อง</div>
+  <div class="card">
+    <a class="c-row" href="/salary.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">💼 เงินเดือนสุทธิ</div><div class="c-sub">หักภาษีและ SSO เหลือเท่าไหร่</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/severance.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">⚖️ ค่าชดเชยเลิกจ้าง</div><div class="c-sub">สิทธิ์แรงงานตามกฎหมาย</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/retirement.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">👴 วางแผนเกษียณ</div><div class="c-sub">เก็บเงินเท่าไหร่ถึงพอ</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+    <a class="c-row" href="/tax.html" style="text-decoration:none;color:inherit">
+      <div><div class="c-label">🧾 ภาษีเงินได้</div><div class="c-sub">RMF/SSF ช่วยลดภาษีได้เท่าไหร่</div></div>
+      <div class="c-price" style="font-size:14px">→</div>
+    </a>
+  </div>
+</div>
+
+<footer>อ้างอิงจากข้อมูล สำนักงานประกันสังคม (สปส.) ปี 2568<br>ตัวเลขเงินชราภาพเป็นการประมาณเท่านั้น ติดต่อ สปส. โทร 1506 เพื่อข้อมูลจริง</footer>
+
+<script>
+function updateSection() {
+  const sec = document.getElementById('section').value;
+  document.getElementById('salaryField').style.display = (sec === '33') ? '' : 'none';
+}
+
+function calcSSO() {
+  const sec = document.getElementById('section').value;
+  const salary = parseFloat(document.getElementById('salary').value) || 25000;
+  const yrs = parseFloat(document.getElementById('years').value) || 0;
+  pushURLState({salary, section: sec, years: yrs});
+
+  const base = Math.min(salary, 15000);
+  const months = Math.round(yrs * 12);
+  const container = document.getElementById('ssoResult');
+
+  if (sec === '33') {
+    const emp = Math.round(base * 0.05);   // employee 5%
+    const er  = Math.round(base * 0.05);   // employer 5%
+    const gov = Math.round(base * 0.0275); // govt 2.75%
+    const total = emp + er + gov;
+    const accumulated = months * emp * 1.03; // rough 3%/yr return
+    const pensionBase = Math.min(salary, 15000);
+    let pension = 0;
+    if (yrs >= 15) {
+      pension = Math.round(pensionBase * (0.20 + Math.max(0, yrs - 15) * 0.015));
+    }
+    container.innerHTML = `
+      <div class="card">
+        <div class="c-row"><div><div class="c-label">เงินสมทบของคุณ/เดือน</div><div class="c-sub">5% × ${fmt(base,0)} (ฐานสูงสุด 15,000)</div></div><div class="c-price">${fmt(emp,0)} บาท</div></div>
+        <div class="c-row"><div><div class="c-label">นายจ้างสมทบ/เดือน</div><div class="c-sub">5% เท่ากัน</div></div><div class="c-price">${fmt(er,0)} บาท</div></div>
+        <div class="c-row"><div><div class="c-label">รัฐบาลสมทบ/เดือน</div><div class="c-sub">2.75% ของฐาน</div></div><div class="c-price">${fmt(gov,0)} บาท</div></div>
+        <div class="c-row"><div><div class="c-label">เงินสมทบรวม/เดือน (ทุกฝ่าย)</div></div><div class="c-price">${fmt(total,0)} บาท</div></div>
+        <div class="c-row"><div><div class="c-label">เงินสมทบส่วนคุณสะสม (${yrs} ปี)</div><div class="c-sub">ประมาณ ไม่รวมผลตอบแทน</div></div><div class="c-price">${fmt(months*emp,0)} บาท</div></div>
+        ${yrs >= 15 ? `<div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--accent)">บำนาญชราภาพ (ประมาณ)</div><div class="c-sub">ส่ง ${yrs} ปี · ได้รับตลอดชีวิตหลังอายุ 55 ปี</div></div><div class="c-price" style="color:var(--accent)">${fmt(pension,0)} บาท/เดือน</div></div>` : `<div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--ink2)">ส่งอีก ${fmt(15-yrs,1)} ปี จึงจะได้บำนาญ</div><div class="c-sub">ปัจจุบันจะได้บำเหน็จ (ก้อนเดียว) ถ้าออกก่อน 15 ปี</div></div></div>`}
+      </div>`;
+  } else if (sec === '39') {
+    const contribution = 432;
+    const accumulated = months * contribution;
+    container.innerHTML = `
+      <div class="card">
+        <div class="c-row"><div><div class="c-label">เงินสมทบ ม.39/เดือน</div><div class="c-sub">จ่ายเองทั้งหมด</div></div><div class="c-price">432 บาท</div></div>
+        <div class="c-row"><div><div class="c-label">รายจ่ายต่อปี</div></div><div class="c-price">5,184 บาท</div></div>
+        <div class="c-row"><div><div class="c-label">เงินสมทบสะสม (${yrs} ปี)</div></div><div class="c-price">${fmt(accumulated,0)} บาท</div></div>
+        <div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="font-size:13px">✅ รักษาพยาบาล · ✅ คลอดบุตร · ✅ ทุพพลภาพ · ✅ ชราภาพ · ❌ ว่างงาน</div></div></div>
+      </div>`;
+  } else if (sec === '40') {
+    container.innerHTML = `
+      <div class="card">
+        <div class="c-row"><div><div class="c-label">ทางเลือก 1 — 70 บาท/เดือน</div><div class="c-sub">ทุพพลภาพ · ตาย · ชราภาพ (บำเหน็จ) · ✅ สงเคราะห์บุตร</div></div><div class="c-price">840 บาท/ปี</div></div>
+        <div class="c-row"><div><div class="c-label">ทางเลือก 2 — 100 บาท/เดือน</div><div class="c-sub">ทุกอย่างใน 1 + ชราภาพสูงขึ้น + คลอดบุตร</div></div><div class="c-price">1,200 บาท/ปี</div></div>
+        <div class="c-row"><div><div class="c-label">ทางเลือก 3 — 300 บาท/เดือน</div><div class="c-sub">ทุกอย่างใน 2 + รักษาพยาบาล + บำนาญ (ถ้าส่ง 180 เดือน)</div></div><div class="c-price">3,600 บาท/ปี</div></div>
+        <div class="c-row" style="background:var(--bg)"><div><div class="c-label" style="color:var(--accent);font-size:13px">แนะนำ ทางเลือก 3 สำหรับ freelance ที่ไม่มีประกันสุขภาพอื่น</div></div></div>
+      </div>`;
+  } else {
+    // Compare all
+    container.innerHTML = `
+      <div class="card">
+        <div class="c-row"><div><div class="c-label">ม.33 — ลูกจ้างเอกชน</div><div class="c-sub">จ่าย 750 บ./เดือน · สิทธิ์ครบสุด รวมว่างงาน</div></div><div class="c-price">9,000 บาท/ปี</div></div>
+        <div class="c-row"><div><div class="c-label">ม.39 — ส่งต่อหลังลาออก</div><div class="c-sub">จ่าย 432 บ./เดือน · เกือบครบยกเว้นว่างงาน</div></div><div class="c-price">5,184 บาท/ปี</div></div>
+        <div class="c-row"><div><div class="c-label">ม.40 ทางเลือก 1 — ถูกสุด</div><div class="c-sub">จ่าย 70 บ./เดือน · ไม่ครอบคลุมรักษาพยาบาล</div></div><div class="c-price">840 บาท/ปี</div></div>
+        <div class="c-row"><div><div class="c-label">ม.40 ทางเลือก 3 — แนะนำ freelance</div><div class="c-sub">จ่าย 300 บ./เดือน · รักษา + บำนาญ</div></div><div class="c-price">3,600 บาท/ปี</div></div>
+      </div>`;
+  }
+}
+
+updateSection();
+window.addEventListener('load', function() {
+  const sec = document.getElementById('section').value;
+  updateSection();
+  calcSSO();
+});
+</script>
+</body>
+</html>
