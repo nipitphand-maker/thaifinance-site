@@ -223,7 +223,7 @@
   </url>
   <url>
     <loc>https://thaifinance-site.pages.dev/tdee.html</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-05-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
     <image:image>
@@ -265,16 +265,6 @@
     <image:image>
       <image:loc>https://thaifinance-site.pages.dev/img/og-fire.png</image:loc>
       <image:title>FIRE Calculator — อิสรภาพทางการเงิน</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://thaifinance-site.pages.dev/water.html</loc>
-    <lastmod>2026-05-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.82</priority>
-    <image:image>
-      <image:loc>https://thaifinance-site.pages.dev/img/og-water.png</image:loc>
-      <image:title>คำนวณค่าน้ำประปา MEA PWA 2568</image:title>
     </image:image>
   </url>
   <url>

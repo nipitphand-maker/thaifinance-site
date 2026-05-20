@@ -55,15 +55,9 @@
 <div class="sec">
   <div class="form-card">
     <div class="field">
-      <label class="f-label">การไฟฟ้า</label>
-      <select class="f-input" id="auth">
-        <option value="mea">กฟน. — กรุงเทพฯ / ปริมณฑล</option>
-        <option value="pea">กฟภ. — ต่างจังหวัด</option>
-      </select>
-    </div>
-    <div class="field">
       <label class="f-label">จำนวนหน่วยที่ใช้ (kWh)</label>
       <input type="number" class="f-input" id="units" placeholder="เช่น 250">
+      <div class="f-hint">กฟน. และ กฟภ. ใช้อัตราเดียวกันทั่วประเทศ</div>
     </div>
     <button class="btn btn-dark" onclick="calcElec()">คำนวณ</button>
     <div class="result" id="elecResult">
@@ -76,9 +70,9 @@
 
 <div class="sec" style="padding-top:0">
   <div class="stat-grid g4">
-    <div class="stat"><div class="stat-val accent">4.27</div><div class="stat-label">บาท/หน่วย (กฟน.)</div></div>
-    <div class="stat"><div class="stat-val accent">4.22</div><div class="stat-label">บาท/หน่วย (กฟภ.)</div></div>
-    <div class="stat"><div class="stat-val">38.22</div><div class="stat-label">ค่าบริการ/เดือน</div></div>
+    <div class="stat"><div class="stat-val accent">≈4.6</div><div class="stat-label">บาท/หน่วย (เฉลี่ย 300 หน่วย)</div></div>
+    <div class="stat"><div class="stat-val accent">36.72</div><div class="stat-label">สตางค์ Ft/หน่วย (พ.ค.-ส.ค.68)</div></div>
+    <div class="stat"><div class="stat-val">38.22</div><div class="stat-label">ค่าบริการ/เดือน (บาท)</div></div>
     <div class="stat"><div class="stat-val">7%</div><div class="stat-label">VAT</div></div>
   </div>
 </div>
