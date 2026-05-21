@@ -181,6 +181,7 @@ async function fetchUsdOz(barBuyThb) {
       const usdThb = j.rates.THB;
       const usdOz = Math.round(barBuyThb * (31.1035/15.244) / usdThb);
       setText('usdoz', fmt(usdOz,0));
+      setText('usdthb', fmt(usdThb,2));
     }
   } catch(e) {
     // ถ้าไม่ได้ก็ไม่แสดง
